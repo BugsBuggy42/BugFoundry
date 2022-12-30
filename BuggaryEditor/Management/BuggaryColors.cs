@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    [CreateAssetMenu(fileName = "BuggaryColors", menuName = "ScriptableObjects/BuggaryColors", order = 1)]
+    [CreateAssetMenu(fileName = "BuggaryColors", menuName = "ScriptableObjects/BuggaryColorsUnite", order = 1)]
     public class BuggaryColors: ScriptableObject
     {
         public Color keyword;

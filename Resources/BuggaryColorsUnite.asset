@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8dc02e3fe654a84bfd514e353dfdf0d, type: 3}
-  m_Name: BuggaryColors
-  m_EditorClassIdentifier: Buggary:Projects.Buggary.BuggarySource.Management:BuggaryInputScriptable
+  m_Script: {fileID: 11500000, guid: fa459148742750c4aa89611500e2f577, type: 3}
+  m_Name: BuggaryColorsUnite
+  m_EditorClassIdentifier: 
   keyword: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
   keywordControl: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
   className: {r: 0.7529412, g: 0.5647059, b: 0.9098039, a: 1}
@@ -33,5 +33,5 @@ MonoBehaviour:
   number: {r: 0.9254902, g: 0.5019608, b: 0.4745098, a: 1}
   operatorOverloaded: {r: 0.22352941, g: 0.8, b: 0.56078434, a: 1}
   backgroundColor: {r: 0.15686275, g: 0.17254902, b: 0.20392157, a: 1}
-  scrollbarBody: {r: 0.81995374, g: 0.990566, b: 0.5924706, a: 1}
-  scrollbarHandle: {r: 1, g: 0.74222636, b: 0.21960783, a: 1}
+  scrollbarBody: {r: 0.81960785, g: 0.99215686, b: 0.5921569, a: 1}
+  scrollbarHandle: {r: 1, g: 0.7411765, b: 0.21960784, a: 1}

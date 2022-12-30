@@ -6,7 +6,7 @@
         "UnityEditor.TestRunner",
         "Common",
         "BoundfoxStudios.FluentAssertions",
-        "Buggary"
+        "BuggaryUnite"
     ],
     "includePlatforms": [
         "Editor"

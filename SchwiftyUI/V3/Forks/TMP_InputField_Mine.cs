@@ -627,6 +627,8 @@ namespace TMPro
             get { return m_VerticalScrollbar; }
             set
             {
+                Debug.Log($"HERE");
+
                 if (m_VerticalScrollbar != null)
                     m_VerticalScrollbar.onValueChanged.RemoveListener(OnScrollbarValueChange);
 
@@ -3551,7 +3553,9 @@ namespace TMPro
 
             m_ScrollPosition = value;
 
-            //Debug.Log(GetInstanceID() + "- OnScrollbarValueChange() - Scrollbar value is: " + value + "  Transform POS: " + m_TextComponent.rectTransform.anchoredPosition);
+            scrollAction?.Invoke(0);
+
+            Debug.Log(GetInstanceID() + "- OnScrollbarValueChange() - Scrollbar value is: " + value + "  Transform POS: " + m_TextComponent.rectTransform.anchoredPosition);
         }
 
         void UpdateMaskRegions()
