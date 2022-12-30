@@ -3532,7 +3532,7 @@ namespace Buggary.SchwiftyUI.V3.Forks
             }
         }
 
-
+        
         /// <summary>
         /// Function to update the vertical position of the text container when OnValueChanged event is received from the Scrollbar.
         /// </summary>
@@ -3553,7 +3553,7 @@ namespace Buggary.SchwiftyUI.V3.Forks
 
             this.scrollAction?.Invoke(0);
 
-            Debug.Log(this.GetInstanceID() + "- OnScrollbarValueChange() - Scrollbar value is: " + value + "  Transform POS: " + this.m_TextComponent.rectTransform.anchoredPosition);
+            // Debug.Log(this.GetInstanceID() + "- OnScrollbarValueChange() - Scrollbar value is: " + value + "  Transform POS: " + this.m_TextComponent.rectTransform.anchoredPosition);
         }
 
         void UpdateMaskRegions()
