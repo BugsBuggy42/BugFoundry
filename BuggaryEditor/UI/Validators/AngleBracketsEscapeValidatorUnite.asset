@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ccb533c8cd4e44ba9ecdaaee9c65da, type: 3}
-  m_Name: AngleBracketsEscapeValidator
+  m_Script: {fileID: 11500000, guid: e9a8a61ff68f439498a6912bb7a77054, type: 3}
+  m_Name: AngleBracketsEscapeValidatorUnite
   m_EditorClassIdentifier: 

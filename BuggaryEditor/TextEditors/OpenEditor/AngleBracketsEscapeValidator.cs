@@ -7,7 +7,7 @@
 
     [Serializable]
     [CreateAssetMenu(fileName = "AngleBracketsEscapeValidator",
-        menuName = "TextMeshPro/Input Validators/AngleBracketsEscape", order = 100)]
+        menuName = "TextMeshPro/Input Validators/AngleBracketsEscapeUnite", order = 100)]
     public class AngleBracketsEscapeValidator : TMP_InputValidator
     {
         private OpenEditor editor;

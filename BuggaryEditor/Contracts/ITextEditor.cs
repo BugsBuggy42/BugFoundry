@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Contracts
+﻿namespace Buggary.BuggaryEditor.Contracts
 {
     using System.Collections.Generic;
     using UnityEngine;
