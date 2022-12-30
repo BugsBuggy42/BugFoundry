@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.UI.Classes
+﻿namespace Buggary.BuggaryEditor.UI.Classes
 {
     using Microsoft.CodeAnalysis;
     using SchwiftyUI.V3.Elements;

@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.PersistenceModule.DataClasses
+﻿namespace Buggary.BuggaryEditor.PersistenceModule.DataClasses
 {
     using System.Collections.Generic;
 

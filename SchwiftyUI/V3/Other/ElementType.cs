@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Other
+﻿namespace Buggary.SchwiftyUI.V3.Other
 {
     public enum ElementType
     {

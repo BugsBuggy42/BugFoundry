@@ -1,5 +1,7 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Management.Models
+﻿namespace Buggary.BuggaryEditor.Management.Models
 {
+    using BuggaryEditor.Models;
+
     public class BoxedBuggaryState
     {
         public BoxedBuggaryState(BuggaryState initState)

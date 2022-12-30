@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor
+﻿namespace Buggary.BuggaryEditor.Models
 {
     public enum BuggaryState
     {

@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Inputs
+﻿namespace Buggary.SchwiftyUI.V3.Inputs
 {
     using Enums;
     using UnityEngine;

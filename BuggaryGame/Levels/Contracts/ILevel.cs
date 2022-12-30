@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.Levels.Contracts
+﻿namespace Buggary.BuggaryGame.Levels.Contracts
 {
     using UnityEngine;
 

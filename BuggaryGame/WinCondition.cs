@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame
+﻿namespace Buggary.BuggaryGame
 {
     using System;
     using UnityEngine;

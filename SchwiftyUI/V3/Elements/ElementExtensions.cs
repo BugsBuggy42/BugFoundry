@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Elements
+﻿namespace Buggary.SchwiftyUI.V3.Elements
 {
     using UnityEngine;
 

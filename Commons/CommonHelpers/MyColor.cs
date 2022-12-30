@@ -1,4 +1,4 @@
-﻿namespace Commons.CommonHelpers
+﻿namespace Buggary.Commons.CommonHelpers
 {
     using UnityEngine;
 

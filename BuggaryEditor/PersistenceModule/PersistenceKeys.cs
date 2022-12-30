@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.PersistenceModule
+﻿namespace Buggary.BuggaryEditor.PersistenceModule
 {
     public enum PersistenceKeys
     {

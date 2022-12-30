@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.UI
+﻿namespace Buggary.BuggaryEditor.UI
 {
     using Commons.CommonHelpers;
     using SchwiftyUI.V3.Elements;

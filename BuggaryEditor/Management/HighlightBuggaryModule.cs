@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Management
+﻿namespace Buggary.BuggaryEditor.Management
 {
     using System.Collections;
     using System.Collections.Generic;

@@ -1,8 +1,8 @@
-﻿namespace Projects.Buggary.BuggaryGame.Levels.LevelTheIntro
+﻿namespace Buggary.BuggaryGame.Levels.Level0TheIntro
 {
     using System.Linq;
-    using Contracts;
     using BuggaryEditor.TextEditors.Console;
+    using Contracts;
     using Shared;
     using UnityEngine;
 

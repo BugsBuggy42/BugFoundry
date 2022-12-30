@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Inputs.Enums
+﻿namespace Buggary.SchwiftyUI.V3.Inputs.Enums
 {
     public enum YPosition
     {

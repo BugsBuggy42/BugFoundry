@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.Why
+﻿namespace Buggary.BuggaryGame.Why
 {
     using UnityEngine;
     using UnityEngine.Rendering;

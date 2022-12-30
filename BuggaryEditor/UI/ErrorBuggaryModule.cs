@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.UI
+﻿namespace Buggary.BuggaryEditor.UI
 {
     using System;
     using System.Collections.Generic;

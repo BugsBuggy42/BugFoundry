@@ -1,7 +1,7 @@
 ﻿namespace Projects.Buggary.Source.Tests
 {
-    using BuggaryEditor.TextEditors.OpenEditor;
     using FluentAssertions;
+    using global::Buggary.BuggaryEditor.TextEditors.OpenEditor;
     using NUnit.Framework;
 
     public class TextHelperTests

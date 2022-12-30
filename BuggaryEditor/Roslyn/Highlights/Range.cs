@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Roslyn.Highlights
+﻿namespace Buggary.BuggaryEditor.Roslyn.Highlights
 {
     using Microsoft.CodeAnalysis.Classification;
     using Microsoft.CodeAnalysis.Text;

@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Roslyn.Refactors
+﻿namespace Buggary.BuggaryEditor.Roslyn.Refactors
 {
     using System;
     using System.Collections.Generic;

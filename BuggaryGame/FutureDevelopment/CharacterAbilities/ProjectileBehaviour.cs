@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.CharacterAbilities
+﻿namespace Buggary.BuggaryGame.FutureDevelopment.CharacterAbilities
 {
     using System;
     using UnityEngine;

@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.DataClasses
+﻿namespace Buggary.BuggaryGame.DataClasses
 {
     using Levels.Contracts;
     using UnityEngine;

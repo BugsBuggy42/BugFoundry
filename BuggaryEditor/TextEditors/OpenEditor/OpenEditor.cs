@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.TextEditors.OpenEditor
+﻿namespace Buggary.BuggaryEditor.TextEditors.OpenEditor
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,7 @@
     using Models;
     using SchwiftyUI.V3;
     using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.V3.Forks;
     using SchwiftyUI.V3.Inputs;
     using TMPro;
     using UnityEngine;

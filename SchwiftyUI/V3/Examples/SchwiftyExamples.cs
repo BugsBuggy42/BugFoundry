@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Examples
+﻿namespace Buggary.SchwiftyUI.V3.Examples
 {
     using System.Collections.Generic;
     using System.Linq;

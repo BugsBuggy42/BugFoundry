@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Management
+﻿namespace Buggary.BuggaryEditor.Management
 {
     using System;
     using System.Collections;
@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using BuggaryEditor.Models;
     using Commons.Legacy;
     using Contracts;
     using Infrastructure;

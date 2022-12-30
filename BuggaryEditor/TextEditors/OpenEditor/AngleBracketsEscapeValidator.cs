@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.TextEditors.OpenEditor
+﻿namespace Buggary.BuggaryEditor.TextEditors.OpenEditor
 {
     using System;
     using Models;

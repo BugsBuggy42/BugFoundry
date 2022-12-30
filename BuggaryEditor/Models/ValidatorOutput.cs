@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Models
+﻿namespace Buggary.BuggaryEditor.Models
 {
     public class ValidatorOutput
     {

@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.V3.Other
+﻿namespace Buggary.SchwiftyUI.V3.Other
 
 {
     using System;
@@ -339,7 +339,7 @@
 
         private string compositionString
         {
-            get { return inputSystem != null ? inputSystem.compositionString : Input.compositionString; }
+            get { return this.inputSystem != null ? this.inputSystem.compositionString : Input.compositionString; }
         }
         private bool m_IsCompositionActive = false;
         private bool m_ShouldUpdateIMEWindowPosition = false;
@@ -349,10 +349,10 @@
         {
             get
             {
-                if (m_ReadOnly)
+                if (this.m_ReadOnly)
                     return 0;
 
-                return compositionString.Length;
+                return this.compositionString.Length;
             }
         }
 
@@ -360,16 +360,16 @@
 
         protected MyTmpInput()
         {
-            SetTextComponentWrapMode();
+            this.SetTextComponentWrapMode();
         }
 
         protected Mesh mesh
         {
             get
             {
-                if (m_Mesh == null)
-                    m_Mesh = new Mesh();
-                return m_Mesh;
+                if (this.m_Mesh == null)
+                    this.m_Mesh = new Mesh();
+                return this.m_Mesh;
             }
         }
 
@@ -385,7 +385,7 @@
                     case RuntimePlatform.Android:
                     case RuntimePlatform.IPhonePlayer:
                     case RuntimePlatform.tvOS:
-                        return m_HideMobileInput;
+                        return this.m_HideMobileInput;
                     default:
                         return true;
                 }
@@ -398,10 +398,10 @@
                     case RuntimePlatform.Android:
                     case RuntimePlatform.IPhonePlayer:
                     case RuntimePlatform.tvOS:
-                        SetPropertyUtility.SetStruct(ref m_HideMobileInput, value);
+                        SetPropertyUtility.SetStruct(ref this.m_HideMobileInput, value);
                         break;
                     default:
-                        m_HideMobileInput = true;
+                        this.m_HideMobileInput = true;
                         break;
                 }
             }
@@ -421,7 +421,7 @@
                     case RuntimePlatform.WSAPlayerARM:
                     case RuntimePlatform.Stadia:
                     case RuntimePlatform.Switch:
-                        return m_HideSoftKeyboard;
+                        return this.m_HideSoftKeyboard;
                     default:
                         return true;
                 }
@@ -439,17 +439,17 @@
                     case RuntimePlatform.WSAPlayerARM:
                     case RuntimePlatform.Stadia:
                     case RuntimePlatform.Switch:
-                        SetPropertyUtility.SetStruct(ref m_HideSoftKeyboard, value);
+                        SetPropertyUtility.SetStruct(ref this.m_HideSoftKeyboard, value);
                         break;
                     default:
-                        m_HideSoftKeyboard = true;
+                        this.m_HideSoftKeyboard = true;
                         break;
                 }
 
-                if (m_HideSoftKeyboard == true && m_SoftKeyboard != null && TouchScreenKeyboard.isSupported && m_SoftKeyboard.active)
+                if (this.m_HideSoftKeyboard == true && this.m_SoftKeyboard != null && TouchScreenKeyboard.isSupported && this.m_SoftKeyboard.active)
                 {
-                    m_SoftKeyboard.active = false;
-                    m_SoftKeyboard = null;
+                    this.m_SoftKeyboard.active = false;
+                    this.m_SoftKeyboard = null;
                 }
             }
         }
@@ -495,11 +495,11 @@
         {
             get
             {
-                return m_Text;
+                return this.m_Text;
             }
             set
             {
-                SetText(value);
+                this.SetText(value);
             }
         }
 
@@ -508,7 +508,7 @@
         /// </summary>
         public void SetTextWithoutNotify(string input)
         {
-            SetText(input, false);
+            this.SetText(input, false);
         }
 
         void SetText(string value, bool sendCallback = true)
@@ -521,7 +521,7 @@
 
             value = value.Replace("\0", string.Empty); // remove embedded nulls
 
-            m_Text = value;
+            this.m_Text = value;
 
             /*
             if (m_LineType == LineType.SingleLine)
@@ -550,125 +550,125 @@
             #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
-                SendOnValueChangedAndUpdateLabel();
+                this.SendOnValueChangedAndUpdateLabel();
                 return;
             }
             #endif
 
-            if (m_SoftKeyboard != null)
-                m_SoftKeyboard.text = m_Text;
+            if (this.m_SoftKeyboard != null)
+                this.m_SoftKeyboard.text = this.m_Text;
 
-            if (m_StringPosition > m_Text.Length)
-                m_StringPosition = m_StringSelectPosition = m_Text.Length;
-            else if (m_StringSelectPosition > m_Text.Length)
-                m_StringSelectPosition = m_Text.Length;
+            if (this.m_StringPosition > this.m_Text.Length)
+                this.m_StringPosition = this.m_StringSelectPosition = this.m_Text.Length;
+            else if (this.m_StringSelectPosition > this.m_Text.Length)
+                this.m_StringSelectPosition = this.m_Text.Length;
 
             // Set RectTransform relative position to top of viewport.
-            AdjustTextPositionRelativeToViewport(0);
+            this.AdjustTextPositionRelativeToViewport(0);
 
-            m_forceRectTransformAdjustment = true;
+            this.m_forceRectTransformAdjustment = true;
 
-            m_IsTextComponentUpdateRequired = true;
-            UpdateLabel();
+            this.m_IsTextComponentUpdateRequired = true;
+            this.UpdateLabel();
 
             if (sendCallback)
-                SendOnValueChanged();
+                this.SendOnValueChanged();
         }
 
 
         public bool isFocused
         {
-            get { return m_AllowInput; }
+            get { return this.m_AllowInput; }
         }
 
         public float caretBlinkRate
         {
-            get { return m_CaretBlinkRate; }
+            get { return this.m_CaretBlinkRate; }
             set
             {
-                if (SetPropertyUtility.SetStruct(ref m_CaretBlinkRate, value))
+                if (SetPropertyUtility.SetStruct(ref this.m_CaretBlinkRate, value))
                 {
-                    if (m_AllowInput)
-                        SetCaretActive();
+                    if (this.m_AllowInput)
+                        this.SetCaretActive();
                 }
             }
         }
 
-        public int caretWidth { get { return m_CaretWidth; } set { if (SetPropertyUtility.SetStruct(ref m_CaretWidth, value)) MarkGeometryAsDirty(); } }
+        public int caretWidth { get { return this.m_CaretWidth; } set { if (SetPropertyUtility.SetStruct(ref this.m_CaretWidth, value)) this.MarkGeometryAsDirty(); } }
 
-        public RectTransform textViewport { get { return m_TextViewport; } set { SetPropertyUtility.SetClass(ref m_TextViewport, value); } }
+        public RectTransform textViewport { get { return this.m_TextViewport; } set { SetPropertyUtility.SetClass(ref this.m_TextViewport, value); } }
 
         public TMP_Text textComponent
         {
-            get { return m_TextComponent; }
+            get { return this.m_TextComponent; }
             set
             {
                 //Debug.Log("set textComponent");
-                if (SetPropertyUtility.SetClass(ref m_TextComponent, value))
+                if (SetPropertyUtility.SetClass(ref this.m_TextComponent, value))
                 {
-                    SetTextComponentWrapMode();
+                    this.SetTextComponentWrapMode();
                 }
             }
         }
 
         //public TMP_Text placeholderTextComponent { get { return m_PlaceholderTextComponent; } set { SetPropertyUtility.SetClass(ref m_PlaceholderTextComponent, value); } }
 
-        public Graphic placeholder { get { return m_Placeholder; } set { SetPropertyUtility.SetClass(ref m_Placeholder, value); } }
+        public Graphic placeholder { get { return this.m_Placeholder; } set { SetPropertyUtility.SetClass(ref this.m_Placeholder, value); } }
 
         public Scrollbar verticalScrollbar
         {
-            get { return m_VerticalScrollbar; }
+            get { return this.m_VerticalScrollbar; }
             set
             {
-                if (m_VerticalScrollbar != null)
-                    m_VerticalScrollbar.onValueChanged.RemoveListener(OnScrollbarValueChange);
+                if (this.m_VerticalScrollbar != null)
+                    this.m_VerticalScrollbar.onValueChanged.RemoveListener(this.OnScrollbarValueChange);
 
-                SetPropertyUtility.SetClass(ref m_VerticalScrollbar, value);
+                SetPropertyUtility.SetClass(ref this.m_VerticalScrollbar, value);
 
-                if (m_VerticalScrollbar)
+                if (this.m_VerticalScrollbar)
                 {
-                    m_VerticalScrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
+                    this.m_VerticalScrollbar.onValueChanged.AddListener(this.OnScrollbarValueChange);
 
                 }
             }
         }
 
-        public float scrollSensitivity { get { return m_ScrollSensitivity; } set { if (SetPropertyUtility.SetStruct(ref m_ScrollSensitivity, value)) MarkGeometryAsDirty(); } }
+        public float scrollSensitivity { get { return this.m_ScrollSensitivity; } set { if (SetPropertyUtility.SetStruct(ref this.m_ScrollSensitivity, value)) this.MarkGeometryAsDirty(); } }
 
-        public Color caretColor { get { return customCaretColor ? m_CaretColor : textComponent.color; } set { if (SetPropertyUtility.SetColor(ref m_CaretColor, value)) MarkGeometryAsDirty(); } }
+        public Color caretColor { get { return this.customCaretColor ? this.m_CaretColor : this.textComponent.color; } set { if (SetPropertyUtility.SetColor(ref this.m_CaretColor, value)) this.MarkGeometryAsDirty(); } }
 
-        public bool customCaretColor { get { return m_CustomCaretColor; } set { if (m_CustomCaretColor != value) { m_CustomCaretColor = value; MarkGeometryAsDirty(); } } }
+        public bool customCaretColor { get { return this.m_CustomCaretColor; } set { if (this.m_CustomCaretColor != value) { this.m_CustomCaretColor = value; this.MarkGeometryAsDirty(); } } }
 
-        public Color selectionColor { get { return m_SelectionColor; } set { if (SetPropertyUtility.SetColor(ref m_SelectionColor, value)) MarkGeometryAsDirty(); } }
+        public Color selectionColor { get { return this.m_SelectionColor; } set { if (SetPropertyUtility.SetColor(ref this.m_SelectionColor, value)) this.MarkGeometryAsDirty(); } }
 
-        public SubmitEvent onEndEdit { get { return m_OnEndEdit; } set { SetPropertyUtility.SetClass(ref m_OnEndEdit, value); } }
+        public SubmitEvent onEndEdit { get { return this.m_OnEndEdit; } set { SetPropertyUtility.SetClass(ref this.m_OnEndEdit, value); } }
 
-        public SubmitEvent onSubmit { get { return m_OnSubmit; } set { SetPropertyUtility.SetClass(ref m_OnSubmit, value); } }
+        public SubmitEvent onSubmit { get { return this.m_OnSubmit; } set { SetPropertyUtility.SetClass(ref this.m_OnSubmit, value); } }
 
-        public SelectionEvent onSelect { get { return m_OnSelect; } set { SetPropertyUtility.SetClass(ref m_OnSelect, value); } }
+        public SelectionEvent onSelect { get { return this.m_OnSelect; } set { SetPropertyUtility.SetClass(ref this.m_OnSelect, value); } }
 
-        public SelectionEvent onDeselect { get { return m_OnDeselect; } set { SetPropertyUtility.SetClass(ref m_OnDeselect, value); } }
+        public SelectionEvent onDeselect { get { return this.m_OnDeselect; } set { SetPropertyUtility.SetClass(ref this.m_OnDeselect, value); } }
 
-        public TextSelectionEvent onTextSelection { get { return m_OnTextSelection; } set { SetPropertyUtility.SetClass(ref m_OnTextSelection, value); } }
+        public TextSelectionEvent onTextSelection { get { return this.m_OnTextSelection; } set { SetPropertyUtility.SetClass(ref this.m_OnTextSelection, value); } }
 
-        public TextSelectionEvent onEndTextSelection { get { return m_OnEndTextSelection; } set { SetPropertyUtility.SetClass(ref m_OnEndTextSelection, value); } }
+        public TextSelectionEvent onEndTextSelection { get { return this.m_OnEndTextSelection; } set { SetPropertyUtility.SetClass(ref this.m_OnEndTextSelection, value); } }
 
-        public OnChangeEvent onValueChanged { get { return m_OnValueChanged; } set { SetPropertyUtility.SetClass(ref m_OnValueChanged, value); } }
+        public OnChangeEvent onValueChanged { get { return this.m_OnValueChanged; } set { SetPropertyUtility.SetClass(ref this.m_OnValueChanged, value); } }
 
-        public TouchScreenKeyboardEvent onTouchScreenKeyboardStatusChanged { get { return m_OnTouchScreenKeyboardStatusChanged; } set { SetPropertyUtility.SetClass(ref m_OnTouchScreenKeyboardStatusChanged, value); } }
+        public TouchScreenKeyboardEvent onTouchScreenKeyboardStatusChanged { get { return this.m_OnTouchScreenKeyboardStatusChanged; } set { SetPropertyUtility.SetClass(ref this.m_OnTouchScreenKeyboardStatusChanged, value); } }
 
-        public OnValidateInput onValidateInput { get { return m_OnValidateInput; } set { SetPropertyUtility.SetClass(ref m_OnValidateInput, value); } }
+        public OnValidateInput onValidateInput { get { return this.m_OnValidateInput; } set { SetPropertyUtility.SetClass(ref this.m_OnValidateInput, value); } }
 
         public int characterLimit
         {
-            get { return m_CharacterLimit; }
+            get { return this.m_CharacterLimit; }
             set
             {
-                if (SetPropertyUtility.SetStruct(ref m_CharacterLimit, Math.Max(0, value)))
+                if (SetPropertyUtility.SetStruct(ref this.m_CharacterLimit, Math.Max(0, value)))
                 {
-                    UpdateLabel();
-                    if (m_SoftKeyboard != null)
-                        m_SoftKeyboard.characterLimit = value;
+                    this.UpdateLabel();
+                    if (this.m_SoftKeyboard != null)
+                        this.m_SoftKeyboard.characterLimit = value;
                 }
             }
         }
@@ -680,13 +680,13 @@
         /// </summary>
         public float pointSize
         {
-            get { return m_GlobalPointSize; }
+            get { return this.m_GlobalPointSize; }
             set
             {
-                if (SetPropertyUtility.SetStruct(ref m_GlobalPointSize, Math.Max(0, value)))
+                if (SetPropertyUtility.SetStruct(ref this.m_GlobalPointSize, Math.Max(0, value)))
                 {
-                    SetGlobalPointSize(m_GlobalPointSize);
-                    UpdateLabel();
+                    this.SetGlobalPointSize(this.m_GlobalPointSize);
+                    this.UpdateLabel();
                 }
             }
         }
@@ -696,13 +696,13 @@
         /// </summary>
         public TMP_FontAsset fontAsset
         {
-            get { return m_GlobalFontAsset; }
+            get { return this.m_GlobalFontAsset; }
             set
             {
-                if (SetPropertyUtility.SetClass(ref m_GlobalFontAsset, value))
+                if (SetPropertyUtility.SetClass(ref this.m_GlobalFontAsset, value))
                 {
-                    SetGlobalFontAsset(m_GlobalFontAsset);
-                    UpdateLabel();
+                    this.SetGlobalFontAsset(this.m_GlobalFontAsset);
+                    this.UpdateLabel();
                 }
             }
         }
@@ -714,8 +714,8 @@
         /// </summary>
         public bool onFocusSelectAll
         {
-            get { return m_OnFocusSelectAll; }
-            set { m_OnFocusSelectAll = value; }
+            get { return this.m_OnFocusSelectAll; }
+            set { this.m_OnFocusSelectAll = value; }
         }
         [SerializeField]
         protected bool m_OnFocusSelectAll = true;
@@ -726,8 +726,8 @@
         /// </summary>
         public bool resetOnDeActivation
         {
-            get { return m_ResetOnDeActivation; }
-            set { m_ResetOnDeActivation = value; }
+            get { return this.m_ResetOnDeActivation; }
+            set { this.m_ResetOnDeActivation = value; }
         }
         [SerializeField]
         protected bool m_ResetOnDeActivation = true;
@@ -741,8 +741,8 @@
         /// </summary>
         public bool restoreOriginalTextOnEscape
         {
-            get { return m_RestoreOriginalTextOnEscape; }
-            set { m_RestoreOriginalTextOnEscape = value; }
+            get { return this.m_RestoreOriginalTextOnEscape; }
+            set { this.m_RestoreOriginalTextOnEscape = value; }
         }
         [SerializeField]
         private bool m_RestoreOriginalTextOnEscape = true;
@@ -752,25 +752,25 @@
         /// </summary>
         public bool isRichTextEditingAllowed
         {
-            get { return m_isRichTextEditingAllowed; }
-            set { m_isRichTextEditingAllowed = value; }
+            get { return this.m_isRichTextEditingAllowed; }
+            set { this.m_isRichTextEditingAllowed = value; }
         }
         [SerializeField]
         protected bool m_isRichTextEditingAllowed = false;
 
 
         // Content Type related
-        public ContentType contentType { get { return m_ContentType; } set { if (SetPropertyUtility.SetStruct(ref m_ContentType, value)) EnforceContentType(); } }
+        public ContentType contentType { get { return this.m_ContentType; } set { if (SetPropertyUtility.SetStruct(ref this.m_ContentType, value)) this.EnforceContentType(); } }
 
         public LineType lineType
         {
-            get { return m_LineType; }
+            get { return this.m_LineType; }
             set
             {
-                if (SetPropertyUtility.SetStruct(ref m_LineType, value))
+                if (SetPropertyUtility.SetStruct(ref this.m_LineType, value))
                 {
-                    SetToCustomIfContentTypeIsNot(ContentType.Standard, ContentType.Autocorrected);
-                    SetTextComponentWrapMode();
+                    this.SetToCustomIfContentTypeIsNot(ContentType.Standard, ContentType.Autocorrected);
+                    this.SetTextComponentWrapMode();
                 }
             }
         }
@@ -780,69 +780,69 @@
         /// </summary>
         public int lineLimit
         {
-            get { return m_LineLimit; }
+            get { return this.m_LineLimit; }
             set
             {
-                if (m_LineType == LineType.SingleLine)
-                    m_LineLimit = 1;
+                if (this.m_LineType == LineType.SingleLine)
+                    this.m_LineLimit = 1;
                 else
-                    SetPropertyUtility.SetStruct(ref m_LineLimit, value);
+                    SetPropertyUtility.SetStruct(ref this.m_LineLimit, value);
 
             }
         }
         [SerializeField]
         protected int m_LineLimit = 0;
 
-        public InputType inputType { get { return m_InputType; } set { if (SetPropertyUtility.SetStruct(ref m_InputType, value)) SetToCustom(); } }
+        public InputType inputType { get { return this.m_InputType; } set { if (SetPropertyUtility.SetStruct(ref this.m_InputType, value)) this.SetToCustom(); } }
 
         public TouchScreenKeyboardType keyboardType
         {
-            get { return m_KeyboardType; }
+            get { return this.m_KeyboardType; }
             set
             {
-                if (SetPropertyUtility.SetStruct(ref m_KeyboardType, value))
-                    SetToCustom();
+                if (SetPropertyUtility.SetStruct(ref this.m_KeyboardType, value))
+                    this.SetToCustom();
             }
         }
 
-        public CharacterValidation characterValidation { get { return m_CharacterValidation; } set { if (SetPropertyUtility.SetStruct(ref m_CharacterValidation, value)) SetToCustom(); } }
+        public CharacterValidation characterValidation { get { return this.m_CharacterValidation; } set { if (SetPropertyUtility.SetStruct(ref this.m_CharacterValidation, value)) this.SetToCustom(); } }
 
         /// <summary>
         /// Sets the Input Validation to use a Custom Input Validation script.
         /// </summary>
         public TMP_InputValidator inputValidator
         {
-            get { return m_InputValidator; }
-            set {  if (SetPropertyUtility.SetClass(ref m_InputValidator, value)) SetToCustom(CharacterValidation.CustomValidator); }
+            get { return this.m_InputValidator; }
+            set {  if (SetPropertyUtility.SetClass(ref this.m_InputValidator, value)) this.SetToCustom(CharacterValidation.CustomValidator); }
         }
         [SerializeField]
         protected TMP_InputValidator m_InputValidator = null;
 
-        public bool readOnly { get { return m_ReadOnly; } set { m_ReadOnly = value; } }
+        public bool readOnly { get { return this.m_ReadOnly; } set { this.m_ReadOnly = value; } }
 
-        public bool richText { get { return m_RichText; } set { m_RichText = value; SetTextComponentRichTextMode(); } }
+        public bool richText { get { return this.m_RichText; } set { this.m_RichText = value; this.SetTextComponentRichTextMode(); } }
 
         // Derived property
-        public bool multiLine { get { return m_LineType == LineType.MultiLineNewline || lineType == LineType.MultiLineSubmit; } }
+        public bool multiLine { get { return this.m_LineType == LineType.MultiLineNewline || this.lineType == LineType.MultiLineSubmit; } }
         // Not shown in Inspector.
-        public char asteriskChar { get { return m_AsteriskChar; } set { if (SetPropertyUtility.SetStruct(ref m_AsteriskChar, value)) UpdateLabel(); } }
-        public bool wasCanceled { get { return m_WasCanceled; } }
+        public char asteriskChar { get { return this.m_AsteriskChar; } set { if (SetPropertyUtility.SetStruct(ref this.m_AsteriskChar, value)) this.UpdateLabel(); } }
+        public bool wasCanceled { get { return this.m_WasCanceled; } }
 
 
         protected void ClampStringPos(ref int pos)
         {
             if (pos < 0)
                 pos = 0;
-            else if (pos > text.Length)
-                pos = text.Length;
+            else if (pos > this.text.Length)
+                pos = this.text.Length;
         }
 
         protected void ClampCaretPos(ref int pos)
         {
             if (pos < 0)
                 pos = 0;
-            else if (pos > m_TextComponent.textInfo.characterCount - 1)
-                pos = m_TextComponent.textInfo.characterCount - 1;
+            else if (pos > this.m_TextComponent.textInfo.characterCount - 1)
+                pos = this.m_TextComponent.textInfo.characterCount - 1;
         }
 
         /// <summary>
@@ -850,13 +850,13 @@
         /// Getters are public Setters are protected
         /// </summary>
 
-        protected int caretPositionInternal { get { return m_CaretPosition + compositionLength; } set { m_CaretPosition = value; ClampCaretPos(ref m_CaretPosition); } }
-        protected int stringPositionInternal { get { return m_StringPosition + compositionLength; } set { m_StringPosition = value; ClampStringPos(ref m_StringPosition); } }
+        protected int caretPositionInternal { get { return this.m_CaretPosition + this.compositionLength; } set { this.m_CaretPosition = value; this.ClampCaretPos(ref this.m_CaretPosition); } }
+        protected int stringPositionInternal { get { return this.m_StringPosition + this.compositionLength; } set { this.m_StringPosition = value; this.ClampStringPos(ref this.m_StringPosition); } }
 
-        protected int caretSelectPositionInternal { get { return m_CaretSelectPosition + compositionLength; } set { m_CaretSelectPosition = value; ClampCaretPos(ref m_CaretSelectPosition); } }
-        protected int stringSelectPositionInternal { get { return m_StringSelectPosition + compositionLength; } set { m_StringSelectPosition = value; ClampStringPos(ref m_StringSelectPosition); } }
+        protected int caretSelectPositionInternal { get { return this.m_CaretSelectPosition + this.compositionLength; } set { this.m_CaretSelectPosition = value; this.ClampCaretPos(ref this.m_CaretSelectPosition); } }
+        protected int stringSelectPositionInternal { get { return this.m_StringSelectPosition + this.compositionLength; } set { this.m_StringSelectPosition = value; this.ClampStringPos(ref this.m_StringSelectPosition); } }
 
-        private bool hasSelection { get { return stringPositionInternal != stringSelectPositionInternal; } }
+        private bool hasSelection { get { return this.stringPositionInternal != this.stringSelectPositionInternal; } }
         private bool m_isSelected;
         private bool m_IsStringPositionDirty;
         private bool m_IsCaretPositionDirty;
@@ -868,8 +868,8 @@
         /// </summary>
         public int caretPosition
         {
-            get { return caretSelectPositionInternal; }
-            set { selectionAnchorPosition = value; selectionFocusPosition = value; m_IsStringPositionDirty = true; }
+            get { return this.caretSelectPositionInternal; }
+            set { this.selectionAnchorPosition = value; this.selectionFocusPosition = value; this.m_IsStringPositionDirty = true; }
         }
 
         /// <summary>
@@ -880,16 +880,16 @@
         {
             get
             {
-                return caretPositionInternal;
+                return this.caretPositionInternal;
             }
 
             set
             {
-                if (compositionLength != 0)
+                if (this.compositionLength != 0)
                     return;
 
-                caretPositionInternal = value;
-                m_IsStringPositionDirty = true;
+                this.caretPositionInternal = value;
+                this.m_IsStringPositionDirty = true;
             }
         }
 
@@ -901,15 +901,15 @@
         {
             get
             {
-                return caretSelectPositionInternal;
+                return this.caretSelectPositionInternal;
             }
             set
             {
-                if (compositionLength != 0)
+                if (this.compositionLength != 0)
                     return;
 
-                caretSelectPositionInternal = value;
-                m_IsStringPositionDirty = true;
+                this.caretSelectPositionInternal = value;
+                this.m_IsStringPositionDirty = true;
             }
         }
 
@@ -918,8 +918,8 @@
         /// </summary>
         public int stringPosition
         {
-            get { return stringSelectPositionInternal; }
-            set { selectionStringAnchorPosition = value; selectionStringFocusPosition = value; m_IsCaretPositionDirty = true; }
+            get { return this.stringSelectPositionInternal; }
+            set { this.selectionStringAnchorPosition = value; this.selectionStringFocusPosition = value; this.m_IsCaretPositionDirty = true; }
         }
 
 
@@ -930,16 +930,16 @@
         {
             get
             {
-                return stringPositionInternal;
+                return this.stringPositionInternal;
             }
 
             set
             {
-                if (compositionLength != 0)
+                if (this.compositionLength != 0)
                     return;
 
-                stringPositionInternal = value;
-                m_IsCaretPositionDirty = true;
+                this.stringPositionInternal = value;
+                this.m_IsCaretPositionDirty = true;
             }
         }
 
@@ -951,15 +951,15 @@
         {
             get
             {
-                return stringSelectPositionInternal;
+                return this.stringSelectPositionInternal;
             }
             set
             {
-                if (compositionLength != 0)
+                if (this.compositionLength != 0)
                     return;
 
-                stringSelectPositionInternal = value;
-                m_IsCaretPositionDirty = true;
+                this.stringSelectPositionInternal = value;
+                this.m_IsCaretPositionDirty = true;
             }
         }
 
@@ -970,20 +970,20 @@
         protected override void OnValidate()
         {
             base.OnValidate();
-            EnforceContentType();
+            this.EnforceContentType();
 
-            m_CharacterLimit = Math.Max(0, m_CharacterLimit);
+            this.m_CharacterLimit = Math.Max(0, this.m_CharacterLimit);
 
             //This can be invoked before OnEnabled is called. So we shouldn't be accessing other objects, before OnEnable is called.
-            if (!IsActive())
+            if (!this.IsActive())
                 return;
 
-            SetTextComponentRichTextMode();
+            this.SetTextComponentRichTextMode();
 
-            UpdateLabel();
+            this.UpdateLabel();
 
-            if (m_AllowInput)
-                SetCaretActive();
+            if (this.m_AllowInput)
+                this.SetCaretActive();
         }
         #endif // if UNITY_EDITOR
 
@@ -993,43 +993,43 @@
 
             base.OnEnable();
 
-            if (m_Text == null)
-                m_Text = string.Empty;
+            if (this.m_Text == null)
+                this.m_Text = string.Empty;
 
             // Check if Input Field is driven by any layout components
-            ILayoutController layoutController = GetComponent<ILayoutController>();
+            ILayoutController layoutController = this.GetComponent<ILayoutController>();
 
             if (layoutController != null)
             {
-                m_IsDrivenByLayoutComponents = true;
-                m_LayoutGroup = GetComponent<LayoutGroup>();
+                this.m_IsDrivenByLayoutComponents = true;
+                this.m_LayoutGroup = this.GetComponent<LayoutGroup>();
             }
             else
-                m_IsDrivenByLayoutComponents = false;
+                this.m_IsDrivenByLayoutComponents = false;
 
             if (Application.isPlaying)
             {
-                if (m_CachedInputRenderer == null && m_TextComponent != null)
+                if (this.m_CachedInputRenderer == null && this.m_TextComponent != null)
                 {
                     GameObject go = new GameObject("Caret", typeof(TMP_SelectionCaret));
 
                     go.hideFlags = HideFlags.DontSave;
-                    go.transform.SetParent(m_TextComponent.transform.parent);
+                    go.transform.SetParent(this.m_TextComponent.transform.parent);
                     go.transform.SetAsFirstSibling();
-                    go.layer = gameObject.layer;
+                    go.layer = this.gameObject.layer;
 
-                    caretRectTrans = go.GetComponent<RectTransform>();
-                    m_CachedInputRenderer = go.GetComponent<CanvasRenderer>();
-                    m_CachedInputRenderer.SetMaterial(Graphic.defaultGraphicMaterial, Texture2D.whiteTexture);
+                    this.caretRectTrans = go.GetComponent<RectTransform>();
+                    this.m_CachedInputRenderer = go.GetComponent<CanvasRenderer>();
+                    this.m_CachedInputRenderer.SetMaterial(Graphic.defaultGraphicMaterial, Texture2D.whiteTexture);
 
                     // Needed as if any layout is present we want the caret to always be the same as the text area.
                     go.AddComponent<LayoutElement>().ignoreLayout = true;
 
-                    AssignPositioningIfNeeded();
+                    this.AssignPositioningIfNeeded();
                 }
                 else
                 {
-                    Debug.Log($"{m_CachedInputRenderer} {m_TextComponent}");
+                    Debug.Log($"{this.m_CachedInputRenderer} {this.m_TextComponent}");
                 }
             }
             else
@@ -1037,66 +1037,66 @@
                 Debug.Log("Application.isPlaying == false");
             }
 
-            m_RectTransform = GetComponent<RectTransform>();
+            this.m_RectTransform = this.GetComponent<RectTransform>();
 
             // Get a reference to the RectMask 2D on the Viewport Text Area object.
-            if (m_TextViewport != null)
+            if (this.m_TextViewport != null)
             {
-                m_TextViewportRectMask = m_TextViewport.GetComponent<RectMask2D>();
+                this.m_TextViewportRectMask = this.m_TextViewport.GetComponent<RectMask2D>();
 
-                UpdateMaskRegions();
+                this.UpdateMaskRegions();
             }
 
             // If we have a cached renderer then we had OnDisable called so just restore the material.
-            if (m_CachedInputRenderer != null)
-                m_CachedInputRenderer.SetMaterial(Graphic.defaultGraphicMaterial, Texture2D.whiteTexture);
+            if (this.m_CachedInputRenderer != null)
+                this.m_CachedInputRenderer.SetMaterial(Graphic.defaultGraphicMaterial, Texture2D.whiteTexture);
 
-            if (m_TextComponent != null)
+            if (this.m_TextComponent != null)
             {
-                m_TextComponent.RegisterDirtyVerticesCallback(MarkGeometryAsDirty);
-                m_TextComponent.RegisterDirtyVerticesCallback(UpdateLabel);
+                this.m_TextComponent.RegisterDirtyVerticesCallback(this.MarkGeometryAsDirty);
+                this.m_TextComponent.RegisterDirtyVerticesCallback(this.UpdateLabel);
 
                 // Cache reference to Vertical Scrollbar RectTransform and add listener.
-                if (m_VerticalScrollbar != null)
+                if (this.m_VerticalScrollbar != null)
                 {
-                    m_VerticalScrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
+                    this.m_VerticalScrollbar.onValueChanged.AddListener(this.OnScrollbarValueChange);
                 }
 
-                UpdateLabel();
+                this.UpdateLabel();
             }
 
             // Subscribe to event fired when text object has been regenerated.
-            TMPro_EventManager.TEXT_CHANGED_EVENT.Add(ON_TEXT_CHANGED);
+            TMPro_EventManager.TEXT_CHANGED_EVENT.Add(this.ON_TEXT_CHANGED);
         }
 
         protected override void OnDisable()
         {
             // the coroutine will be terminated, so this will ensure it restarts when we are next activated
-            m_BlinkCoroutine = null;
+            this.m_BlinkCoroutine = null;
 
-            DeactivateInputField();
-            if (m_TextComponent != null)
+            this.DeactivateInputField();
+            if (this.m_TextComponent != null)
             {
-                m_TextComponent.UnregisterDirtyVerticesCallback(MarkGeometryAsDirty);
-                m_TextComponent.UnregisterDirtyVerticesCallback(UpdateLabel);
+                this.m_TextComponent.UnregisterDirtyVerticesCallback(this.MarkGeometryAsDirty);
+                this.m_TextComponent.UnregisterDirtyVerticesCallback(this.UpdateLabel);
 
-                if (m_VerticalScrollbar != null)
-                    m_VerticalScrollbar.onValueChanged.RemoveListener(OnScrollbarValueChange);
+                if (this.m_VerticalScrollbar != null)
+                    this.m_VerticalScrollbar.onValueChanged.RemoveListener(this.OnScrollbarValueChange);
 
             }
             CanvasUpdateRegistry.UnRegisterCanvasElementForRebuild(this);
 
             // Clear needs to be called otherwise sync never happens as the object is disabled.
-            if (m_CachedInputRenderer != null)
-                m_CachedInputRenderer.Clear();
+            if (this.m_CachedInputRenderer != null)
+                this.m_CachedInputRenderer.Clear();
 
-            if (m_Mesh != null)
-                DestroyImmediate(m_Mesh);
+            if (this.m_Mesh != null)
+                DestroyImmediate(this.m_Mesh);
 
-            m_Mesh = null;
+            this.m_Mesh = null;
 
             // Unsubscribe to event triggered when text object has been regenerated
-            TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(ON_TEXT_CHANGED);
+            TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(this.ON_TEXT_CHANGED);
 
             base.OnDisable();
         }
@@ -1108,10 +1108,10 @@
         /// <param name="obj"></param>
         private void ON_TEXT_CHANGED(UnityEngine.Object obj)
         {
-            if (obj == m_TextComponent && Application.isPlaying && compositionLength == 0)
+            if (obj == this.m_TextComponent && Application.isPlaying && this.compositionLength == 0)
             {
-                caretPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
-                caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.caretPositionInternal = this.GetCaretPositionFromStringIndex(this.stringPositionInternal);
+                this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
 
                 #if TMP_DEBUG_MODE
                     Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
@@ -1123,68 +1123,68 @@
         IEnumerator CaretBlink()
         {
             // Always ensure caret is initially visible since it can otherwise be confusing for a moment.
-            m_CaretVisible = true;
+            this.m_CaretVisible = true;
             yield return null;
 
-            while ((isFocused || m_SelectionStillActive) && m_CaretBlinkRate > 0)
+            while ((this.isFocused || this.m_SelectionStillActive) && this.m_CaretBlinkRate > 0)
             {
                 // the blink rate is expressed as a frequency
-                float blinkPeriod = 1f / m_CaretBlinkRate;
+                float blinkPeriod = 1f / this.m_CaretBlinkRate;
 
                 // the caret should be ON if we are in the first half of the blink period
-                bool blinkState = (Time.unscaledTime - m_BlinkStartTime) % blinkPeriod < blinkPeriod / 2;
-                if (m_CaretVisible != blinkState)
+                bool blinkState = (Time.unscaledTime - this.m_BlinkStartTime) % blinkPeriod < blinkPeriod / 2;
+                if (this.m_CaretVisible != blinkState)
                 {
-                    m_CaretVisible = blinkState;
-                    if (!hasSelection)
-                        MarkGeometryAsDirty();
+                    this.m_CaretVisible = blinkState;
+                    if (!this.hasSelection)
+                        this.MarkGeometryAsDirty();
                 }
 
                 // Then wait again.
                 yield return null;
             }
-            m_BlinkCoroutine = null;
+            this.m_BlinkCoroutine = null;
         }
 
         void SetCaretVisible()
         {
-            if (!m_AllowInput)
+            if (!this.m_AllowInput)
                 return;
 
-            m_CaretVisible = true;
-            m_BlinkStartTime = Time.unscaledTime;
-            SetCaretActive();
+            this.m_CaretVisible = true;
+            this.m_BlinkStartTime = Time.unscaledTime;
+            this.SetCaretActive();
         }
 
         // SetCaretActive will not set the caret immediately visible - it will wait for the next time to blink.
         // However, it will handle things correctly if the blink speed changed from zero to non-zero or non-zero to zero.
         void SetCaretActive()
         {
-            if (!m_AllowInput)
+            if (!this.m_AllowInput)
                 return;
 
-            if (m_CaretBlinkRate > 0.0f)
+            if (this.m_CaretBlinkRate > 0.0f)
             {
-                if (m_BlinkCoroutine == null)
-                    m_BlinkCoroutine = StartCoroutine(CaretBlink());
+                if (this.m_BlinkCoroutine == null)
+                    this.m_BlinkCoroutine = this.StartCoroutine(this.CaretBlink());
             }
             else
             {
-                m_CaretVisible = true;
+                this.m_CaretVisible = true;
             }
         }
 
         protected void OnFocus()
         {
-            if (m_OnFocusSelectAll)
-                SelectAll();
+            if (this.m_OnFocusSelectAll)
+                this.SelectAll();
         }
 
         protected void SelectAll()
         {
-            m_isSelectAll = true;
-            stringPositionInternal = text.Length;
-            stringSelectPositionInternal = 0;
+            this.m_isSelectAll = true;
+            this.stringPositionInternal = this.text.Length;
+            this.stringSelectPositionInternal = 0;
         }
 
         /// <summary>
@@ -1193,37 +1193,37 @@
         /// <param name="shift"></param>
         public void MoveTextEnd(bool shift)
         {
-            if (m_isRichTextEditingAllowed)
+            if (this.m_isRichTextEditingAllowed)
             {
-                int position = text.Length;
+                int position = this.text.Length;
 
                 if (shift)
                 {
-                    stringSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = position;
                 }
                 else
                 {
-                    stringPositionInternal = position;
-                    stringSelectPositionInternal = stringPositionInternal;
+                    this.stringPositionInternal = position;
+                    this.stringSelectPositionInternal = this.stringPositionInternal;
                 }
             }
             else
             {
-                int position = m_TextComponent.textInfo.characterCount - 1;
+                int position = this.m_TextComponent.textInfo.characterCount - 1;
 
                 if (shift)
                 {
-                    caretSelectPositionInternal = position;
-                    stringSelectPositionInternal = GetStringIndexFromCaretPosition(position);
+                    this.caretSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(position);
                 }
                 else
                 {
-                    caretPositionInternal = caretSelectPositionInternal = position;
-                    stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(position);
+                    this.caretPositionInternal = this.caretSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(position);
                 }
             }
 
-            UpdateLabel();
+            this.UpdateLabel();
         }
 
         /// <summary>
@@ -1232,18 +1232,18 @@
         /// <param name="shift"></param>
         public void MoveTextStart(bool shift)
         {
-            if (m_isRichTextEditingAllowed)
+            if (this.m_isRichTextEditingAllowed)
             {
                 int position = 0;
 
                 if (shift)
                 {
-                    stringSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = position;
                 }
                 else
                 {
-                    stringPositionInternal = position;
-                    stringSelectPositionInternal = stringPositionInternal;
+                    this.stringPositionInternal = position;
+                    this.stringSelectPositionInternal = this.stringPositionInternal;
                 }
             }
             else
@@ -1252,17 +1252,17 @@
 
                 if (shift)
                 {
-                    caretSelectPositionInternal = position;
-                    stringSelectPositionInternal = GetStringIndexFromCaretPosition(position);
+                    this.caretSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(position);
                 }
                 else
                 {
-                    caretPositionInternal = caretSelectPositionInternal = position;
-                    stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(position);
+                    this.caretPositionInternal = this.caretSelectPositionInternal = position;
+                    this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(position);
                 }
             }
 
-            UpdateLabel();
+            this.UpdateLabel();
         }
 
 
@@ -1273,28 +1273,28 @@
         public void MoveToEndOfLine(bool shift, bool ctrl)
         {
             // Get the line the caret is currently located on.
-            int currentLine = m_TextComponent.textInfo.characterInfo[caretPositionInternal].lineNumber;
+            int currentLine = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].lineNumber;
 
             // Get the last character of the given line.
-            int characterIndex = ctrl == true ? m_TextComponent.textInfo.characterCount - 1 : m_TextComponent.textInfo.lineInfo[currentLine].lastCharacterIndex;
+            int characterIndex = ctrl == true ? this.m_TextComponent.textInfo.characterCount - 1 : this.m_TextComponent.textInfo.lineInfo[currentLine].lastCharacterIndex;
 
-            int position = m_TextComponent.textInfo.characterInfo[characterIndex].index;
+            int position = this.m_TextComponent.textInfo.characterInfo[characterIndex].index;
 
             if (shift)
             {
-                stringSelectPositionInternal = position;
+                this.stringSelectPositionInternal = position;
 
-                caretSelectPositionInternal = characterIndex;
+                this.caretSelectPositionInternal = characterIndex;
             }
             else
             {
-                stringPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal;
+                this.stringPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal;
 
-                caretSelectPositionInternal = caretPositionInternal = characterIndex;
+                this.caretSelectPositionInternal = this.caretPositionInternal = characterIndex;
             }
 
-            UpdateLabel();
+            this.UpdateLabel();
         }
 
         /// <summary>
@@ -1304,30 +1304,30 @@
         public void MoveToStartOfLine(bool shift, bool ctrl)
         {
             // Get the line the caret is currently located on.
-            int currentLine = m_TextComponent.textInfo.characterInfo[caretPositionInternal].lineNumber;
+            int currentLine = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].lineNumber;
 
             // Get the first character of the given line.
-            int characterIndex = ctrl == true ? 0 : m_TextComponent.textInfo.lineInfo[currentLine].firstCharacterIndex;
+            int characterIndex = ctrl == true ? 0 : this.m_TextComponent.textInfo.lineInfo[currentLine].firstCharacterIndex;
 
             int position = 0;
             if (characterIndex > 0)
-                position = m_TextComponent.textInfo.characterInfo[characterIndex - 1].index + m_TextComponent.textInfo.characterInfo[characterIndex - 1].stringLength;
+                position = this.m_TextComponent.textInfo.characterInfo[characterIndex - 1].index + this.m_TextComponent.textInfo.characterInfo[characterIndex - 1].stringLength;
 
             if (shift)
             {
-                stringSelectPositionInternal = position;
+                this.stringSelectPositionInternal = position;
 
-                caretSelectPositionInternal = characterIndex;
+                this.caretSelectPositionInternal = characterIndex;
             }
             else
             {
-                stringPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal;
+                this.stringPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal;
 
-                caretSelectPositionInternal = caretPositionInternal = characterIndex;
+                this.caretSelectPositionInternal = this.caretPositionInternal = characterIndex;
             }
 
-            UpdateLabel();
+            this.UpdateLabel();
         }
 
 
@@ -1345,13 +1345,13 @@
 
         private bool InPlaceEditing()
         {
-            if (m_TouchKeyboardAllowsInPlaceEditing || (TouchScreenKeyboard.isSupported && (Application.platform == RuntimePlatform.WSAPlayerX86 || Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.WSAPlayerARM)))
+            if (this.m_TouchKeyboardAllowsInPlaceEditing || (TouchScreenKeyboard.isSupported && (Application.platform == RuntimePlatform.WSAPlayerX86 || Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.WSAPlayerARM)))
                 return true;
 
-            if (TouchScreenKeyboard.isSupported && shouldHideSoftKeyboard)
+            if (TouchScreenKeyboard.isSupported && this.shouldHideSoftKeyboard)
                 return true;
 
-            if (TouchScreenKeyboard.isSupported && shouldHideSoftKeyboard == false && shouldHideMobileInput == false)
+            if (TouchScreenKeyboard.isSupported && this.shouldHideSoftKeyboard == false && this.shouldHideMobileInput == false)
                 return false;
 
             return true;
@@ -1360,7 +1360,7 @@
         void UpdateStringPositionFromKeyboard()
         {
             // TODO: Might want to add null check here.
-            var selectionRange = m_SoftKeyboard.selection;
+            var selectionRange = this.m_SoftKeyboard.selection;
 
             //if (selectionRange.start == 0 && selectionRange.length == 0)
             //    return;
@@ -1370,27 +1370,27 @@
 
             var stringPositionChanged = false;
 
-            if (stringPositionInternal != selectionStart)
+            if (this.stringPositionInternal != selectionStart)
             {
                 stringPositionChanged = true;
-                stringPositionInternal = selectionStart;
+                this.stringPositionInternal = selectionStart;
 
-                caretPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
+                this.caretPositionInternal = this.GetCaretPositionFromStringIndex(this.stringPositionInternal);
             }
 
-            if (stringSelectPositionInternal != selectionEnd)
+            if (this.stringSelectPositionInternal != selectionEnd)
             {
-                stringSelectPositionInternal = selectionEnd;
+                this.stringSelectPositionInternal = selectionEnd;
                 stringPositionChanged = true;
 
-                caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
             }
 
             if (stringPositionChanged)
             {
-                m_BlinkStartTime = Time.unscaledTime;
+                this.m_BlinkStartTime = Time.unscaledTime;
 
-                UpdateLabel();
+                this.UpdateLabel();
             }
         }
 
@@ -1401,76 +1401,76 @@
         protected virtual void LateUpdate()
         {
             // Only activate if we are not already activated.
-            if (m_ShouldActivateNextUpdate)
+            if (this.m_ShouldActivateNextUpdate)
             {
-                if (!isFocused)
+                if (!this.isFocused)
                 {
-                    ActivateInputFieldInternal();
-                    m_ShouldActivateNextUpdate = false;
+                    this.ActivateInputFieldInternal();
+                    this.m_ShouldActivateNextUpdate = false;
                     return;
                 }
 
                 // Reset as we are already activated.
-                m_ShouldActivateNextUpdate = false;
+                this.m_ShouldActivateNextUpdate = false;
             }
 
             // Update Scrollbar if needed
-            if (m_IsScrollbarUpdateRequired)
+            if (this.m_IsScrollbarUpdateRequired)
             {
-                UpdateScrollbar();
-                m_IsScrollbarUpdateRequired = false;
+                this.UpdateScrollbar();
+                this.m_IsScrollbarUpdateRequired = false;
             }
 
             // Handle double click to reset / deselect Input Field when ResetOnActivation is false.
-            if (!isFocused && m_SelectionStillActive)
+            if (!this.isFocused && this.m_SelectionStillActive)
             {
                 GameObject selectedObject = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
 
-                if (selectedObject == null && m_ResetOnDeActivation)
+                if (selectedObject == null && this.m_ResetOnDeActivation)
                 {
-                    ReleaseSelection();
+                    this.ReleaseSelection();
                     return;
                 }
 
                 if (selectedObject != null && selectedObject != this.gameObject)
                 {
-                    if (selectedObject == m_PreviouslySelectedObject)
+                    if (selectedObject == this.m_PreviouslySelectedObject)
                         return;
 
-                    m_PreviouslySelectedObject = selectedObject;
+                    this.m_PreviouslySelectedObject = selectedObject;
 
                     // Special handling for Vertical Scrollbar
-                    if (m_VerticalScrollbar && selectedObject == m_VerticalScrollbar.gameObject)
+                    if (this.m_VerticalScrollbar && selectedObject == this.m_VerticalScrollbar.gameObject)
                     {
                         // Do not release selection
                         return;
                     }
 
                     // Release selection for all objects when ResetOnDeActivation is true
-                    if (m_ResetOnDeActivation)
+                    if (this.m_ResetOnDeActivation)
                     {
-                        ReleaseSelection();
+                        this.ReleaseSelection();
                         return;
                     }
 
                     // Release current selection of selected object is another Input Field
                     if (selectedObject.GetComponent<TMP_InputField>() != null)
-                        ReleaseSelection();
+                        this.ReleaseSelection();
 
                     return;
                 }
 
                 #if ENABLE_INPUT_SYSTEM
-                if (m_ProcessingEvent != null && m_ProcessingEvent.rawType == EventType.MouseDown && m_ProcessingEvent.button == 0)
+                if (this.m_ProcessingEvent != null && this.m_ProcessingEvent.rawType == EventType.MouseDown && this.m_ProcessingEvent.button == 0)
                 {
                     // Check for Double Click
                     bool isDoubleClick = false;
                     float timeStamp = Time.unscaledTime;
 
-                    if (m_KeyDownStartTime + m_DoubleClickDelay > timeStamp)
+                    if (this.m_KeyDownStartTime + this.m_DoubleClickDelay > timeStamp)
                         isDoubleClick = true;
 
-                    m_KeyDownStartTime = timeStamp;
+                    this.m_KeyDownStartTime = timeStamp;
 
                     if (isDoubleClick)
                     {
@@ -1481,7 +1481,7 @@
                         //if (caretRectTrans != null)
                         //    caretRectTrans.localPosition = Vector3.zero;
 
-                        ReleaseSelection();
+                        this.ReleaseSelection();
 
                         return;
                     }
@@ -1515,55 +1515,55 @@
                 #endif
             }
 
-            UpdateMaskRegions();
+            this.UpdateMaskRegions();
 
-            if (InPlaceEditing() && isKeyboardUsingEvents() || !isFocused)
+            if (this.InPlaceEditing() && this.isKeyboardUsingEvents() || !this.isFocused)
             {
                 return;
             }
 
-            AssignPositioningIfNeeded();
+            this.AssignPositioningIfNeeded();
 
-            if (m_SoftKeyboard == null || m_SoftKeyboard.status != TouchScreenKeyboard.Status.Visible)
+            if (this.m_SoftKeyboard == null || this.m_SoftKeyboard.status != TouchScreenKeyboard.Status.Visible)
             {
-                if (m_SoftKeyboard != null)
+                if (this.m_SoftKeyboard != null)
                 {
-                    if (!m_ReadOnly)
-                        text = m_SoftKeyboard.text;
+                    if (!this.m_ReadOnly)
+                        this.text = this.m_SoftKeyboard.text;
 
-                    if (m_SoftKeyboard.status == TouchScreenKeyboard.Status.LostFocus)
-                        SendTouchScreenKeyboardStatusChanged();
+                    if (this.m_SoftKeyboard.status == TouchScreenKeyboard.Status.LostFocus)
+                        this.SendTouchScreenKeyboardStatusChanged();
 
-                    if (m_SoftKeyboard.status == TouchScreenKeyboard.Status.Canceled)
+                    if (this.m_SoftKeyboard.status == TouchScreenKeyboard.Status.Canceled)
                     {
-                        m_ReleaseSelection = true;
-                        m_WasCanceled = true;
-                        SendTouchScreenKeyboardStatusChanged();
+                        this.m_ReleaseSelection = true;
+                        this.m_WasCanceled = true;
+                        this.SendTouchScreenKeyboardStatusChanged();
                     }
 
-                    if (m_SoftKeyboard.status == TouchScreenKeyboard.Status.Done)
+                    if (this.m_SoftKeyboard.status == TouchScreenKeyboard.Status.Done)
                     {
-                        m_ReleaseSelection = true;
-                        OnSubmit(null);
-                        SendTouchScreenKeyboardStatusChanged();
+                        this.m_ReleaseSelection = true;
+                        this.OnSubmit(null);
+                        this.SendTouchScreenKeyboardStatusChanged();
                     }
                 }
 
-                OnDeselect(null);
+                this.OnDeselect(null);
                 return;
             }
 
-            string val = m_SoftKeyboard.text;
+            string val = this.m_SoftKeyboard.text;
 
-            if (m_Text != val)
+            if (this.m_Text != val)
             {
-                if (m_ReadOnly)
+                if (this.m_ReadOnly)
                 {
-                    m_SoftKeyboard.text = m_Text;
+                    this.m_SoftKeyboard.text = this.m_Text;
                 }
                 else
                 {
-                    m_Text = "";
+                    this.m_Text = "";
 
                     for (int i = 0; i < val.Length; ++i)
                     {
@@ -1572,40 +1572,40 @@
                         if (c == '\r' || (int)c == 3)
                             c = '\n';
 
-                        if (onValidateInput != null)
-                            c = onValidateInput(m_Text, m_Text.Length, c);
-                        else if (characterValidation != CharacterValidation.None)
-                            c = Validate(m_Text, m_Text.Length, c);
+                        if (this.onValidateInput != null)
+                            c = this.onValidateInput(this.m_Text, this.m_Text.Length, c);
+                        else if (this.characterValidation != CharacterValidation.None)
+                            c = this.Validate(this.m_Text, this.m_Text.Length, c);
 
-                        if (lineType == LineType.MultiLineSubmit && c == '\n')
+                        if (this.lineType == LineType.MultiLineSubmit && c == '\n')
                         {
-                            m_SoftKeyboard.text = m_Text;
+                            this.m_SoftKeyboard.text = this.m_Text;
 
-                            OnSubmit(null);
-                            OnDeselect(null);
+                            this.OnSubmit(null);
+                            this.OnDeselect(null);
                             return;
                         }
 
                         if (c != 0)
-                            m_Text += c;
+                            this.m_Text += c;
                     }
 
-                    if (characterLimit > 0 && m_Text.Length > characterLimit)
-                        m_Text = m_Text.Substring(0, characterLimit);
+                    if (this.characterLimit > 0 && this.m_Text.Length > this.characterLimit)
+                        this.m_Text = this.m_Text.Substring(0, this.characterLimit);
 
-                    UpdateStringPositionFromKeyboard();
+                    this.UpdateStringPositionFromKeyboard();
 
                     // Set keyboard text before updating label, as we might have changed it with validation
                     // and update label will take the old value from keyboard if we don't change it here
-                    if (m_Text != val)
-                        m_SoftKeyboard.text = m_Text;
+                    if (this.m_Text != val)
+                        this.m_SoftKeyboard.text = this.m_Text;
 
-                    SendOnValueChangedAndUpdateLabel();
+                    this.SendOnValueChangedAndUpdateLabel();
                 }
             }
-            else if (m_HideMobileInput && Application.platform == RuntimePlatform.Android)
+            else if (this.m_HideMobileInput && Application.platform == RuntimePlatform.Android)
             {
-                UpdateStringPositionFromKeyboard();
+                this.UpdateStringPositionFromKeyboard();
             }
 
             //else if (m_HideMobileInput) // m_Keyboard.canSetSelection
@@ -1618,74 +1618,74 @@
             //    UpdateStringPositionFromKeyboard();
             //}
 
-            if (m_SoftKeyboard.status != TouchScreenKeyboard.Status.Visible)
+            if (this.m_SoftKeyboard.status != TouchScreenKeyboard.Status.Visible)
             {
-                if (m_SoftKeyboard.status == TouchScreenKeyboard.Status.Canceled)
-                    m_WasCanceled = true;
+                if (this.m_SoftKeyboard.status == TouchScreenKeyboard.Status.Canceled)
+                    this.m_WasCanceled = true;
 
-                OnDeselect(null);
+                this.OnDeselect(null);
             }
         }
 
 
         private bool MayDrag(PointerEventData eventData)
         {
-            return IsActive() &&
-                   IsInteractable() &&
+            return this.IsActive() &&
+                   this.IsInteractable() &&
                    eventData.button == PointerEventData.InputButton.Left &&
-                   m_TextComponent != null &&
-                   (m_SoftKeyboard == null || shouldHideSoftKeyboard || shouldHideMobileInput);
+                   this.m_TextComponent != null &&
+                   (this.m_SoftKeyboard == null || this.shouldHideSoftKeyboard || this.shouldHideMobileInput);
         }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
-            if (!MayDrag(eventData))
+            if (!this.MayDrag(eventData))
                 return;
 
-            m_UpdateDrag = true;
+            this.m_UpdateDrag = true;
         }
 
         public virtual void OnDrag(PointerEventData eventData)
         {
-            if (!MayDrag(eventData))
+            if (!this.MayDrag(eventData))
                 return;
 
             CaretPosition insertionSide;
 
-            int insertionIndex = TMP_TextUtilities.GetCursorIndexFromPosition(m_TextComponent, eventData.position, eventData.pressEventCamera, out insertionSide);
+            int insertionIndex = TMP_TextUtilities.GetCursorIndexFromPosition(this.m_TextComponent, eventData.position, eventData.pressEventCamera, out insertionSide);
 
-            if (m_isRichTextEditingAllowed)
+            if (this.m_isRichTextEditingAllowed)
             {
                 if (insertionSide == CaretPosition.Left)
                 {
-                    stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index;
+                    this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index;
                 }
                 else if (insertionSide == CaretPosition.Right)
                 {
-                    stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                    this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                 }
             }
             else
             {
                 if (insertionSide == CaretPosition.Left)
                 {
-                    stringSelectPositionInternal = insertionIndex == 0
-                        ? m_TextComponent.textInfo.characterInfo[0].index
-                        : m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
+                    this.stringSelectPositionInternal = insertionIndex == 0
+                        ? this.m_TextComponent.textInfo.characterInfo[0].index
+                        : this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
                 }
                 else if (insertionSide == CaretPosition.Right)
                 {
-                    stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                    this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                 }
             }
 
-            caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+            this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
 
-            MarkGeometryAsDirty();
+            this.MarkGeometryAsDirty();
 
-            m_DragPositionOutOfBounds = !RectTransformUtility.RectangleContainsScreenPoint(textViewport, eventData.position, eventData.pressEventCamera);
-            if (m_DragPositionOutOfBounds && m_DragCoroutine == null)
-                m_DragCoroutine = StartCoroutine(MouseDragOutsideRect(eventData));
+            this.m_DragPositionOutOfBounds = !RectTransformUtility.RectangleContainsScreenPoint(this.textViewport, eventData.position, eventData.pressEventCamera);
+            if (this.m_DragPositionOutOfBounds && this.m_DragCoroutine == null)
+                this.m_DragCoroutine = this.StartCoroutine(this.MouseDragOutsideRect(eventData));
 
             eventData.Use();
 
@@ -1696,73 +1696,73 @@
 
         IEnumerator MouseDragOutsideRect(PointerEventData eventData)
         {
-            while (m_UpdateDrag && m_DragPositionOutOfBounds)
+            while (this.m_UpdateDrag && this.m_DragPositionOutOfBounds)
             {
                 Vector2 localMousePos;
 
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(textViewport, eventData.position, eventData.pressEventCamera, out localMousePos);
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(this.textViewport, eventData.position, eventData.pressEventCamera, out localMousePos);
 
-                Rect rect = textViewport.rect;
+                Rect rect = this.textViewport.rect;
 
-                if (multiLine)
+                if (this.multiLine)
                 {
                     if (localMousePos.y > rect.yMax)
-                        MoveUp(true, true);
+                        this.MoveUp(true, true);
                     else if (localMousePos.y < rect.yMin)
-                        MoveDown(true, true);
+                        this.MoveDown(true, true);
                 }
                 else
                 {
                     if (localMousePos.x < rect.xMin)
-                        MoveLeft(true, false);
+                        this.MoveLeft(true, false);
                     else if (localMousePos.x > rect.xMax)
-                        MoveRight(true, false);
+                        this.MoveRight(true, false);
                 }
 
-                UpdateLabel();
+                this.UpdateLabel();
 
-                float delay = multiLine ? kVScrollSpeed : kHScrollSpeed;
+                float delay = this.multiLine ? kVScrollSpeed : kHScrollSpeed;
 
-                if (m_WaitForSecondsRealtime == null)
-                    m_WaitForSecondsRealtime = new WaitForSecondsRealtime(delay);
+                if (this.m_WaitForSecondsRealtime == null)
+                    this.m_WaitForSecondsRealtime = new WaitForSecondsRealtime(delay);
                 else
-                    m_WaitForSecondsRealtime.waitTime = delay;
+                    this.m_WaitForSecondsRealtime.waitTime = delay;
 
-                yield return m_WaitForSecondsRealtime;
+                yield return this.m_WaitForSecondsRealtime;
             }
-            m_DragCoroutine = null;
+            this.m_DragCoroutine = null;
         }
 
         public virtual void OnEndDrag(PointerEventData eventData)
         {
-            if (!MayDrag(eventData))
+            if (!this.MayDrag(eventData))
                 return;
 
-            m_UpdateDrag = false;
+            this.m_UpdateDrag = false;
         }
 
         public override void OnPointerDown(PointerEventData eventData)
         {
-            if (!MayDrag(eventData))
+            if (!this.MayDrag(eventData))
                 return;
 
-            EventSystem.current.SetSelectedGameObject(gameObject, eventData);
+            EventSystem.current.SetSelectedGameObject(this.gameObject, eventData);
 
-            bool hadFocusBefore = m_AllowInput;
+            bool hadFocusBefore = this.m_AllowInput;
             base.OnPointerDown(eventData);
 
-            if (InPlaceEditing() == false)
+            if (this.InPlaceEditing() == false)
             {
-                if (m_SoftKeyboard == null || !m_SoftKeyboard.active)
+                if (this.m_SoftKeyboard == null || !this.m_SoftKeyboard.active)
                 {
-                    OnSelect(eventData);
+                    this.OnSelect(eventData);
                     return;
                 }
             }
 
             #if ENABLE_INPUT_SYSTEM
-            Event.PopEvent(m_ProcessingEvent);
-            bool shift = m_ProcessingEvent != null && (m_ProcessingEvent.modifiers & EventModifiers.Shift) != 0;
+            Event.PopEvent(this.m_ProcessingEvent);
+            bool shift = this.m_ProcessingEvent != null && (this.m_ProcessingEvent.modifiers & EventModifiers.Shift) != 0;
             #else
             bool shift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
             #endif
@@ -1771,70 +1771,70 @@
             bool isDoubleClick = false;
             float timeStamp = Time.unscaledTime;
 
-            if (m_PointerDownClickStartTime + m_DoubleClickDelay > timeStamp)
+            if (this.m_PointerDownClickStartTime + this.m_DoubleClickDelay > timeStamp)
                 isDoubleClick = true;
 
-            m_PointerDownClickStartTime = timeStamp;
+            this.m_PointerDownClickStartTime = timeStamp;
 
             // Only set caret position if we didn't just get focus now.
             // Otherwise it will overwrite the select all on focus.
-            if (hadFocusBefore || !m_OnFocusSelectAll)
+            if (hadFocusBefore || !this.m_OnFocusSelectAll)
             {
                 CaretPosition insertionSide;
 
-                int insertionIndex = TMP_TextUtilities.GetCursorIndexFromPosition(m_TextComponent, eventData.position, eventData.pressEventCamera, out insertionSide);
+                int insertionIndex = TMP_TextUtilities.GetCursorIndexFromPosition(this.m_TextComponent, eventData.position, eventData.pressEventCamera, out insertionSide);
 
                 if (shift)
                 {
-                    if (m_isRichTextEditingAllowed)
+                    if (this.m_isRichTextEditingAllowed)
                     {
                         if (insertionSide == CaretPosition.Left)
                         {
-                            stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index;
+                            this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index;
                         }
                         else if (insertionSide == CaretPosition.Right)
                         {
-                            stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                            this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                         }
                     }
                     else
                     {
                         if (insertionSide == CaretPosition.Left)
                         {
-                            stringSelectPositionInternal = insertionIndex == 0
-                                ? m_TextComponent.textInfo.characterInfo[0].index
-                                : m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
+                            this.stringSelectPositionInternal = insertionIndex == 0
+                                ? this.m_TextComponent.textInfo.characterInfo[0].index
+                                : this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
                         }
                         else if (insertionSide == CaretPosition.Right)
                         {
-                            stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                            this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                         }
                     }
                 }
                 else
                 {
-                    if (m_isRichTextEditingAllowed)
+                    if (this.m_isRichTextEditingAllowed)
                     {
                         if (insertionSide == CaretPosition.Left)
                         {
-                            stringPositionInternal = stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index;
+                            this.stringPositionInternal = this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index;
                         }
                         else if (insertionSide == CaretPosition.Right)
                         {
-                            stringPositionInternal = stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                            this.stringPositionInternal = this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                         }
                     }
                     else
                     {
                         if (insertionSide == CaretPosition.Left)
                         {
-                            stringPositionInternal = stringSelectPositionInternal = insertionIndex == 0
-                                ? m_TextComponent.textInfo.characterInfo[0].index
-                                : m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
+                            this.stringPositionInternal = this.stringSelectPositionInternal = insertionIndex == 0
+                                ? this.m_TextComponent.textInfo.characterInfo[0].index
+                                : this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex - 1].stringLength;
                         }
                         else if (insertionSide == CaretPosition.Right)
                         {
-                            stringPositionInternal = stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                            this.stringPositionInternal = this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                         }
                     }
                 }
@@ -1842,38 +1842,38 @@
 
                 if (isDoubleClick)
                 {
-                    int wordIndex = TMP_TextUtilities.FindIntersectingWord(m_TextComponent, eventData.position, eventData.pressEventCamera);
+                    int wordIndex = TMP_TextUtilities.FindIntersectingWord(this.m_TextComponent, eventData.position, eventData.pressEventCamera);
 
                     if (wordIndex != -1)
                     {
                         // TODO: Should behavior be different if rich text editing is enabled or not?
 
                         // Select current word
-                        caretPositionInternal = m_TextComponent.textInfo.wordInfo[wordIndex].firstCharacterIndex;
-                        caretSelectPositionInternal = m_TextComponent.textInfo.wordInfo[wordIndex].lastCharacterIndex + 1;
+                        this.caretPositionInternal = this.m_TextComponent.textInfo.wordInfo[wordIndex].firstCharacterIndex;
+                        this.caretSelectPositionInternal = this.m_TextComponent.textInfo.wordInfo[wordIndex].lastCharacterIndex + 1;
 
-                        stringPositionInternal = m_TextComponent.textInfo.characterInfo[caretPositionInternal].index;
-                        stringSelectPositionInternal = m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal - 1].index + m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal - 1].stringLength;
+                        this.stringPositionInternal = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].index;
+                        this.stringSelectPositionInternal = this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal - 1].index + this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal - 1].stringLength;
                     }
                     else
                     {
                         // Select current character
-                        caretPositionInternal = insertionIndex;
-                        caretSelectPositionInternal = caretPositionInternal + 1;
+                        this.caretPositionInternal = insertionIndex;
+                        this.caretSelectPositionInternal = this.caretPositionInternal + 1;
 
-                        stringPositionInternal = m_TextComponent.textInfo.characterInfo[insertionIndex].index;
-                        stringSelectPositionInternal = stringPositionInternal + m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
+                        this.stringPositionInternal = this.m_TextComponent.textInfo.characterInfo[insertionIndex].index;
+                        this.stringSelectPositionInternal = this.stringPositionInternal + this.m_TextComponent.textInfo.characterInfo[insertionIndex].stringLength;
                     }
                 }
                 else
                 {
-                    caretPositionInternal = caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
+                    this.caretPositionInternal = this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringPositionInternal);
                 }
 
-                m_isSelectAll = false;
+                this.m_isSelectAll = false;
             }
 
-            UpdateLabel();
+            this.UpdateLabel();
             eventData.Use();
 
             #if TMP_DEBUG_MODE
@@ -1899,25 +1899,25 @@
             {
                 case KeyCode.Backspace:
                     {
-                        Backspace();
+                        this.Backspace();
                         return EditState.Continue;
                     }
 
                 case KeyCode.Delete:
                     {
-                        DeleteKey();
+                        this.DeleteKey();
                         return EditState.Continue;
                     }
 
                 case KeyCode.Home:
                     {
-                        MoveToStartOfLine(shift, ctrl);
+                        this.MoveToStartOfLine(shift, ctrl);
                         return EditState.Continue;
                     }
 
                 case KeyCode.End:
                     {
-                        MoveToEndOfLine(shift, ctrl);
+                        this.MoveToEndOfLine(shift, ctrl);
                         return EditState.Continue;
                     }
 
@@ -1926,7 +1926,7 @@
                     {
                         if (ctrlOnly)
                         {
-                            SelectAll();
+                            this.SelectAll();
                             return EditState.Continue;
                         }
                         break;
@@ -1937,8 +1937,8 @@
                     {
                         if (ctrlOnly)
                         {
-                            if (inputType != InputType.Password)
-                                clipboard = GetSelectedString();
+                            if (this.inputType != InputType.Password)
+                                clipboard = this.GetSelectedString();
                             else
                                 clipboard = "";
                             return EditState.Continue;
@@ -1951,7 +1951,7 @@
                     {
                         if (ctrlOnly)
                         {
-                            Append(clipboard);
+                            this.Append(clipboard);
                             return EditState.Continue;
                         }
                         break;
@@ -1962,13 +1962,13 @@
                     {
                         if (ctrlOnly)
                         {
-                            if (inputType != InputType.Password)
-                                clipboard = GetSelectedString();
+                            if (this.inputType != InputType.Password)
+                                clipboard = this.GetSelectedString();
                             else
                                 clipboard = "";
-                            Delete();
-                            UpdateTouchKeyboardFromEditChanges();
-                            SendOnValueChangedAndUpdateLabel();
+                            this.Delete();
+                            this.UpdateTouchKeyboardFromEditChanges();
+                            this.SendOnValueChangedAndUpdateLabel();
                             return EditState.Continue;
                         }
                         break;
@@ -1976,37 +1976,37 @@
 
                 case KeyCode.LeftArrow:
                     {
-                        MoveLeft(shift, ctrl);
+                        this.MoveLeft(shift, ctrl);
                         return EditState.Continue;
                     }
 
                 case KeyCode.RightArrow:
                     {
-                        MoveRight(shift, ctrl);
+                        this.MoveRight(shift, ctrl);
                         return EditState.Continue;
                     }
 
                 case KeyCode.UpArrow:
                     {
-                        MoveUp(shift);
+                        this.MoveUp(shift);
                         return EditState.Continue;
                     }
 
                 case KeyCode.DownArrow:
                     {
-                        MoveDown(shift);
+                        this.MoveDown(shift);
                         return EditState.Continue;
                     }
 
                 case KeyCode.PageUp:
                     {
-                        MovePageUp(shift);
+                        this.MovePageUp(shift);
                         return EditState.Continue;
                     }
 
                 case KeyCode.PageDown:
                     {
-                        MovePageDown(shift);
+                        this.MovePageDown(shift);
                         return EditState.Continue;
                     }
 
@@ -2014,9 +2014,9 @@
                 case KeyCode.Return:
                 case KeyCode.KeypadEnter:
                     {
-                        if (lineType != LineType.MultiLineNewline)
+                        if (this.lineType != LineType.MultiLineNewline)
                         {
-                            m_ReleaseSelection = true;
+                            this.m_ReleaseSelection = true;
                             return EditState.Finish;
                         }
                         break;
@@ -2024,8 +2024,8 @@
 
                 case KeyCode.Escape:
                     {
-                        m_ReleaseSelection = true;
-                        m_WasCanceled = true;
+                        this.m_ReleaseSelection = true;
+                        this.m_WasCanceled = true;
                         return EditState.Finish;
                     }
             }
@@ -2033,7 +2033,7 @@
             char c = evt.character;
 
             // Don't allow return chars or tabulator key to be entered into single line fields.
-            if (!multiLine && (c == '\t' || c == '\r' || c == 10))
+            if (!this.multiLine && (c == '\t' || c == '\r' || c == 10))
                 return EditState.Continue;
 
             // Convert carriage return and end-of-text characters to newline.
@@ -2044,16 +2044,16 @@
             if (shift && c == '\n')
                 c = '\v';
 
-            if (IsValidChar(c))
+            if (this.IsValidChar(c))
             {
-                Append(c);
+                this.Append(c);
             }
 
             if (c == 0)
             {
-                if (compositionLength > 0)
+                if (this.compositionLength > 0)
                 {
-                    UpdateLabel();
+                    this.UpdateLabel();
                 }
             }
             return EditState.Continue;
@@ -2086,7 +2086,7 @@
 
         public void ProcessEvent(Event e)
         {
-            KeyPressed(e);
+            this.KeyPressed(e);
         }
 
 
@@ -2096,17 +2096,17 @@
         /// <param name="eventData"></param>
         public virtual void OnUpdateSelected(BaseEventData eventData)
         {
-            if (!isFocused)
+            if (!this.isFocused)
                 return;
 
             bool consumedEvent = false;
             EditState shouldContinue;
 
-            while (Event.PopEvent(m_ProcessingEvent))
+            while (Event.PopEvent(this.m_ProcessingEvent))
             {
                 //Debug.Log("Event: " + m_ProcessingEvent.ToString() + "  IsCompositionActive= " + m_IsCompositionActive + "  Composition Length: " + compositionLength);
 
-                switch (m_ProcessingEvent.rawType)
+                switch (this.m_ProcessingEvent.rawType)
                 {
                     case EventType.KeyUp:
                         // TODO: Figure out way to handle navigation during IME Composition.
@@ -2118,7 +2118,7 @@
                         consumedEvent = true;
 
                         // Special handling on OSX which produces more events which need to be suppressed.
-                        if (m_IsCompositionActive && compositionLength == 0)
+                        if (this.m_IsCompositionActive && this.compositionLength == 0)
                         {
                             //if (m_ProcessingEvent.keyCode == KeyCode.Backspace && m_ProcessingEvent.modifiers == EventModifiers.None)
                             //{
@@ -2132,29 +2132,29 @@
                             //}
 
                             // Suppress other events related to navigation or termination of composition sequence.
-                            if (m_ProcessingEvent.character == 0 && m_ProcessingEvent.modifiers == EventModifiers.None)
+                            if (this.m_ProcessingEvent.character == 0 && this.m_ProcessingEvent.modifiers == EventModifiers.None)
                                 break;
                         }
 
-                        shouldContinue = KeyPressed(m_ProcessingEvent);
+                        shouldContinue = this.KeyPressed(this.m_ProcessingEvent);
                         if (shouldContinue == EditState.Finish)
                         {
-                            SendOnSubmit();
-                            DeactivateInputField();
+                            this.SendOnSubmit();
+                            this.DeactivateInputField();
                             break;
                         }
 
-                        m_IsTextComponentUpdateRequired = true;
-                        UpdateLabel();
+                        this.m_IsTextComponentUpdateRequired = true;
+                        this.UpdateLabel();
 
                         break;
 
                     case EventType.ValidateCommand:
                     case EventType.ExecuteCommand:
-                        switch (m_ProcessingEvent.commandName)
+                        switch (this.m_ProcessingEvent.commandName)
                         {
                             case "SelectAll":
-                                SelectAll();
+                                this.SelectAll();
                                 consumedEvent = true;
                                 break;
                         }
@@ -2163,7 +2163,7 @@
             }
 
             if (consumedEvent)
-                UpdateLabel();
+                this.UpdateLabel();
 
             eventData.Use();
         }
@@ -2176,24 +2176,24 @@
         public virtual void OnScroll(PointerEventData eventData)
         {
             // Return if Single Line
-            if (m_LineType == LineType.SingleLine)
+            if (this.m_LineType == LineType.SingleLine)
                 return;
 
-            if (m_TextComponent.preferredHeight < m_TextViewport.rect.height)
+            if (this.m_TextComponent.preferredHeight < this.m_TextViewport.rect.height)
                 return;
 
             float scrollDirection = -eventData.scrollDelta.y;
 
-            m_ScrollPosition = m_ScrollPosition + (1f / m_TextComponent.textInfo.lineCount) * scrollDirection * m_ScrollSensitivity;
+            this.m_ScrollPosition = this.m_ScrollPosition + (1f / this.m_TextComponent.textInfo.lineCount) * scrollDirection * this.m_ScrollSensitivity;
 
-            m_ScrollPosition = Mathf.Clamp01(m_ScrollPosition);
+            this.m_ScrollPosition = Mathf.Clamp01(this.m_ScrollPosition);
 
-            AdjustTextPositionRelativeToViewport(m_ScrollPosition);
+            this.AdjustTextPositionRelativeToViewport(this.m_ScrollPosition);
 
-            if (m_VerticalScrollbar)
+            if (this.m_VerticalScrollbar)
             {
-                m_IsUpdatingScrollbarValues = true;
-                m_VerticalScrollbar.value = m_ScrollPosition;
+                this.m_IsUpdatingScrollbarValues = true;
+                this.m_VerticalScrollbar.value = this.m_ScrollPosition;
             }
 
             //Debug.Log("Scroll Position:" + m_ScrollPosition);
@@ -2202,11 +2202,11 @@
 
         private string GetSelectedString()
         {
-            if (!hasSelection)
+            if (!this.hasSelection)
                 return "";
 
-            int startPos = stringPositionInternal;
-            int endPos = stringSelectPositionInternal;
+            int startPos = this.stringPositionInternal;
+            int endPos = this.stringSelectPositionInternal;
 
             // Ensure pos is always less then selPos to make the code simpler
             if (startPos > endPos)
@@ -2222,18 +2222,18 @@
             //}
 
 
-            return text.Substring(startPos, endPos - startPos);
+            return this.text.Substring(startPos, endPos - startPos);
         }
 
         private int FindNextWordBegin()
         {
-            if (stringSelectPositionInternal + 1 >= text.Length)
-                return text.Length;
+            if (this.stringSelectPositionInternal + 1 >= this.text.Length)
+                return this.text.Length;
 
-            int spaceLoc = text.IndexOfAny(kSeparators, stringSelectPositionInternal + 1);
+            int spaceLoc = this.text.IndexOfAny(kSeparators, this.stringSelectPositionInternal + 1);
 
             if (spaceLoc == -1)
-                spaceLoc = text.Length;
+                spaceLoc = this.text.Length;
             else
                 spaceLoc++;
 
@@ -2242,12 +2242,12 @@
 
         private void MoveRight(bool shift, bool ctrl)
         {
-            if (hasSelection && !shift)
+            if (this.hasSelection && !shift)
             {
                 // By convention, if we have a selection and move right without holding shift,
                 // we just place the cursor at the end.
-                stringPositionInternal = stringSelectPositionInternal = Mathf.Max(stringPositionInternal, stringSelectPositionInternal);
-                caretPositionInternal = caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.stringPositionInternal = this.stringSelectPositionInternal = Mathf.Max(this.stringPositionInternal, this.stringSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
 
                 #if TMP_DEBUG_MODE
                     Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
@@ -2257,36 +2257,36 @@
 
             int position;
             if (ctrl)
-                position = FindNextWordBegin();
+                position = this.FindNextWordBegin();
             else
             {
-                if (m_isRichTextEditingAllowed)
+                if (this.m_isRichTextEditingAllowed)
                 {
                     // Special handling for Surrogate pairs and Diacritical marks.
-                    if (stringSelectPositionInternal < text.Length && char.IsHighSurrogate(text[stringSelectPositionInternal]))
-                        position = stringSelectPositionInternal + 2;
+                    if (this.stringSelectPositionInternal < this.text.Length && char.IsHighSurrogate(this.text[this.stringSelectPositionInternal]))
+                        position = this.stringSelectPositionInternal + 2;
                     else
-                        position = stringSelectPositionInternal + 1;
+                        position = this.stringSelectPositionInternal + 1;
                 }
                 else
                 {
-                    position = m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal].index + m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal].stringLength;
+                    position = this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal].index + this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal].stringLength;
                 }
 
             }
 
             if (shift)
             {
-                stringSelectPositionInternal = position;
-                caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.stringSelectPositionInternal = position;
+                this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
             }
             else
             {
-                stringSelectPositionInternal = stringPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = position;
 
                 // Only increase caret position as we cross character boundary.
-                if (stringPositionInternal >= m_TextComponent.textInfo.characterInfo[caretPositionInternal].index + m_TextComponent.textInfo.characterInfo[caretPositionInternal].stringLength)
-                    caretSelectPositionInternal = caretPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                if (this.stringPositionInternal >= this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].index + this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].stringLength)
+                    this.caretSelectPositionInternal = this.caretPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
             }
 
             #if TMP_DEBUG_MODE
@@ -2296,10 +2296,10 @@
 
         private int FindPrevWordBegin()
         {
-            if (stringSelectPositionInternal - 2 < 0)
+            if (this.stringSelectPositionInternal - 2 < 0)
                 return 0;
 
-            int spaceLoc = text.LastIndexOfAny(kSeparators, stringSelectPositionInternal - 2);
+            int spaceLoc = this.text.LastIndexOfAny(kSeparators, this.stringSelectPositionInternal - 2);
 
             if (spaceLoc == -1)
                 spaceLoc = 0;
@@ -2311,12 +2311,12 @@
 
         private void MoveLeft(bool shift, bool ctrl)
         {
-            if (hasSelection && !shift)
+            if (this.hasSelection && !shift)
             {
                 // By convention, if we have a selection and move left without holding shift,
                 // we just place the cursor at the start.
-                stringPositionInternal = stringSelectPositionInternal = Mathf.Min(stringPositionInternal, stringSelectPositionInternal);
-                caretPositionInternal = caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.stringPositionInternal = this.stringSelectPositionInternal = Mathf.Min(this.stringPositionInternal, this.stringSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
 
                 #if TMP_DEBUG_MODE
                     Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
@@ -2326,38 +2326,38 @@
 
             int position;
             if (ctrl)
-                position = FindPrevWordBegin();
+                position = this.FindPrevWordBegin();
             else
             {
-                if (m_isRichTextEditingAllowed)
+                if (this.m_isRichTextEditingAllowed)
                 {
                     // Special handling for Surrogate pairs and Diacritical marks.
-                    if (stringSelectPositionInternal > 0 && char.IsLowSurrogate(text[stringSelectPositionInternal - 1]))
-                        position = stringSelectPositionInternal - 2;
+                    if (this.stringSelectPositionInternal > 0 && char.IsLowSurrogate(this.text[this.stringSelectPositionInternal - 1]))
+                        position = this.stringSelectPositionInternal - 2;
                     else
-                        position =  stringSelectPositionInternal - 1;
+                        position =  this.stringSelectPositionInternal - 1;
                 }
                 else
                 {
                     //position = GetStringIndexFromCaretPosition(caretSelectPositionInternal - 1);
-                    position = caretSelectPositionInternal < 2
-                        ? m_TextComponent.textInfo.characterInfo[0].index
-                        : m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal - 2].index + m_TextComponent.textInfo.characterInfo[caretSelectPositionInternal - 2].stringLength;
+                    position = this.caretSelectPositionInternal < 2
+                        ? this.m_TextComponent.textInfo.characterInfo[0].index
+                        : this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal - 2].index + this.m_TextComponent.textInfo.characterInfo[this.caretSelectPositionInternal - 2].stringLength;
                 }
             }
 
             if (shift)
             {
-                stringSelectPositionInternal = position;
-                caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                this.stringSelectPositionInternal = position;
+                this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
             }
             else
             {
-                stringSelectPositionInternal = stringPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = position;
 
                 // Only decrease caret position as we cross character boundary.
-                if (caretPositionInternal > 0 && stringPositionInternal <= m_TextComponent.textInfo.characterInfo[caretPositionInternal - 1].index)
-                    caretSelectPositionInternal = caretPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                if (this.caretPositionInternal > 0 && this.stringPositionInternal <= this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 1].index)
+                    this.caretSelectPositionInternal = this.caretPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
             }
 
             #if TMP_DEBUG_MODE
@@ -2368,25 +2368,25 @@
 
         private int LineUpCharacterPosition(int originalPos, bool goToFirstChar)
         {
-            if (originalPos >= m_TextComponent.textInfo.characterCount)
+            if (originalPos >= this.m_TextComponent.textInfo.characterCount)
                 originalPos -= 1;
 
-            TMP_CharacterInfo originChar = m_TextComponent.textInfo.characterInfo[originalPos];
+            TMP_CharacterInfo originChar = this.m_TextComponent.textInfo.characterInfo[originalPos];
             int originLine = originChar.lineNumber;
 
             // We are on the first line return first character
             if (originLine - 1 < 0)
                 return goToFirstChar ? 0 : originalPos;
 
-            int endCharIdx = m_TextComponent.textInfo.lineInfo[originLine].firstCharacterIndex - 1;
+            int endCharIdx = this.m_TextComponent.textInfo.lineInfo[originLine].firstCharacterIndex - 1;
 
             int closest = -1;
             float distance = TMP_Math.FLOAT_MAX;
             float range = 0;
 
-            for (int i = m_TextComponent.textInfo.lineInfo[originLine - 1].firstCharacterIndex; i < endCharIdx; ++i)
+            for (int i = this.m_TextComponent.textInfo.lineInfo[originLine - 1].firstCharacterIndex; i < endCharIdx; ++i)
             {
-                TMP_CharacterInfo currentChar = m_TextComponent.textInfo.characterInfo[i];
+                TMP_CharacterInfo currentChar = this.m_TextComponent.textInfo.characterInfo[i];
 
                 float d = originChar.origin - currentChar.origin;
                 float r = d / (currentChar.xAdvance - currentChar.origin);
@@ -2422,26 +2422,26 @@
 
         private int LineDownCharacterPosition(int originalPos, bool goToLastChar)
         {
-            if (originalPos >= m_TextComponent.textInfo.characterCount)
-                return m_TextComponent.textInfo.characterCount - 1; // text.Length;
+            if (originalPos >= this.m_TextComponent.textInfo.characterCount)
+                return this.m_TextComponent.textInfo.characterCount - 1; // text.Length;
 
-            TMP_CharacterInfo originChar = m_TextComponent.textInfo.characterInfo[originalPos];
+            TMP_CharacterInfo originChar = this.m_TextComponent.textInfo.characterInfo[originalPos];
             int originLine = originChar.lineNumber;
 
             //// We are on the last line return last character
-            if (originLine + 1 >= m_TextComponent.textInfo.lineCount)
-                return goToLastChar ? m_TextComponent.textInfo.characterCount - 1 : originalPos;
+            if (originLine + 1 >= this.m_TextComponent.textInfo.lineCount)
+                return goToLastChar ? this.m_TextComponent.textInfo.characterCount - 1 : originalPos;
 
             // Need to determine end line for next line.
-            int endCharIdx = m_TextComponent.textInfo.lineInfo[originLine + 1].lastCharacterIndex;
+            int endCharIdx = this.m_TextComponent.textInfo.lineInfo[originLine + 1].lastCharacterIndex;
 
             int closest = -1;
             float distance = TMP_Math.FLOAT_MAX;
             float range = 0;
 
-            for (int i = m_TextComponent.textInfo.lineInfo[originLine + 1].firstCharacterIndex; i < endCharIdx; ++i)
+            for (int i = this.m_TextComponent.textInfo.lineInfo[originLine + 1].firstCharacterIndex; i < endCharIdx; ++i)
             {
-                TMP_CharacterInfo currentChar = m_TextComponent.textInfo.characterInfo[i];
+                TMP_CharacterInfo currentChar = this.m_TextComponent.textInfo.characterInfo[i];
 
                 float d = originChar.origin - currentChar.origin;
                 float r = d / (currentChar.xAdvance - currentChar.origin);
@@ -2477,35 +2477,35 @@
 
          private int PageUpCharacterPosition(int originalPos, bool goToFirstChar)
         {
-            if (originalPos >= m_TextComponent.textInfo.characterCount)
+            if (originalPos >= this.m_TextComponent.textInfo.characterCount)
                 originalPos -= 1;
 
-            TMP_CharacterInfo originChar = m_TextComponent.textInfo.characterInfo[originalPos];
+            TMP_CharacterInfo originChar = this.m_TextComponent.textInfo.characterInfo[originalPos];
             int originLine = originChar.lineNumber;
 
             // We are on the first line return first character
             if (originLine - 1 < 0)
                 return goToFirstChar ? 0 : originalPos;
 
-            float viewportHeight = m_TextViewport.rect.height;
+            float viewportHeight = this.m_TextViewport.rect.height;
 
             int newLine = originLine - 1;
             // Iterate through each subsequent line to find the first baseline that is not visible in the viewport.
             for (; newLine > 0; newLine--)
             {
-                if (m_TextComponent.textInfo.lineInfo[newLine].baseline > m_TextComponent.textInfo.lineInfo[originLine].baseline + viewportHeight)
+                if (this.m_TextComponent.textInfo.lineInfo[newLine].baseline > this.m_TextComponent.textInfo.lineInfo[originLine].baseline + viewportHeight)
                     break;
             }
 
-            int endCharIdx = m_TextComponent.textInfo.lineInfo[newLine].lastCharacterIndex;
+            int endCharIdx = this.m_TextComponent.textInfo.lineInfo[newLine].lastCharacterIndex;
 
             int closest = -1;
             float distance = TMP_Math.FLOAT_MAX;
             float range = 0;
 
-            for (int i = m_TextComponent.textInfo.lineInfo[newLine].firstCharacterIndex; i < endCharIdx; ++i)
+            for (int i = this.m_TextComponent.textInfo.lineInfo[newLine].firstCharacterIndex; i < endCharIdx; ++i)
             {
-                TMP_CharacterInfo currentChar = m_TextComponent.textInfo.characterInfo[i];
+                TMP_CharacterInfo currentChar = this.m_TextComponent.textInfo.characterInfo[i];
 
                 float d = originChar.origin - currentChar.origin;
                 float r = d / (currentChar.xAdvance - currentChar.origin);
@@ -2541,36 +2541,36 @@
 
          private int PageDownCharacterPosition(int originalPos, bool goToLastChar)
         {
-            if (originalPos >= m_TextComponent.textInfo.characterCount)
-                return m_TextComponent.textInfo.characterCount - 1;
+            if (originalPos >= this.m_TextComponent.textInfo.characterCount)
+                return this.m_TextComponent.textInfo.characterCount - 1;
 
-            TMP_CharacterInfo originChar = m_TextComponent.textInfo.characterInfo[originalPos];
+            TMP_CharacterInfo originChar = this.m_TextComponent.textInfo.characterInfo[originalPos];
             int originLine = originChar.lineNumber;
 
             // We are on the last line return last character
-            if (originLine + 1 >= m_TextComponent.textInfo.lineCount)
-                return goToLastChar ? m_TextComponent.textInfo.characterCount - 1 : originalPos;
+            if (originLine + 1 >= this.m_TextComponent.textInfo.lineCount)
+                return goToLastChar ? this.m_TextComponent.textInfo.characterCount - 1 : originalPos;
 
-            float viewportHeight = m_TextViewport.rect.height;
+            float viewportHeight = this.m_TextViewport.rect.height;
 
             int newLine = originLine + 1;
             // Iterate through each subsequent line to find the first baseline that is not visible in the viewport.
-            for (; newLine < m_TextComponent.textInfo.lineCount - 1; newLine++)
+            for (; newLine < this.m_TextComponent.textInfo.lineCount - 1; newLine++)
             {
-                if (m_TextComponent.textInfo.lineInfo[newLine].baseline < m_TextComponent.textInfo.lineInfo[originLine].baseline - viewportHeight)
+                if (this.m_TextComponent.textInfo.lineInfo[newLine].baseline < this.m_TextComponent.textInfo.lineInfo[originLine].baseline - viewportHeight)
                     break;
             }
 
             // Need to determine end line for next line.
-            int endCharIdx = m_TextComponent.textInfo.lineInfo[newLine].lastCharacterIndex;
+            int endCharIdx = this.m_TextComponent.textInfo.lineInfo[newLine].lastCharacterIndex;
 
             int closest = -1;
             float distance = TMP_Math.FLOAT_MAX;
             float range = 0;
 
-            for (int i = m_TextComponent.textInfo.lineInfo[newLine].firstCharacterIndex; i < endCharIdx; ++i)
+            for (int i = this.m_TextComponent.textInfo.lineInfo[newLine].firstCharacterIndex; i < endCharIdx; ++i)
             {
-                TMP_CharacterInfo currentChar = m_TextComponent.textInfo.characterInfo[i];
+                TMP_CharacterInfo currentChar = this.m_TextComponent.textInfo.characterInfo[i];
 
                 float d = originChar.origin - currentChar.origin;
                 float r = d / (currentChar.xAdvance - currentChar.origin);
@@ -2604,30 +2604,30 @@
 
         private void MoveDown(bool shift)
         {
-            MoveDown(shift, true);
+            this.MoveDown(shift, true);
         }
 
 
         private void MoveDown(bool shift, bool goToLastChar)
         {
-            if (hasSelection && !shift)
+            if (this.hasSelection && !shift)
             {
                 // If we have a selection and press down without shift,
                 // set caret to end of selection before we move it down.
-                caretPositionInternal = caretSelectPositionInternal = Mathf.Max(caretPositionInternal, caretSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = Mathf.Max(this.caretPositionInternal, this.caretSelectPositionInternal);
             }
 
-            int position = multiLine ? LineDownCharacterPosition(caretSelectPositionInternal, goToLastChar) : m_TextComponent.textInfo.characterCount - 1; // text.Length;
+            int position = this.multiLine ? this.LineDownCharacterPosition(this.caretSelectPositionInternal, goToLastChar) : this.m_TextComponent.textInfo.characterCount - 1; // text.Length;
 
             if (shift)
             {
-                caretSelectPositionInternal = position;
-                stringSelectPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = position;
+                this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
             else
             {
-                caretSelectPositionInternal = caretPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = this.caretPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
 
             #if TMP_DEBUG_MODE
@@ -2637,30 +2637,30 @@
 
         private void MoveUp(bool shift)
         {
-            MoveUp(shift, true);
+            this.MoveUp(shift, true);
         }
 
 
         private void MoveUp(bool shift, bool goToFirstChar)
         {
-            if (hasSelection && !shift)
+            if (this.hasSelection && !shift)
             {
                 // If we have a selection and press up without shift,
                 // set caret position to start of selection before we move it up.
-                caretPositionInternal = caretSelectPositionInternal = Mathf.Min(caretPositionInternal, caretSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = Mathf.Min(this.caretPositionInternal, this.caretSelectPositionInternal);
             }
 
-            int position = multiLine ? LineUpCharacterPosition(caretSelectPositionInternal, goToFirstChar) : 0;
+            int position = this.multiLine ? this.LineUpCharacterPosition(this.caretSelectPositionInternal, goToFirstChar) : 0;
 
             if (shift)
             {
-                caretSelectPositionInternal = position;
-                stringSelectPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = position;
+                this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
             else
             {
-                caretSelectPositionInternal = caretPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = this.caretPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
 
             #if TMP_DEBUG_MODE
@@ -2671,29 +2671,29 @@
 
         private void MovePageUp(bool shift)
         {
-            MovePageUp(shift, true);
+            this.MovePageUp(shift, true);
         }
 
         private void MovePageUp(bool shift, bool goToFirstChar)
         {
-            if (hasSelection && !shift)
+            if (this.hasSelection && !shift)
             {
                 // If we have a selection and press up without shift,
                 // set caret position to start of selection before we move it up.
-                caretPositionInternal = caretSelectPositionInternal = Mathf.Min(caretPositionInternal, caretSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = Mathf.Min(this.caretPositionInternal, this.caretSelectPositionInternal);
             }
 
-            int position = multiLine ? PageUpCharacterPosition(caretSelectPositionInternal, goToFirstChar) : 0;
+            int position = this.multiLine ? this.PageUpCharacterPosition(this.caretSelectPositionInternal, goToFirstChar) : 0;
 
             if (shift)
             {
-                caretSelectPositionInternal = position;
-                stringSelectPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = position;
+                this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
             else
             {
-                caretSelectPositionInternal = caretPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = this.caretPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
 
 
@@ -2702,18 +2702,18 @@
             //float lineAscender = m_TextComponent.textInfo.lineInfo[currentLine].ascender;
 
             // Adjust text area up or down if not in single line mode.
-            if (m_LineType != LineType.SingleLine)
+            if (this.m_LineType != LineType.SingleLine)
             {
-                float offset = m_TextViewport.rect.height; // m_TextViewport.rect.yMax - (m_TextComponent.rectTransform.anchoredPosition.y + lineAscender);
+                float offset = this.m_TextViewport.rect.height; // m_TextViewport.rect.yMax - (m_TextComponent.rectTransform.anchoredPosition.y + lineAscender);
 
-                float topTextBounds = m_TextComponent.rectTransform.position.y + m_TextComponent.textBounds.max.y;
-                float topViewportBounds = m_TextViewport.position.y + m_TextViewport.rect.yMax;
+                float topTextBounds = this.m_TextComponent.rectTransform.position.y + this.m_TextComponent.textBounds.max.y;
+                float topViewportBounds = this.m_TextViewport.position.y + this.m_TextViewport.rect.yMax;
 
                 offset = topViewportBounds > topTextBounds + offset ? offset : topViewportBounds - topTextBounds;
 
-                m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, offset);
-                AssignPositioningIfNeeded();
-                m_IsScrollbarUpdateRequired = true;
+                this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, offset);
+                this.AssignPositioningIfNeeded();
+                this.m_IsScrollbarUpdateRequired = true;
             }
 
             #if TMP_DEBUG_MODE
@@ -2725,29 +2725,29 @@
 
         private void MovePageDown(bool shift)
         {
-            MovePageDown(shift, true);
+            this.MovePageDown(shift, true);
         }
 
         private void MovePageDown(bool shift, bool goToLastChar)
         {
-             if (hasSelection && !shift)
+             if (this.hasSelection && !shift)
             {
                 // If we have a selection and press down without shift,
                 // set caret to end of selection before we move it down.
-                caretPositionInternal = caretSelectPositionInternal = Mathf.Max(caretPositionInternal, caretSelectPositionInternal);
+                this.caretPositionInternal = this.caretSelectPositionInternal = Mathf.Max(this.caretPositionInternal, this.caretSelectPositionInternal);
             }
 
-            int position = multiLine ? PageDownCharacterPosition(caretSelectPositionInternal, goToLastChar) : m_TextComponent.textInfo.characterCount - 1;
+            int position = this.multiLine ? this.PageDownCharacterPosition(this.caretSelectPositionInternal, goToLastChar) : this.m_TextComponent.textInfo.characterCount - 1;
 
             if (shift)
             {
-                caretSelectPositionInternal = position;
-                stringSelectPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = position;
+                this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
             else
             {
-                caretSelectPositionInternal = caretPositionInternal = position;
-                stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                this.caretSelectPositionInternal = this.caretPositionInternal = position;
+                this.stringSelectPositionInternal = this.stringPositionInternal = this.GetStringIndexFromCaretPosition(this.caretSelectPositionInternal);
             }
 
             // Scroll to top of viewport
@@ -2755,18 +2755,18 @@
             //float lineAscender = m_TextComponent.textInfo.lineInfo[currentLine].ascender;
 
             // Adjust text area up or down if not in single line mode.
-            if (m_LineType != LineType.SingleLine)
+            if (this.m_LineType != LineType.SingleLine)
             {
-                float offset = m_TextViewport.rect.height; // m_TextViewport.rect.yMax - (m_TextComponent.rectTransform.anchoredPosition.y + lineAscender);
+                float offset = this.m_TextViewport.rect.height; // m_TextViewport.rect.yMax - (m_TextComponent.rectTransform.anchoredPosition.y + lineAscender);
 
-                float bottomTextBounds = m_TextComponent.rectTransform.position.y + m_TextComponent.textBounds.min.y;
-                float bottomViewportBounds = m_TextViewport.position.y + m_TextViewport.rect.yMin;
+                float bottomTextBounds = this.m_TextComponent.rectTransform.position.y + this.m_TextComponent.textBounds.min.y;
+                float bottomViewportBounds = this.m_TextViewport.position.y + this.m_TextViewport.rect.yMin;
 
                 offset = bottomViewportBounds > bottomTextBounds + offset ? offset : bottomViewportBounds - bottomTextBounds;
 
-                m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, offset);
-                AssignPositioningIfNeeded();
-                m_IsScrollbarUpdateRequired = true;
+                this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, offset);
+                this.AssignPositioningIfNeeded();
+                this.m_IsScrollbarUpdateRequired = true;
             }
 
             #if TMP_DEBUG_MODE
@@ -2777,49 +2777,49 @@
 
         private void Delete()
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
-            if (m_StringPosition == m_StringSelectPosition)
+            if (this.m_StringPosition == this.m_StringSelectPosition)
                 return;
 
-            if (m_isRichTextEditingAllowed || m_isSelectAll)
+            if (this.m_isRichTextEditingAllowed || this.m_isSelectAll)
             {
                 // Handling of Delete when Rich Text is allowed.
-                if (m_StringPosition < m_StringSelectPosition)
+                if (this.m_StringPosition < this.m_StringSelectPosition)
                 {
-                    m_Text = text.Remove(m_StringPosition, m_StringSelectPosition - m_StringPosition);
-                    m_StringSelectPosition = m_StringPosition;
+                    this.m_Text = this.text.Remove(this.m_StringPosition, this.m_StringSelectPosition - this.m_StringPosition);
+                    this.m_StringSelectPosition = this.m_StringPosition;
                 }
                 else
                 {
-                    m_Text = text.Remove(m_StringSelectPosition, m_StringPosition - m_StringSelectPosition);
-                    m_StringPosition = m_StringSelectPosition;
+                    this.m_Text = this.text.Remove(this.m_StringSelectPosition, this.m_StringPosition - this.m_StringSelectPosition);
+                    this.m_StringPosition = this.m_StringSelectPosition;
                 }
 
-                m_isSelectAll = false;
+                this.m_isSelectAll = false;
             }
             else
             {
-                if (m_CaretPosition < m_CaretSelectPosition)
+                if (this.m_CaretPosition < this.m_CaretSelectPosition)
                 {
-                    m_StringPosition = m_TextComponent.textInfo.characterInfo[m_CaretPosition].index;
-                    m_StringSelectPosition = m_TextComponent.textInfo.characterInfo[m_CaretSelectPosition - 1].index + m_TextComponent.textInfo.characterInfo[m_CaretSelectPosition - 1].stringLength;
+                    this.m_StringPosition = this.m_TextComponent.textInfo.characterInfo[this.m_CaretPosition].index;
+                    this.m_StringSelectPosition = this.m_TextComponent.textInfo.characterInfo[this.m_CaretSelectPosition - 1].index + this.m_TextComponent.textInfo.characterInfo[this.m_CaretSelectPosition - 1].stringLength;
 
-                    m_Text = text.Remove(m_StringPosition, m_StringSelectPosition - m_StringPosition);
+                    this.m_Text = this.text.Remove(this.m_StringPosition, this.m_StringSelectPosition - this.m_StringPosition);
 
-                    m_StringSelectPosition = m_StringPosition;
-                    m_CaretSelectPosition = m_CaretPosition;
+                    this.m_StringSelectPosition = this.m_StringPosition;
+                    this.m_CaretSelectPosition = this.m_CaretPosition;
                 }
                 else
                 {
-                    m_StringPosition = m_TextComponent.textInfo.characterInfo[m_CaretPosition - 1].index + m_TextComponent.textInfo.characterInfo[m_CaretPosition - 1].stringLength;
-                    m_StringSelectPosition = m_TextComponent.textInfo.characterInfo[m_CaretSelectPosition].index;
+                    this.m_StringPosition = this.m_TextComponent.textInfo.characterInfo[this.m_CaretPosition - 1].index + this.m_TextComponent.textInfo.characterInfo[this.m_CaretPosition - 1].stringLength;
+                    this.m_StringSelectPosition = this.m_TextComponent.textInfo.characterInfo[this.m_CaretSelectPosition].index;
 
-                    m_Text = text.Remove(m_StringSelectPosition, m_StringPosition - m_StringSelectPosition);
+                    this.m_Text = this.text.Remove(this.m_StringSelectPosition, this.m_StringPosition - this.m_StringSelectPosition);
 
-                    m_StringPosition = m_StringSelectPosition;
-                    m_CaretPosition = m_CaretSelectPosition;
+                    this.m_StringPosition = this.m_StringSelectPosition;
+                    this.m_CaretPosition = this.m_CaretSelectPosition;
                 }
             }
 
@@ -2833,49 +2833,49 @@
         /// </summary>
         private void DeleteKey()
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
-            if (hasSelection)
+            if (this.hasSelection)
             {
-                m_isLastKeyBackspace = true;
+                this.m_isLastKeyBackspace = true;
 
-                Delete();
-                UpdateTouchKeyboardFromEditChanges();
-                SendOnValueChangedAndUpdateLabel();
+                this.Delete();
+                this.UpdateTouchKeyboardFromEditChanges();
+                this.SendOnValueChangedAndUpdateLabel();
             }
             else
             {
-                if (m_isRichTextEditingAllowed)
+                if (this.m_isRichTextEditingAllowed)
                 {
-                    if (stringPositionInternal < text.Length)
+                    if (this.stringPositionInternal < this.text.Length)
                     {
                         // Special handling for Surrogate Pairs
-                        if (char.IsHighSurrogate(text[stringPositionInternal]))
-                            m_Text = text.Remove(stringPositionInternal, 2);
+                        if (char.IsHighSurrogate(this.text[this.stringPositionInternal]))
+                            this.m_Text = this.text.Remove(this.stringPositionInternal, 2);
                         else
-                            m_Text = text.Remove(stringPositionInternal, 1);
+                            this.m_Text = this.text.Remove(this.stringPositionInternal, 1);
 
-                        m_isLastKeyBackspace = true;
+                        this.m_isLastKeyBackspace = true;
 
-                        UpdateTouchKeyboardFromEditChanges();
-                        SendOnValueChangedAndUpdateLabel();
+                        this.UpdateTouchKeyboardFromEditChanges();
+                        this.SendOnValueChangedAndUpdateLabel();
                     }
                 }
                 else
                 {
-                    if (caretPositionInternal < m_TextComponent.textInfo.characterCount - 1)
+                    if (this.caretPositionInternal < this.m_TextComponent.textInfo.characterCount - 1)
                     {
-                        int numberOfCharactersToRemove = m_TextComponent.textInfo.characterInfo[caretPositionInternal].stringLength;
+                        int numberOfCharactersToRemove = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].stringLength;
 
                         // Adjust string position to skip any potential rich text tags.
-                        int nextCharacterStringPosition = m_TextComponent.textInfo.characterInfo[caretPositionInternal].index;
+                        int nextCharacterStringPosition = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].index;
 
-                        m_Text = text.Remove(nextCharacterStringPosition, numberOfCharactersToRemove);
+                        this.m_Text = this.text.Remove(nextCharacterStringPosition, numberOfCharactersToRemove);
 
-                        m_isLastKeyBackspace = true;
+                        this.m_isLastKeyBackspace = true;
 
-                        SendOnValueChangedAndUpdateLabel();
+                        this.SendOnValueChangedAndUpdateLabel();
                     }
                 }
             }
@@ -2890,62 +2890,62 @@
         /// </summary>
         private void Backspace()
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
-            if (hasSelection)
+            if (this.hasSelection)
             {
-                m_isLastKeyBackspace = true;
+                this.m_isLastKeyBackspace = true;
 
-                Delete();
-                UpdateTouchKeyboardFromEditChanges();
-                SendOnValueChangedAndUpdateLabel();
+                this.Delete();
+                this.UpdateTouchKeyboardFromEditChanges();
+                this.SendOnValueChangedAndUpdateLabel();
             }
             else
             {
-                if (m_isRichTextEditingAllowed)
+                if (this.m_isRichTextEditingAllowed)
                 {
-                    if (stringPositionInternal > 0)
+                    if (this.stringPositionInternal > 0)
                     {
                         int numberOfCharactersToRemove = 1;
 
                         // Special handling for Surrogate pairs and Diacritical marks
-                        if (char.IsLowSurrogate(text[stringPositionInternal - 1]))
+                        if (char.IsLowSurrogate(this.text[this.stringPositionInternal - 1]))
                             numberOfCharactersToRemove = 2;
 
-                        stringSelectPositionInternal = stringPositionInternal = stringPositionInternal - numberOfCharactersToRemove;
+                        this.stringSelectPositionInternal = this.stringPositionInternal = this.stringPositionInternal - numberOfCharactersToRemove;
 
-                        m_Text = text.Remove(stringPositionInternal, numberOfCharactersToRemove);
+                        this.m_Text = this.text.Remove(this.stringPositionInternal, numberOfCharactersToRemove);
 
-                        caretSelectPositionInternal = caretPositionInternal = caretPositionInternal - 1;
+                        this.caretSelectPositionInternal = this.caretPositionInternal = this.caretPositionInternal - 1;
 
-                        m_isLastKeyBackspace = true;
+                        this.m_isLastKeyBackspace = true;
 
-                        UpdateTouchKeyboardFromEditChanges();
-                        SendOnValueChangedAndUpdateLabel();
+                        this.UpdateTouchKeyboardFromEditChanges();
+                        this.SendOnValueChangedAndUpdateLabel();
                     }
                 }
                 else
                 {
-                    if (caretPositionInternal > 0)
+                    if (this.caretPositionInternal > 0)
                     {
-                        int numberOfCharactersToRemove = m_TextComponent.textInfo.characterInfo[caretPositionInternal - 1].stringLength;
+                        int numberOfCharactersToRemove = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 1].stringLength;
 
                         // Delete the previous character
-                        m_Text = text.Remove(m_TextComponent.textInfo.characterInfo[caretPositionInternal - 1].index, numberOfCharactersToRemove);
+                        this.m_Text = this.text.Remove(this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 1].index, numberOfCharactersToRemove);
 
                         // Get new adjusted string position
-                        stringSelectPositionInternal = stringPositionInternal = caretPositionInternal < 2
-                            ? m_TextComponent.textInfo.characterInfo[0].index
-                            : m_TextComponent.textInfo.characterInfo[caretPositionInternal - 2].index + m_TextComponent.textInfo.characterInfo[caretPositionInternal - 2].stringLength;
+                        this.stringSelectPositionInternal = this.stringPositionInternal = this.caretPositionInternal < 2
+                            ? this.m_TextComponent.textInfo.characterInfo[0].index
+                            : this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 2].index + this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 2].stringLength;
 
-                        caretSelectPositionInternal = caretPositionInternal = caretPositionInternal - 1;
+                        this.caretSelectPositionInternal = this.caretPositionInternal = this.caretPositionInternal - 1;
                     }
 
-                    m_isLastKeyBackspace = true;
+                    this.m_isLastKeyBackspace = true;
 
-                    UpdateTouchKeyboardFromEditChanges();
-                    SendOnValueChangedAndUpdateLabel();
+                    this.UpdateTouchKeyboardFromEditChanges();
+                    this.SendOnValueChangedAndUpdateLabel();
                 }
 
             }
@@ -2961,10 +2961,10 @@
         /// </summary>
         protected virtual void Append(string input)
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
-            if (InPlaceEditing() == false)
+            if (this.InPlaceEditing() == false)
                 return;
 
             for (int i = 0, imax = input.Length; i < imax; ++i)
@@ -2973,69 +2973,69 @@
 
                 if (c >= ' ' || c == '\t' || c == '\r' || c == 10 || c == '\n')
                 {
-                    Append(c);
+                    this.Append(c);
                 }
             }
         }
 
         protected virtual void Append(char input)
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
-            if (InPlaceEditing() == false)
+            if (this.InPlaceEditing() == false)
                 return;
 
             // If we have an input validator, validate the input first
-            if (onValidateInput != null)
-                input = onValidateInput(text, stringPositionInternal, input);
-            else if (characterValidation == CharacterValidation.CustomValidator)
+            if (this.onValidateInput != null)
+                input = this.onValidateInput(this.text, this.stringPositionInternal, input);
+            else if (this.characterValidation == CharacterValidation.CustomValidator)
             {
-                input = Validate(text, stringPositionInternal, input);
+                input = this.Validate(this.text, this.stringPositionInternal, input);
 
                 if (input == 0) return;
 
-                SendOnValueChanged();
-                UpdateLabel();
+                this.SendOnValueChanged();
+                this.UpdateLabel();
 
                 return;
             }
-            else if (characterValidation != CharacterValidation.None)
-                input = Validate(text, stringPositionInternal, input);
+            else if (this.characterValidation != CharacterValidation.None)
+                input = this.Validate(this.text, this.stringPositionInternal, input);
 
             // If the input is invalid, skip it
             if (input == 0)
                 return;
 
             // Append the character and update the label
-            Insert(input);
+            this.Insert(input);
         }
 
 
         // Insert the character and update the label.
         private void Insert(char c)
         {
-            if (m_ReadOnly)
+            if (this.m_ReadOnly)
                 return;
 
             //Debug.Log("Inserting character " + m_IsCompositionActive);
 
             string replaceString = c.ToString();
-            Delete();
+            this.Delete();
 
             // Can't go past the character limit
-            if (characterLimit > 0 && text.Length >= characterLimit)
+            if (this.characterLimit > 0 && this.text.Length >= this.characterLimit)
                 return;
 
-            m_Text = text.Insert(m_StringPosition, replaceString);
+            this.m_Text = this.text.Insert(this.m_StringPosition, replaceString);
 
             if (!char.IsHighSurrogate(c))
-                m_CaretSelectPosition = m_CaretPosition += 1;
+                this.m_CaretSelectPosition = this.m_CaretPosition += 1;
 
-            m_StringSelectPosition = m_StringPosition += 1;
+            this.m_StringSelectPosition = this.m_StringPosition += 1;
 
-            UpdateTouchKeyboardFromEditChanges();
-            SendOnValueChanged();
+            this.UpdateTouchKeyboardFromEditChanges();
+            this.SendOnValueChanged();
 
             #if TMP_DEBUG_MODE
                 Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
@@ -3046,22 +3046,22 @@
         {
             // Update the TouchKeyboard's text from edit changes
             // if in-place editing is allowed
-            if (m_SoftKeyboard != null && InPlaceEditing())
+            if (this.m_SoftKeyboard != null && this.InPlaceEditing())
             {
-                m_SoftKeyboard.text = m_Text;
+                this.m_SoftKeyboard.text = this.m_Text;
             }
         }
 
         private void SendOnValueChangedAndUpdateLabel()
         {
-            UpdateLabel();
-            SendOnValueChanged();
+            this.UpdateLabel();
+            this.SendOnValueChanged();
         }
 
         private void SendOnValueChanged()
         {
-            if (onValueChanged != null)
-                onValueChanged.Invoke(text);
+            if (this.onValueChanged != null)
+                this.onValueChanged.Invoke(this.text);
         }
 
         /// <summary>
@@ -3070,50 +3070,50 @@
 
         protected void SendOnEndEdit()
         {
-            if (onEndEdit != null)
-                onEndEdit.Invoke(m_Text);
+            if (this.onEndEdit != null)
+                this.onEndEdit.Invoke(this.m_Text);
         }
 
         protected void SendOnSubmit()
         {
-            if (onSubmit != null)
-                onSubmit.Invoke(m_Text);
+            if (this.onSubmit != null)
+                this.onSubmit.Invoke(this.m_Text);
         }
 
         protected void SendOnFocus()
         {
-            if (onSelect != null)
-                onSelect.Invoke(m_Text);
+            if (this.onSelect != null)
+                this.onSelect.Invoke(this.m_Text);
         }
 
         protected void SendOnFocusLost()
         {
-            if (onDeselect != null)
-                onDeselect.Invoke(m_Text);
+            if (this.onDeselect != null)
+                this.onDeselect.Invoke(this.m_Text);
         }
 
         protected void SendOnTextSelection()
         {
-            m_isSelected = true;
+            this.m_isSelected = true;
 
-            if (onTextSelection != null)
-                onTextSelection.Invoke(m_Text, stringPositionInternal, stringSelectPositionInternal);
+            if (this.onTextSelection != null)
+                this.onTextSelection.Invoke(this.m_Text, this.stringPositionInternal, this.stringSelectPositionInternal);
         }
 
         protected void SendOnEndTextSelection()
         {
-            if (!m_isSelected) return;
+            if (!this.m_isSelected) return;
 
-            if (onEndTextSelection != null)
-                onEndTextSelection.Invoke(m_Text, stringPositionInternal, stringSelectPositionInternal);
+            if (this.onEndTextSelection != null)
+                this.onEndTextSelection.Invoke(this.m_Text, this.stringPositionInternal, this.stringSelectPositionInternal);
 
-            m_isSelected = false;
+            this.m_isSelected = false;
         }
 
         protected void SendTouchScreenKeyboardStatusChanged()
         {
-            if (onTouchScreenKeyboardStatusChanged != null)
-                onTouchScreenKeyboardStatusChanged.Invoke(m_SoftKeyboard.status);
+            if (this.onTouchScreenKeyboardStatusChanged != null)
+                this.onTouchScreenKeyboardStatusChanged.Invoke(this.m_SoftKeyboard.status);
         }
 
 
@@ -3123,102 +3123,102 @@
 
         protected void UpdateLabel()
         {
-            if (m_TextComponent != null && m_TextComponent.font != null && m_PreventCallback == false)
+            if (this.m_TextComponent != null && this.m_TextComponent.font != null && this.m_PreventCallback == false)
             {
                 // Prevent callback from the text component as we assign new text. This is to prevent a recursive call.
-                m_PreventCallback = true;
+                this.m_PreventCallback = true;
 
                 string fullText;
-                if (compositionLength > 0 && m_ReadOnly == false)
+                if (this.compositionLength > 0 && this.m_ReadOnly == false)
                 {
                     //Input.imeCompositionMode = IMECompositionMode.On;
 
                     // Handle selections
-                    Delete();
+                    this.Delete();
 
-                    if (m_RichText)
-                        fullText = text.Substring(0, m_StringPosition) +  "<u>" + compositionString + "</u>" + text.Substring(m_StringPosition);
+                    if (this.m_RichText)
+                        fullText = this.text.Substring(0, this.m_StringPosition) +  "<u>" + this.compositionString + "</u>" + this.text.Substring(this.m_StringPosition);
                     else
-                        fullText = text.Substring(0, m_StringPosition) +  compositionString + text.Substring(m_StringPosition);
+                        fullText = this.text.Substring(0, this.m_StringPosition) +  this.compositionString + this.text.Substring(this.m_StringPosition);
 
-                    m_IsCompositionActive = true;
+                    this.m_IsCompositionActive = true;
 
                     //Debug.Log("[" + Time.frameCount + "] Handling IME Input");
                 }
                 else
                 {
-                    fullText = text;
-                    m_IsCompositionActive = false;
-                    m_ShouldUpdateIMEWindowPosition = true;
+                    fullText = this.text;
+                    this.m_IsCompositionActive = false;
+                    this.m_ShouldUpdateIMEWindowPosition = true;
 
                 }
 
                 //Debug.Log("Handling IME Input... [" + compositionString + "] of length [" + compositionLength + "] at StringPosition [" + m_StringPosition + "]  IsActive [" + m_IsCompositionActive + "]");
 
                 string processed;
-                if (inputType == InputType.Password)
-                    processed = new string(asteriskChar, fullText.Length);
+                if (this.inputType == InputType.Password)
+                    processed = new string(this.asteriskChar, fullText.Length);
                 else
                     processed = fullText;
 
                 bool isEmpty = string.IsNullOrEmpty(fullText);
 
-                if (m_Placeholder != null)
-                    m_Placeholder.enabled = isEmpty;
+                if (this.m_Placeholder != null)
+                    this.m_Placeholder.enabled = isEmpty;
 
-                if (!isEmpty && m_ReadOnly == false)
+                if (!isEmpty && this.m_ReadOnly == false)
                 {
-                    SetCaretVisible();
+                    this.SetCaretVisible();
                 }
 
-                m_TextComponent.text = processed + "\u200B"; // Extra space is added for Caret tracking.
+                this.m_TextComponent.text = processed + "\u200B"; // Extra space is added for Caret tracking.
 
                 // Rebuild layout if using Layout components.
-                if (m_IsDrivenByLayoutComponents)
-                    LayoutRebuilder.MarkLayoutForRebuild(m_RectTransform);
+                if (this.m_IsDrivenByLayoutComponents)
+                    LayoutRebuilder.MarkLayoutForRebuild(this.m_RectTransform);
 
                 // Special handling to limit the number of lines of text in the Input Field.
-                if (m_LineLimit > 0)
+                if (this.m_LineLimit > 0)
                 {
-                    m_TextComponent.ForceMeshUpdate();
+                    this.m_TextComponent.ForceMeshUpdate();
 
                     // Check if text exceeds maximum number of lines.
-                    if (m_TextComponent.textInfo.lineCount > m_LineLimit)
+                    if (this.m_TextComponent.textInfo.lineCount > this.m_LineLimit)
                     {
-                        int lastValidCharacterIndex = m_TextComponent.textInfo.lineInfo[m_LineLimit - 1].lastCharacterIndex;
-                        int characterStringIndex = m_TextComponent.textInfo.characterInfo[lastValidCharacterIndex].index + m_TextComponent.textInfo.characterInfo[lastValidCharacterIndex].stringLength;
-                        text = processed.Remove(characterStringIndex, processed.Length - characterStringIndex);
-                        m_TextComponent.text = text + "\u200B";
+                        int lastValidCharacterIndex = this.m_TextComponent.textInfo.lineInfo[this.m_LineLimit - 1].lastCharacterIndex;
+                        int characterStringIndex = this.m_TextComponent.textInfo.characterInfo[lastValidCharacterIndex].index + this.m_TextComponent.textInfo.characterInfo[lastValidCharacterIndex].stringLength;
+                        this.text = processed.Remove(characterStringIndex, processed.Length - characterStringIndex);
+                        this.m_TextComponent.text = this.text + "\u200B";
                     }
                 }
 
-                if (m_IsTextComponentUpdateRequired)
+                if (this.m_IsTextComponentUpdateRequired)
                 {
-                    m_IsTextComponentUpdateRequired = false;
-                    m_TextComponent.ForceMeshUpdate();
+                    this.m_IsTextComponentUpdateRequired = false;
+                    this.m_TextComponent.ForceMeshUpdate();
                 }
 
-                MarkGeometryAsDirty();
+                this.MarkGeometryAsDirty();
 
                 // Scrollbar should be updated.
-                m_IsScrollbarUpdateRequired = true;
+                this.m_IsScrollbarUpdateRequired = true;
 
-                m_PreventCallback = false;
+                this.m_PreventCallback = false;
             }
         }
 
         void UpdateScrollbar()
         {
             // Update Scrollbar
-            if (m_VerticalScrollbar)
+            if (this.m_VerticalScrollbar)
             {
-                float size = m_TextViewport.rect.height / m_TextComponent.preferredHeight;
+                float size = this.m_TextViewport.rect.height / this.m_TextComponent.preferredHeight;
 
-                m_IsUpdatingScrollbarValues = true;
+                this.m_IsUpdatingScrollbarValues = true;
 
-                m_VerticalScrollbar.size = size;
+                this.m_VerticalScrollbar.size = size;
 
-                m_ScrollPosition = m_VerticalScrollbar.value = m_TextComponent.rectTransform.anchoredPosition.y / (m_TextComponent.preferredHeight - m_TextViewport.rect.height);
+                this.m_ScrollPosition = this.m_VerticalScrollbar.value = this.m_TextComponent.rectTransform.anchoredPosition.y / (this.m_TextComponent.preferredHeight - this.m_TextViewport.rect.height);
 
                 //m_VerticalScrollbar.numberOfSteps = (int)(m_TextComponent.textInfo.lineCount / 0.25f); // Replace by scroll sensitivity.
 
@@ -3233,13 +3233,13 @@
         /// <param name="value"></param>
         void OnScrollbarValueChange(float value)
         {
-            if (m_IsUpdatingScrollbarValues) { m_IsUpdatingScrollbarValues = false; return; }
+            if (this.m_IsUpdatingScrollbarValues) { this.m_IsUpdatingScrollbarValues = false; return; }
 
             if (value < 0 || value > 1) return;
 
-            AdjustTextPositionRelativeToViewport(value);
+            this.AdjustTextPositionRelativeToViewport(value);
 
-            m_ScrollPosition = value;
+            this.m_ScrollPosition = value;
 
             //Debug.Log("Scrollbar value is: " + value + "  Transform POS: " + m_TextComponent.rectTransform.anchoredPosition);
         }
@@ -3280,17 +3280,17 @@
         /// <param name="relativePosition"></param>
         void AdjustTextPositionRelativeToViewport (float relativePosition)
         {
-            if (m_TextViewport == null)
+            if (this.m_TextViewport == null)
                 return;
 
-            TMP_TextInfo textInfo = m_TextComponent.textInfo;
+            TMP_TextInfo textInfo = this.m_TextComponent.textInfo;
 
             // Check to make sure we have valid data and lines to query.
             if (textInfo == null || textInfo.lineInfo == null || textInfo.lineCount == 0 || textInfo.lineCount > textInfo.lineInfo.Length) return;
 
-            m_TextComponent.rectTransform.anchoredPosition = new Vector2(m_TextComponent.rectTransform.anchoredPosition.x, (m_TextComponent.preferredHeight - m_TextViewport.rect.height) * relativePosition);
+            this.m_TextComponent.rectTransform.anchoredPosition = new Vector2(this.m_TextComponent.rectTransform.anchoredPosition.x, (this.m_TextComponent.preferredHeight - this.m_TextViewport.rect.height) * relativePosition);
 
-            AssignPositioningIfNeeded();
+            this.AssignPositioningIfNeeded();
 
             //Debug.Log("Text height: " + m_TextComponent.preferredHeight + "  Viewport height: " + m_TextViewport.rect.height + "  Adjusted RectTransform anchordedPosition:" + m_TextComponent.rectTransform.anchoredPosition + "  Text Bounds: " + m_TextComponent.bounds.ToString("f3"));
         }
@@ -3298,11 +3298,11 @@
 
         private int GetCaretPositionFromStringIndex(int stringIndex)
         {
-            int count = m_TextComponent.textInfo.characterCount;
+            int count = this.m_TextComponent.textInfo.characterCount;
 
             for (int i = 0; i < count; i++)
             {
-                if (m_TextComponent.textInfo.characterInfo[i].index >= stringIndex)
+                if (this.m_TextComponent.textInfo.characterInfo[i].index >= stringIndex)
                     return i;
             }
 
@@ -3316,11 +3316,11 @@
         /// <returns></returns>
         private int GetMinCaretPositionFromStringIndex(int stringIndex)
         {
-            int count = m_TextComponent.textInfo.characterCount;
+            int count = this.m_TextComponent.textInfo.characterCount;
 
             for (int i = 0; i < count; i++)
             {
-                if (stringIndex < m_TextComponent.textInfo.characterInfo[i].index + m_TextComponent.textInfo.characterInfo[i].stringLength)
+                if (stringIndex < this.m_TextComponent.textInfo.characterInfo[i].index + this.m_TextComponent.textInfo.characterInfo[i].stringLength)
                     return i;
             }
 
@@ -3334,11 +3334,11 @@
         /// <returns></returns>
         private int GetMaxCaretPositionFromStringIndex(int stringIndex)
         {
-            int count = m_TextComponent.textInfo.characterCount;
+            int count = this.m_TextComponent.textInfo.characterCount;
 
             for (int i = 0; i < count; i++)
             {
-                if (m_TextComponent.textInfo.characterInfo[i].index >= stringIndex)
+                if (this.m_TextComponent.textInfo.characterInfo[i].index >= stringIndex)
                     return i;
             }
 
@@ -3348,15 +3348,15 @@
         private int GetStringIndexFromCaretPosition(int caretPosition)
         {
             // Clamp values between 0 and character count.
-            ClampCaretPos(ref caretPosition);
+            this.ClampCaretPos(ref caretPosition);
 
-            return m_TextComponent.textInfo.characterInfo[caretPosition].index;
+            return this.m_TextComponent.textInfo.characterInfo[caretPosition].index;
         }
 
 
         public void ForceLabelUpdate()
         {
-            UpdateLabel();
+            this.UpdateLabel();
         }
 
         private void MarkGeometryAsDirty()
@@ -3374,7 +3374,7 @@
             switch (update)
             {
                 case CanvasUpdate.LatePreRender:
-                    UpdateGeometry();
+                    this.UpdateGeometry();
                     break;
             }
         }
@@ -3393,15 +3393,15 @@
             #endif
 
             // No need to draw a cursor on mobile as its handled by the devices keyboard.
-            if (InPlaceEditing() == false)
+            if (this.InPlaceEditing() == false)
                 return;
 
-            if (m_CachedInputRenderer == null)
+            if (this.m_CachedInputRenderer == null)
                 return;
 
-            OnFillVBO(mesh);
+            this.OnFillVBO(this.mesh);
 
-            m_CachedInputRenderer.SetMesh(mesh);
+            this.m_CachedInputRenderer.SetMesh(this.mesh);
         }
 
 
@@ -3410,24 +3410,24 @@
         /// </summary>
         private void AssignPositioningIfNeeded()
         {
-            if (m_TextComponent != null && caretRectTrans != null &&
-                (caretRectTrans.localPosition != m_TextComponent.rectTransform.localPosition ||
-                 caretRectTrans.localRotation != m_TextComponent.rectTransform.localRotation ||
-                 caretRectTrans.localScale != m_TextComponent.rectTransform.localScale ||
-                 caretRectTrans.anchorMin != m_TextComponent.rectTransform.anchorMin ||
-                 caretRectTrans.anchorMax != m_TextComponent.rectTransform.anchorMax ||
-                 caretRectTrans.anchoredPosition != m_TextComponent.rectTransform.anchoredPosition ||
-                 caretRectTrans.sizeDelta != m_TextComponent.rectTransform.sizeDelta ||
-                 caretRectTrans.pivot != m_TextComponent.rectTransform.pivot))
+            if (this.m_TextComponent != null && this.caretRectTrans != null &&
+                (this.caretRectTrans.localPosition != this.m_TextComponent.rectTransform.localPosition ||
+                 this.caretRectTrans.localRotation != this.m_TextComponent.rectTransform.localRotation ||
+                 this.caretRectTrans.localScale != this.m_TextComponent.rectTransform.localScale ||
+                 this.caretRectTrans.anchorMin != this.m_TextComponent.rectTransform.anchorMin ||
+                 this.caretRectTrans.anchorMax != this.m_TextComponent.rectTransform.anchorMax ||
+                 this.caretRectTrans.anchoredPosition != this.m_TextComponent.rectTransform.anchoredPosition ||
+                 this.caretRectTrans.sizeDelta != this.m_TextComponent.rectTransform.sizeDelta ||
+                 this.caretRectTrans.pivot != this.m_TextComponent.rectTransform.pivot))
             {
-                caretRectTrans.localPosition = m_TextComponent.rectTransform.localPosition;
-                caretRectTrans.localRotation = m_TextComponent.rectTransform.localRotation;
-                caretRectTrans.localScale = m_TextComponent.rectTransform.localScale;
-                caretRectTrans.anchorMin = m_TextComponent.rectTransform.anchorMin;
-                caretRectTrans.anchorMax = m_TextComponent.rectTransform.anchorMax;
-                caretRectTrans.anchoredPosition = m_TextComponent.rectTransform.anchoredPosition;
-                caretRectTrans.sizeDelta = m_TextComponent.rectTransform.sizeDelta;
-                caretRectTrans.pivot = m_TextComponent.rectTransform.pivot;
+                this.caretRectTrans.localPosition = this.m_TextComponent.rectTransform.localPosition;
+                this.caretRectTrans.localRotation = this.m_TextComponent.rectTransform.localRotation;
+                this.caretRectTrans.localScale = this.m_TextComponent.rectTransform.localScale;
+                this.caretRectTrans.anchorMin = this.m_TextComponent.rectTransform.anchorMin;
+                this.caretRectTrans.anchorMax = this.m_TextComponent.rectTransform.anchorMax;
+                this.caretRectTrans.anchoredPosition = this.m_TextComponent.rectTransform.anchoredPosition;
+                this.caretRectTrans.sizeDelta = this.m_TextComponent.rectTransform.sizeDelta;
+                this.caretRectTrans.pivot = this.m_TextComponent.rectTransform.pivot;
             }
         }
 
@@ -3436,35 +3436,35 @@
         {
             using (var helper = new VertexHelper())
             {
-                if (!isFocused && !m_SelectionStillActive)
+                if (!this.isFocused && !this.m_SelectionStillActive)
                 {
                     helper.FillMesh(vbo);
                     return;
                 }
 
-                if (m_IsStringPositionDirty)
+                if (this.m_IsStringPositionDirty)
                 {
-                    stringPositionInternal = GetStringIndexFromCaretPosition(m_CaretPosition);
-                    stringSelectPositionInternal = GetStringIndexFromCaretPosition(m_CaretSelectPosition);
-                    m_IsStringPositionDirty = false;
+                    this.stringPositionInternal = this.GetStringIndexFromCaretPosition(this.m_CaretPosition);
+                    this.stringSelectPositionInternal = this.GetStringIndexFromCaretPosition(this.m_CaretSelectPosition);
+                    this.m_IsStringPositionDirty = false;
                 }
 
-                if (m_IsCaretPositionDirty)
+                if (this.m_IsCaretPositionDirty)
                 {
-                    caretPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
-                    caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
-                    m_IsCaretPositionDirty = false;
+                    this.caretPositionInternal = this.GetCaretPositionFromStringIndex(this.stringPositionInternal);
+                    this.caretSelectPositionInternal = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
+                    this.m_IsCaretPositionDirty = false;
                 }
 
-                if (!hasSelection && !m_ReadOnly)
+                if (!this.hasSelection && !this.m_ReadOnly)
                 {
-                    GenerateCaret(helper, Vector2.zero);
-                    SendOnEndTextSelection();
+                    this.GenerateCaret(helper, Vector2.zero);
+                    this.SendOnEndTextSelection();
                 }
                 else
                 {
-                    GenerateHightlight(helper, Vector2.zero);
-                    SendOnTextSelection();
+                    this.GenerateHightlight(helper, Vector2.zero);
+                    this.SendOnTextSelection();
                 }
 
                 helper.FillMesh(vbo);
@@ -3474,15 +3474,15 @@
 
         private void GenerateCaret(VertexHelper vbo, Vector2 roundingOffset)
         {
-            if (m_CaretVisible == false)
+            if (this.m_CaretVisible == false)
                 return;
 
-            if (m_CursorVerts == null)
+            if (this.m_CursorVerts == null)
             {
-                CreateCursorVerts();
+                this.CreateCursorVerts();
             }
 
-            float width = m_CaretWidth;
+            float width = this.m_CaretWidth;
 
             // TODO: Optimize to only update the caret position when needed.
 
@@ -3491,38 +3491,38 @@
             TMP_CharacterInfo currentCharacter;
 
             // Make sure caret position does not exceed characterInfo array size.
-            if (caretPositionInternal >= m_TextComponent.textInfo.characterInfo.Length)
+            if (this.caretPositionInternal >= this.m_TextComponent.textInfo.characterInfo.Length)
                 return;
 
-            int currentLine = m_TextComponent.textInfo.characterInfo[caretPositionInternal].lineNumber;
+            int currentLine = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal].lineNumber;
 
             // Caret is positioned at the origin for the first character of each lines and at the advance for subsequent characters.
-            if (caretPositionInternal == m_TextComponent.textInfo.lineInfo[currentLine].firstCharacterIndex)
+            if (this.caretPositionInternal == this.m_TextComponent.textInfo.lineInfo[currentLine].firstCharacterIndex)
             {
-                currentCharacter = m_TextComponent.textInfo.characterInfo[caretPositionInternal];
+                currentCharacter = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal];
                 height = currentCharacter.ascender - currentCharacter.descender;
 
-                if (m_TextComponent.verticalAlignment == VerticalAlignmentOptions.Geometry)
+                if (this.m_TextComponent.verticalAlignment == VerticalAlignmentOptions.Geometry)
                     startPosition = new Vector2(currentCharacter.origin, 0 - height / 2);
                 else
                     startPosition = new Vector2(currentCharacter.origin, currentCharacter.descender);
             }
             else
             {
-                currentCharacter = m_TextComponent.textInfo.characterInfo[caretPositionInternal - 1];
+                currentCharacter = this.m_TextComponent.textInfo.characterInfo[this.caretPositionInternal - 1];
                 height = currentCharacter.ascender - currentCharacter.descender;
 
-                if (m_TextComponent.verticalAlignment == VerticalAlignmentOptions.Geometry)
+                if (this.m_TextComponent.verticalAlignment == VerticalAlignmentOptions.Geometry)
                     startPosition = new Vector2(currentCharacter.xAdvance, 0 - height / 2);
                 else
                     startPosition = new Vector2(currentCharacter.xAdvance, currentCharacter.descender);
 
             }
 
-            if (m_SoftKeyboard != null)
+            if (this.m_SoftKeyboard != null)
             {
-                int selectionStart = m_StringPosition;
-                int softKeyboardStringLength = m_SoftKeyboard.text == null ? 0 : m_SoftKeyboard.text.Length;
+                int selectionStart = this.m_StringPosition;
+                int softKeyboardStringLength = this.m_SoftKeyboard.text == null ? 0 : this.m_SoftKeyboard.text.Length;
 
                 if (selectionStart < 0)
                     selectionStart = 0;
@@ -3530,54 +3530,54 @@
                 if (selectionStart > softKeyboardStringLength)
                     selectionStart = softKeyboardStringLength;
 
-                m_SoftKeyboard.selection = new RangeInt(selectionStart, 0);
+                this.m_SoftKeyboard.selection = new RangeInt(selectionStart, 0);
             }
 
             // Adjust the position of the RectTransform based on the caret position in the viewport (only if we have focus).
-            if (isFocused && startPosition != m_LastPosition || m_forceRectTransformAdjustment || m_isLastKeyBackspace)
-                AdjustRectTransformRelativeToViewport(startPosition, height, currentCharacter.isVisible);
+            if (this.isFocused && startPosition != this.m_LastPosition || this.m_forceRectTransformAdjustment || this.m_isLastKeyBackspace)
+                this.AdjustRectTransformRelativeToViewport(startPosition, height, currentCharacter.isVisible);
 
-            m_LastPosition = startPosition;
+            this.m_LastPosition = startPosition;
 
             // Clamp Caret height
             float top = startPosition.y + height;
             float bottom = top - height;
 
             // Minor tweak to address caret potentially being too thin based on canvas scaler values.
-            float scale = m_TextComponent.canvas.scaleFactor;
+            float scale = this.m_TextComponent.canvas.scaleFactor;
 
-            m_CursorVerts[0].position = new Vector3(startPosition.x, bottom, 0.0f);
-            m_CursorVerts[1].position = new Vector3(startPosition.x, top, 0.0f);
-            m_CursorVerts[2].position = new Vector3(startPosition.x + width, top, 0.0f);
-            m_CursorVerts[3].position = new Vector3(startPosition.x + width, bottom, 0.0f);
+            this.m_CursorVerts[0].position = new Vector3(startPosition.x, bottom, 0.0f);
+            this.m_CursorVerts[1].position = new Vector3(startPosition.x, top, 0.0f);
+            this.m_CursorVerts[2].position = new Vector3(startPosition.x + width, top, 0.0f);
+            this.m_CursorVerts[3].position = new Vector3(startPosition.x + width, bottom, 0.0f);
 
             // Set Vertex Color for the caret color.
-            m_CursorVerts[0].color = caretColor;
-            m_CursorVerts[1].color = caretColor;
-            m_CursorVerts[2].color = caretColor;
-            m_CursorVerts[3].color = caretColor;
+            this.m_CursorVerts[0].color = this.caretColor;
+            this.m_CursorVerts[1].color = this.caretColor;
+            this.m_CursorVerts[2].color = this.caretColor;
+            this.m_CursorVerts[3].color = this.caretColor;
 
-            vbo.AddUIVertexQuad(m_CursorVerts);
+            vbo.AddUIVertexQuad(this.m_CursorVerts);
 
             // Update position of IME window when necessary.
-            if (m_ShouldUpdateIMEWindowPosition || currentLine != m_PreviousIMEInsertionLine)
+            if (this.m_ShouldUpdateIMEWindowPosition || currentLine != this.m_PreviousIMEInsertionLine)
             {
-                m_ShouldUpdateIMEWindowPosition = false;
-                m_PreviousIMEInsertionLine = currentLine;
+                this.m_ShouldUpdateIMEWindowPosition = false;
+                this.m_PreviousIMEInsertionLine = currentLine;
 
                 // Calculate position of IME Window in screen space.
                 Camera cameraRef;
-                if (m_TextComponent.canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                if (this.m_TextComponent.canvas.renderMode == RenderMode.ScreenSpaceOverlay)
                     cameraRef = null;
                 else
-                    cameraRef = m_TextComponent.canvas.worldCamera;
+                    cameraRef = this.m_TextComponent.canvas.worldCamera;
 
-                Vector3 cursorPosition = m_CachedInputRenderer.gameObject.transform.TransformPoint(m_CursorVerts[0].position);
+                Vector3 cursorPosition = this.m_CachedInputRenderer.gameObject.transform.TransformPoint(this.m_CursorVerts[0].position);
                 Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(cameraRef, cursorPosition);
                 screenPosition.y = Screen.height - screenPosition.y;
 
-                if (inputSystem != null)
-                    inputSystem.compositionCursorPos = screenPosition;
+                if (this.inputSystem != null)
+                    this.inputSystem.compositionCursorPos = screenPosition;
 
                 //Debug.Log("[" + Time.frameCount + "] Updating IME Window position（" + screenPosition + ") with Composition Length: " + compositionLength);
             }
@@ -3590,12 +3590,12 @@
 
         private void CreateCursorVerts()
         {
-            m_CursorVerts = new UIVertex[4];
+            this.m_CursorVerts = new UIVertex[4];
 
-            for (int i = 0; i < m_CursorVerts.Length; i++)
+            for (int i = 0; i < this.m_CursorVerts.Length; i++)
             {
-                m_CursorVerts[i] = UIVertex.simpleVert;
-                m_CursorVerts[i].uv0 = Vector2.zero;
+                this.m_CursorVerts[i] = UIVertex.simpleVert;
+                this.m_CursorVerts[i].uv0 = Vector2.zero;
             }
         }
 
@@ -3603,44 +3603,44 @@
         private void GenerateHightlight(VertexHelper vbo, Vector2 roundingOffset)
         {
             // Update Masking Region
-            UpdateMaskRegions();
+            this.UpdateMaskRegions();
 
             // Make sure caret position does not exceed characterInfo array size.
             //if (caretSelectPositionInternal >= m_TextComponent.textInfo.characterInfo.Length)
             //    return;
 
-            TMP_TextInfo textInfo = m_TextComponent.textInfo;
+            TMP_TextInfo textInfo = this.m_TextComponent.textInfo;
 
-            m_CaretPosition = GetCaretPositionFromStringIndex(stringPositionInternal);
-            m_CaretSelectPosition = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+            this.m_CaretPosition = this.GetCaretPositionFromStringIndex(this.stringPositionInternal);
+            this.m_CaretSelectPosition = this.GetCaretPositionFromStringIndex(this.stringSelectPositionInternal);
 
-            if (m_SoftKeyboard != null)
+            if (this.m_SoftKeyboard != null)
             {
-                int stringPosition = m_CaretPosition < m_CaretSelectPosition ? textInfo.characterInfo[m_CaretPosition].index : textInfo.characterInfo[m_CaretSelectPosition].index;
-                int length = m_CaretPosition < m_CaretSelectPosition ? stringSelectPositionInternal - stringPosition : stringPositionInternal - stringPosition;
-                m_SoftKeyboard.selection = new RangeInt(stringPosition, length);
+                int stringPosition = this.m_CaretPosition < this.m_CaretSelectPosition ? textInfo.characterInfo[this.m_CaretPosition].index : textInfo.characterInfo[this.m_CaretSelectPosition].index;
+                int length = this.m_CaretPosition < this.m_CaretSelectPosition ? this.stringSelectPositionInternal - stringPosition : this.stringPositionInternal - stringPosition;
+                this.m_SoftKeyboard.selection = new RangeInt(stringPosition, length);
             }
 
             // Adjust text RectTranform position to make sure it is visible in viewport.
             Vector2 caretPosition;
             float height = 0;
-            if (m_CaretSelectPosition < textInfo.characterCount)
+            if (this.m_CaretSelectPosition < textInfo.characterCount)
             {
-                caretPosition = new Vector2(textInfo.characterInfo[m_CaretSelectPosition].origin, textInfo.characterInfo[m_CaretSelectPosition].descender);
-                height = textInfo.characterInfo[m_CaretSelectPosition].ascender - textInfo.characterInfo[m_CaretSelectPosition].descender;
+                caretPosition = new Vector2(textInfo.characterInfo[this.m_CaretSelectPosition].origin, textInfo.characterInfo[this.m_CaretSelectPosition].descender);
+                height = textInfo.characterInfo[this.m_CaretSelectPosition].ascender - textInfo.characterInfo[this.m_CaretSelectPosition].descender;
             }
             else
             {
-                caretPosition = new Vector2(textInfo.characterInfo[m_CaretSelectPosition - 1].xAdvance, textInfo.characterInfo[m_CaretSelectPosition - 1].descender);
-                height = textInfo.characterInfo[m_CaretSelectPosition - 1].ascender - textInfo.characterInfo[m_CaretSelectPosition - 1].descender;
+                caretPosition = new Vector2(textInfo.characterInfo[this.m_CaretSelectPosition - 1].xAdvance, textInfo.characterInfo[this.m_CaretSelectPosition - 1].descender);
+                height = textInfo.characterInfo[this.m_CaretSelectPosition - 1].ascender - textInfo.characterInfo[this.m_CaretSelectPosition - 1].descender;
             }
 
             // TODO: Don't adjust the position of the RectTransform if Reset On Deactivation is disabled
             // and we just selected the Input Field again.
-            AdjustRectTransformRelativeToViewport(caretPosition, height, true);
+            this.AdjustRectTransformRelativeToViewport(caretPosition, height, true);
 
-            int startChar = Mathf.Max(0, m_CaretPosition);
-            int endChar = Mathf.Max(0, m_CaretSelectPosition);
+            int startChar = Mathf.Max(0, this.m_CaretPosition);
+            int endChar = Mathf.Max(0, this.m_CaretSelectPosition);
 
             // Ensure pos is always less then selPos to make the code simpler
             if (startChar > endChar)
@@ -3660,7 +3660,7 @@
 
             UIVertex vert = UIVertex.simpleVert;
             vert.uv0 = Vector2.zero;
-            vert.color = selectionColor;
+            vert.color = this.selectionColor;
 
             int currentChar = startChar;
             while (currentChar <= endChar && currentChar < textInfo.characterCount)
@@ -3703,7 +3703,7 @@
             }
 
             // Scrollbar should be updated.
-            m_IsScrollbarUpdateRequired = true;
+            this.m_IsScrollbarUpdateRequired = true;
 
             //#if TMP_DEBUG_MODE
             //    Debug.Log("Text selection updated at frame: " + Time.frameCount);
@@ -3721,67 +3721,67 @@
         {
             //Debug.Log("Adjusting transform position relative to viewport.");
 
-            if (m_TextViewport == null)
+            if (this.m_TextViewport == null)
                 return;
 
-            Vector3 localPosition = transform.localPosition;
-            Vector3 textComponentLocalPosition = m_TextComponent.rectTransform.localPosition;
-            Vector3 textViewportLocalPosition = m_TextViewport.localPosition;
-            Rect textViewportRect = m_TextViewport.rect;
+            Vector3 localPosition = this.transform.localPosition;
+            Vector3 textComponentLocalPosition = this.m_TextComponent.rectTransform.localPosition;
+            Vector3 textViewportLocalPosition = this.m_TextViewport.localPosition;
+            Rect textViewportRect = this.m_TextViewport.rect;
 
             Vector2 caretPosition = new Vector2(startPosition.x + textComponentLocalPosition.x + textViewportLocalPosition.x + localPosition.x, startPosition.y + textComponentLocalPosition.y + textViewportLocalPosition.y + localPosition.y);
             Rect viewportWSRect = new Rect(localPosition.x + textViewportLocalPosition.x + textViewportRect.x, localPosition.y + textViewportLocalPosition.y + textViewportRect.y, textViewportRect.width, textViewportRect.height);
 
             // Adjust the position of the RectTransform based on the caret position in the viewport.
-            float rightOffset = viewportWSRect.xMax - (caretPosition.x + m_TextComponent.margin.z + m_CaretWidth);
+            float rightOffset = viewportWSRect.xMax - (caretPosition.x + this.m_TextComponent.margin.z + this.m_CaretWidth);
             if (rightOffset < 0f)
             {
-                if (!multiLine || (multiLine && isCharVisible))
+                if (!this.multiLine || (this.multiLine && isCharVisible))
                 {
                     //Debug.Log("Shifting text to the LEFT by " + rightOffset.ToString("f3"));
-                    m_TextComponent.rectTransform.anchoredPosition += new Vector2(rightOffset, 0);
+                    this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(rightOffset, 0);
 
-                    AssignPositioningIfNeeded();
+                    this.AssignPositioningIfNeeded();
                 }
             }
 
-            float leftOffset = (caretPosition.x - m_TextComponent.margin.x) - viewportWSRect.xMin;
+            float leftOffset = (caretPosition.x - this.m_TextComponent.margin.x) - viewportWSRect.xMin;
             if (leftOffset < 0f)
             {
                 //Debug.Log("Shifting text to the RIGHT by " + leftOffset.ToString("f3"));
-                m_TextComponent.rectTransform.anchoredPosition += new Vector2(-leftOffset, 0);
-                AssignPositioningIfNeeded();
+                this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(-leftOffset, 0);
+                this.AssignPositioningIfNeeded();
             }
 
             // Adjust text area up or down if not in single line mode.
-            if (m_LineType != LineType.SingleLine)
+            if (this.m_LineType != LineType.SingleLine)
             {
                 float topOffset = viewportWSRect.yMax - (caretPosition.y + height);
                 if (topOffset < -0.0001f)
                 {
                     //Debug.Log("Shifting text to Up " + topOffset.ToString("f3"));
-                    m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, topOffset);
-                    AssignPositioningIfNeeded();
-                    m_IsScrollbarUpdateRequired = true;
+                    this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, topOffset);
+                    this.AssignPositioningIfNeeded();
+                    this.m_IsScrollbarUpdateRequired = true;
                 }
 
                 float bottomOffset = caretPosition.y - viewportWSRect.yMin;
                 if (bottomOffset < 0f)
                 {
                     //Debug.Log("Shifting text to Down " + bottomOffset.ToString("f3"));
-                    m_TextComponent.rectTransform.anchoredPosition -= new Vector2(0, bottomOffset);
-                    AssignPositioningIfNeeded();
-                    m_IsScrollbarUpdateRequired = true;
+                    this.m_TextComponent.rectTransform.anchoredPosition -= new Vector2(0, bottomOffset);
+                    this.AssignPositioningIfNeeded();
+                    this.m_IsScrollbarUpdateRequired = true;
                 }
             }
 
             // Special handling of backspace
-            if (m_isLastKeyBackspace)
+            if (this.m_isLastKeyBackspace)
             {
-                float anchoredPositionX = m_TextComponent.rectTransform.anchoredPosition.x;
+                float anchoredPositionX = this.m_TextComponent.rectTransform.anchoredPosition.x;
 
-                float firstCharPosition = localPosition.x + textViewportLocalPosition.x + textComponentLocalPosition.x + m_TextComponent.textInfo.characterInfo[0].origin - m_TextComponent.margin.x;
-                float lastCharPosition = localPosition.x + textViewportLocalPosition.x + textComponentLocalPosition.x + m_TextComponent.textInfo.characterInfo[m_TextComponent.textInfo.characterCount - 1].origin + m_TextComponent.margin.z + m_CaretWidth;
+                float firstCharPosition = localPosition.x + textViewportLocalPosition.x + textComponentLocalPosition.x + this.m_TextComponent.textInfo.characterInfo[0].origin - this.m_TextComponent.margin.x;
+                float lastCharPosition = localPosition.x + textViewportLocalPosition.x + textComponentLocalPosition.x + this.m_TextComponent.textInfo.characterInfo[this.m_TextComponent.textInfo.characterCount - 1].origin + this.m_TextComponent.margin.z + this.m_CaretWidth;
 
                 if (anchoredPositionX > 0.0001f && firstCharPosition > viewportWSRect.xMin)
                 {
@@ -3790,8 +3790,8 @@
                     if (anchoredPositionX < -offset)
                         offset = -anchoredPositionX;
 
-                    m_TextComponent.rectTransform.anchoredPosition += new Vector2(offset, 0);
-                    AssignPositioningIfNeeded();
+                    this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(offset, 0);
+                    this.AssignPositioningIfNeeded();
                 }
                 else if (anchoredPositionX < -0.0001f && lastCharPosition < viewportWSRect.xMax)
                 {
@@ -3800,14 +3800,14 @@
                     if (-anchoredPositionX < offset)
                         offset = -anchoredPositionX;
 
-                    m_TextComponent.rectTransform.anchoredPosition += new Vector2(offset, 0);
-                    AssignPositioningIfNeeded();
+                    this.m_TextComponent.rectTransform.anchoredPosition += new Vector2(offset, 0);
+                    this.AssignPositioningIfNeeded();
                 }
 
-                m_isLastKeyBackspace = false;
+                this.m_isLastKeyBackspace = false;
             }
 
-            m_forceRectTransformAdjustment = false;
+            this.m_forceRectTransformAdjustment = false;
         }
 
         /// <summary>
@@ -3816,35 +3816,35 @@
         protected char Validate(string text, int pos, char ch)
         {
             // Validation is disabled
-            if (characterValidation == CharacterValidation.None || !enabled)
+            if (this.characterValidation == CharacterValidation.None || !this.enabled)
                 return ch;
 
-            if (characterValidation == CharacterValidation.Integer || characterValidation == CharacterValidation.Decimal)
+            if (this.characterValidation == CharacterValidation.Integer || this.characterValidation == CharacterValidation.Decimal)
             {
                 // Integer and decimal
                 bool cursorBeforeDash = (pos == 0 && text.Length > 0 && text[0] == '-');
-                bool selectionAtStart = stringPositionInternal == 0 || stringSelectPositionInternal == 0;
+                bool selectionAtStart = this.stringPositionInternal == 0 || this.stringSelectPositionInternal == 0;
                 if (!cursorBeforeDash)
                 {
                     if (ch >= '0' && ch <= '9') return ch;
                     if (ch == '-' && (pos == 0 || selectionAtStart)) return ch;
 
                     var separator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-                    if (ch == Convert.ToChar(separator) && characterValidation == CharacterValidation.Decimal && !text.Contains(separator)) return ch;
+                    if (ch == Convert.ToChar(separator) && this.characterValidation == CharacterValidation.Decimal && !text.Contains(separator)) return ch;
                 }
             }
-            else if (characterValidation == CharacterValidation.Digit)
+            else if (this.characterValidation == CharacterValidation.Digit)
             {
                 if (ch >= '0' && ch <= '9') return ch;
             }
-            else if (characterValidation == CharacterValidation.Alphanumeric)
+            else if (this.characterValidation == CharacterValidation.Alphanumeric)
             {
                 // All alphanumeric characters
                 if (ch >= 'A' && ch <= 'Z') return ch;
                 if (ch >= 'a' && ch <= 'z') return ch;
                 if (ch >= '0' && ch <= '9') return ch;
             }
-            else if (characterValidation == CharacterValidation.Name)
+            else if (this.characterValidation == CharacterValidation.Name)
             {
                 char lastChar = (text.Length > 0) ? text[Mathf.Clamp(pos, 0, text.Length - 1)] : ' ';
                 char nextChar = (text.Length > 0) ? text[Mathf.Clamp(pos + 1, 0, text.Length - 1)] : '\n';
@@ -3876,7 +3876,7 @@
                         return ch;
                 }
             }
-            else if (characterValidation == CharacterValidation.EmailAddress)
+            else if (this.characterValidation == CharacterValidation.EmailAddress)
             {
                 // From StackOverflow about allowed characters in email addresses:
                 // Uppercase and lowercase English letters (a-z, A-Z)
@@ -3898,21 +3898,21 @@
                         return ch;
                 }
             }
-            else if (characterValidation == CharacterValidation.Regex)
+            else if (this.characterValidation == CharacterValidation.Regex)
             {
                 // Regex expression
-                if (Regex.IsMatch(ch.ToString(), m_RegexValue))
+                if (Regex.IsMatch(ch.ToString(), this.m_RegexValue))
                 {
                     return ch;
                 }
             }
-            else if (characterValidation == CharacterValidation.CustomValidator)
+            else if (this.characterValidation == CharacterValidation.CustomValidator)
             {
-                if (m_InputValidator != null)
+                if (this.m_InputValidator != null)
                 {
-                    char c = m_InputValidator.Validate(ref text, ref pos, ch);
-                    m_Text = text;
-                    stringSelectPositionInternal = stringPositionInternal = pos;
+                    char c = this.m_InputValidator.Validate(ref text, ref pos, ch);
+                    this.m_Text = text;
+                    this.stringSelectPositionInternal = this.stringPositionInternal = pos;
                     return c;
                 }
             }
@@ -3921,19 +3921,19 @@
 
         public void ActivateInputField()
         {
-            if (m_TextComponent == null || m_TextComponent.font == null || !IsActive() || !IsInteractable())
+            if (this.m_TextComponent == null || this.m_TextComponent.font == null || !this.IsActive() || !this.IsInteractable())
                 return;
 
-            if (isFocused)
+            if (this.isFocused)
             {
-                if (m_SoftKeyboard != null && !m_SoftKeyboard.active)
+                if (this.m_SoftKeyboard != null && !this.m_SoftKeyboard.active)
                 {
-                    m_SoftKeyboard.active = true;
-                    m_SoftKeyboard.text = m_Text;
+                    this.m_SoftKeyboard.active = true;
+                    this.m_SoftKeyboard.text = this.m_Text;
                 }
             }
 
-            m_ShouldActivateNextUpdate = true;
+            this.m_ShouldActivateNextUpdate = true;
         }
 
         private void ActivateInputFieldInternal()
@@ -3941,30 +3941,30 @@
             if (EventSystem.current == null)
                 return;
 
-            if (EventSystem.current.currentSelectedGameObject != gameObject)
-                EventSystem.current.SetSelectedGameObject(gameObject);
+            if (EventSystem.current.currentSelectedGameObject != this.gameObject)
+                EventSystem.current.SetSelectedGameObject(this.gameObject);
 
-            if (TouchScreenKeyboard.isSupported && shouldHideSoftKeyboard == false)
+            if (TouchScreenKeyboard.isSupported && this.shouldHideSoftKeyboard == false)
             {
-                if (inputSystem != null && inputSystem.touchSupported)
+                if (this.inputSystem != null && this.inputSystem.touchSupported)
                 {
-                    TouchScreenKeyboard.hideInput = shouldHideMobileInput;
+                    TouchScreenKeyboard.hideInput = this.shouldHideMobileInput;
                 }
 
-                if (shouldHideSoftKeyboard == false && m_ReadOnly == false)
+                if (this.shouldHideSoftKeyboard == false && this.m_ReadOnly == false)
                 {
-                    m_SoftKeyboard = (inputType == InputType.Password) ?
-                        TouchScreenKeyboard.Open(m_Text, keyboardType, false, multiLine, true, false, "", characterLimit) :
-                        TouchScreenKeyboard.Open(m_Text, keyboardType, inputType == InputType.AutoCorrect, multiLine, false, false, "", characterLimit);
+                    this.m_SoftKeyboard = (this.inputType == InputType.Password) ?
+                        TouchScreenKeyboard.Open(this.m_Text, this.keyboardType, false, this.multiLine, true, false, "", this.characterLimit) :
+                        TouchScreenKeyboard.Open(this.m_Text, this.keyboardType, this.inputType == InputType.AutoCorrect, this.multiLine, false, false, "", this.characterLimit);
 
-                    OnFocus();
+                    this.OnFocus();
 
                     // Opening the soft keyboard sets its selection to the end of the text.
                     // As such, we set the selection to match the Input Field's internal selection.
-                    if (m_SoftKeyboard != null)
+                    if (this.m_SoftKeyboard != null)
                     {
-                        int length = stringPositionInternal < stringSelectPositionInternal ? stringSelectPositionInternal - stringPositionInternal : stringPositionInternal - stringSelectPositionInternal;
-                        m_SoftKeyboard.selection = new RangeInt(stringPositionInternal < stringSelectPositionInternal ? stringPositionInternal : stringSelectPositionInternal, length);
+                        int length = this.stringPositionInternal < this.stringSelectPositionInternal ? this.stringSelectPositionInternal - this.stringPositionInternal : this.stringPositionInternal - this.stringSelectPositionInternal;
+                        this.m_SoftKeyboard.selection = new RangeInt(this.stringPositionInternal < this.stringSelectPositionInternal ? this.stringPositionInternal : this.stringSelectPositionInternal, length);
                     }
                     //}
                 }
@@ -3972,22 +3972,22 @@
                 // Cache the value of isInPlaceEditingAllowed, because on UWP this involves calling into native code
                 // The value only needs to be updated once when the TouchKeyboard is opened.
                 #if UNITY_2019_1_OR_NEWER
-                m_TouchKeyboardAllowsInPlaceEditing = TouchScreenKeyboard.isInPlaceEditingAllowed;
+                this.m_TouchKeyboardAllowsInPlaceEditing = TouchScreenKeyboard.isInPlaceEditingAllowed;
                 #endif
             }
             else
             {
-                if (!TouchScreenKeyboard.isSupported && m_ReadOnly == false && inputSystem != null)
-                    inputSystem.imeCompositionMode = IMECompositionMode.On;
+                if (!TouchScreenKeyboard.isSupported && this.m_ReadOnly == false && this.inputSystem != null)
+                    this.inputSystem.imeCompositionMode = IMECompositionMode.On;
 
-                OnFocus();
+                this.OnFocus();
             }
 
-            m_AllowInput = true;
-            m_OriginalText = text;
-            m_WasCanceled = false;
-            SetCaretVisible();
-            UpdateLabel();
+            this.m_AllowInput = true;
+            this.m_OriginalText = this.text;
+            this.m_WasCanceled = false;
+            this.SetCaretVisible();
+            this.UpdateLabel();
         }
 
         public override void OnSelect(BaseEventData eventData)
@@ -3995,9 +3995,9 @@
             //Debug.Log("OnSelect()");
 
             base.OnSelect(eventData);
-            SendOnFocus();
+            this.SendOnFocus();
 
-            ActivateInputField();
+            this.ActivateInputField();
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)
@@ -4007,7 +4007,7 @@
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
 
-            ActivateInputField();
+            this.ActivateInputField();
         }
 
         public void OnControlClick()
@@ -4017,14 +4017,14 @@
 
         public void ReleaseSelection()
         {
-            m_SelectionStillActive = false;
-            m_ReleaseSelection = false;
-            m_PreviouslySelectedObject = null;
+            this.m_SelectionStillActive = false;
+            this.m_ReleaseSelection = false;
+            this.m_PreviouslySelectedObject = null;
 
-            MarkGeometryAsDirty();
+            this.MarkGeometryAsDirty();
 
-            SendOnEndEdit();
-            SendOnEndTextSelection();
+            this.SendOnEndEdit();
+            this.SendOnEndTextSelection();
         }
 
         public void DeactivateInputField(bool clearSelection = false)
@@ -4032,67 +4032,67 @@
             //Debug.Log("Deactivate Input Field...");
 
             // Not activated do nothing.
-            if (!m_AllowInput)
+            if (!this.m_AllowInput)
                 return;
 
-            m_HasDoneFocusTransition = false;
-            m_AllowInput = false;
+            this.m_HasDoneFocusTransition = false;
+            this.m_AllowInput = false;
 
-            if (m_Placeholder != null)
-                m_Placeholder.enabled = string.IsNullOrEmpty(m_Text);
+            if (this.m_Placeholder != null)
+                this.m_Placeholder.enabled = string.IsNullOrEmpty(this.m_Text);
 
-            if (m_TextComponent != null && IsInteractable())
+            if (this.m_TextComponent != null && this.IsInteractable())
             {
-                if (m_WasCanceled && m_RestoreOriginalTextOnEscape)
-                    text = m_OriginalText;
+                if (this.m_WasCanceled && this.m_RestoreOriginalTextOnEscape)
+                    this.text = this.m_OriginalText;
 
-                if (m_SoftKeyboard != null)
+                if (this.m_SoftKeyboard != null)
                 {
-                    m_SoftKeyboard.active = false;
-                    m_SoftKeyboard = null;
+                    this.m_SoftKeyboard.active = false;
+                    this.m_SoftKeyboard = null;
                 }
 
-                m_SelectionStillActive = true;
+                this.m_SelectionStillActive = true;
 
-                if (m_ResetOnDeActivation || m_ReleaseSelection)
+                if (this.m_ResetOnDeActivation || this.m_ReleaseSelection)
                 {
                     //m_StringPosition = m_StringSelectPosition = 0;
                     //m_CaretPosition = m_CaretSelectPosition = 0;
                     //m_TextComponent.rectTransform.localPosition = m_DefaultTransformPosition;
 
-                    if (m_VerticalScrollbar == null)
-                        ReleaseSelection();
+                    if (this.m_VerticalScrollbar == null)
+                        this.ReleaseSelection();
                 }
 
-                if (inputSystem != null)
-                    inputSystem.imeCompositionMode = IMECompositionMode.Auto;
+                if (this.inputSystem != null)
+                    this.inputSystem.imeCompositionMode = IMECompositionMode.Auto;
             }
 
-            MarkGeometryAsDirty();
+            this.MarkGeometryAsDirty();
 
             // Scrollbar should be updated.
-            m_IsScrollbarUpdateRequired = true;
+            this.m_IsScrollbarUpdateRequired = true;
         }
 
         public override void OnDeselect(BaseEventData eventData)
         {
-            DeactivateInputField();
+            this.DeactivateInputField();
 
             base.OnDeselect(eventData);
-            SendOnFocusLost();
+            this.SendOnFocusLost();
         }
 
         public virtual void OnSubmit(BaseEventData eventData)
         {
             //Debug.Log("OnSubmit()");
 
-            if (!IsActive() || !IsInteractable())
+            if (!this.IsActive() || !this.IsInteractable())
                 return;
 
-            if (!isFocused)
-                m_ShouldActivateNextUpdate = true;
+            if (!this.isFocused)
+                this.m_ShouldActivateNextUpdate = true;
 
-            SendOnSubmit();
+            this.SendOnSubmit();
         }
 
         //public virtual void OnLostFocus(BaseEventData eventData)
@@ -4103,78 +4103,78 @@
 
         private void EnforceContentType()
         {
-            switch (contentType)
+            switch (this.contentType)
             {
                 case ContentType.Standard:
                     {
                         // Don't enforce line type for this content type.
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.Default;
-                        m_CharacterValidation = CharacterValidation.None;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.Default;
+                        this.m_CharacterValidation = CharacterValidation.None;
                         break;
                     }
                 case ContentType.Autocorrected:
                     {
                         // Don't enforce line type for this content type.
-                        m_InputType = InputType.AutoCorrect;
-                        m_KeyboardType = TouchScreenKeyboardType.Default;
-                        m_CharacterValidation = CharacterValidation.None;
+                        this.m_InputType = InputType.AutoCorrect;
+                        this.m_KeyboardType = TouchScreenKeyboardType.Default;
+                        this.m_CharacterValidation = CharacterValidation.None;
                         break;
                     }
                 case ContentType.IntegerNumber:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.NumberPad;
-                        m_CharacterValidation = CharacterValidation.Integer;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.NumberPad;
+                        this.m_CharacterValidation = CharacterValidation.Integer;
                         break;
                     }
                 case ContentType.DecimalNumber:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.NumbersAndPunctuation;
-                        m_CharacterValidation = CharacterValidation.Decimal;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.NumbersAndPunctuation;
+                        this.m_CharacterValidation = CharacterValidation.Decimal;
                         break;
                     }
                 case ContentType.Alphanumeric:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.ASCIICapable;
-                        m_CharacterValidation = CharacterValidation.Alphanumeric;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.ASCIICapable;
+                        this.m_CharacterValidation = CharacterValidation.Alphanumeric;
                         break;
                     }
                 case ContentType.Name:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.Default;
-                        m_CharacterValidation = CharacterValidation.Name;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.Default;
+                        this.m_CharacterValidation = CharacterValidation.Name;
                         break;
                     }
                 case ContentType.EmailAddress:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Standard;
-                        m_KeyboardType = TouchScreenKeyboardType.EmailAddress;
-                        m_CharacterValidation = CharacterValidation.EmailAddress;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Standard;
+                        this.m_KeyboardType = TouchScreenKeyboardType.EmailAddress;
+                        this.m_CharacterValidation = CharacterValidation.EmailAddress;
                         break;
                     }
                 case ContentType.Password:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Password;
-                        m_KeyboardType = TouchScreenKeyboardType.Default;
-                        m_CharacterValidation = CharacterValidation.None;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Password;
+                        this.m_KeyboardType = TouchScreenKeyboardType.Default;
+                        this.m_CharacterValidation = CharacterValidation.None;
                         break;
                     }
                 case ContentType.Pin:
                     {
-                        m_LineType = LineType.SingleLine;
-                        m_InputType = InputType.Password;
-                        m_KeyboardType = TouchScreenKeyboardType.NumberPad;
-                        m_CharacterValidation = CharacterValidation.Digit;
+                        this.m_LineType = LineType.SingleLine;
+                        this.m_InputType = InputType.Password;
+                        this.m_KeyboardType = TouchScreenKeyboardType.NumberPad;
+                        this.m_CharacterValidation = CharacterValidation.Digit;
                         break;
                     }
                 default:
@@ -4184,68 +4184,68 @@
                     }
             }
 
-            SetTextComponentWrapMode();
+            this.SetTextComponentWrapMode();
         }
 
         void SetTextComponentWrapMode()
         {
-            if (m_TextComponent == null)
+            if (this.m_TextComponent == null)
                 return;
 
-            if (multiLine)
-                m_TextComponent.enableWordWrapping = true;
+            if (this.multiLine)
+                this.m_TextComponent.enableWordWrapping = true;
             else
-                m_TextComponent.enableWordWrapping = false;
+                this.m_TextComponent.enableWordWrapping = false;
         }
 
         // Control Rich Text option on the text component.
         void SetTextComponentRichTextMode()
         {
-            if (m_TextComponent == null)
+            if (this.m_TextComponent == null)
                 return;
 
-            m_TextComponent.richText = m_RichText;
+            this.m_TextComponent.richText = this.m_RichText;
         }
 
         void SetToCustomIfContentTypeIsNot(params ContentType[] allowedContentTypes)
         {
-            if (contentType == ContentType.Custom)
+            if (this.contentType == ContentType.Custom)
                 return;
 
             for (int i = 0; i < allowedContentTypes.Length; i++)
-                if (contentType == allowedContentTypes[i])
+                if (this.contentType == allowedContentTypes[i])
                     return;
 
-            contentType = ContentType.Custom;
+            this.contentType = ContentType.Custom;
         }
 
         void SetToCustom()
         {
-            if (contentType == ContentType.Custom)
+            if (this.contentType == ContentType.Custom)
                 return;
 
-            contentType = ContentType.Custom;
+            this.contentType = ContentType.Custom;
         }
 
         void SetToCustom(CharacterValidation characterValidation)
         {
-            if (contentType == ContentType.Custom)
+            if (this.contentType == ContentType.Custom)
             {
                 characterValidation = CharacterValidation.CustomValidator;
                 return;
             }
 
-            contentType = ContentType.Custom;
+            this.contentType = ContentType.Custom;
             characterValidation = CharacterValidation.CustomValidator;
         }
 
 
         protected override void DoStateTransition(SelectionState state, bool instant)
         {
-            if (m_HasDoneFocusTransition)
+            if (this.m_HasDoneFocusTransition)
                 state = SelectionState.Selected;
             else if (state == SelectionState.Pressed)
-                m_HasDoneFocusTransition = true;
+                this.m_HasDoneFocusTransition = true;
 
             base.DoStateTransition(state, instant);
         }
@@ -4275,18 +4275,18 @@
         {
             get
             {
-                if (textComponent == null)
+                if (this.textComponent == null)
                     return 0;
 
                 float horizontalPadding = 0;
 
-                if (m_LayoutGroup != null)
-                    horizontalPadding = m_LayoutGroup.padding.horizontal;
+                if (this.m_LayoutGroup != null)
+                    horizontalPadding = this.m_LayoutGroup.padding.horizontal;
 
-                if (m_TextViewport != null)
-                    horizontalPadding += m_TextViewport.offsetMin.x - m_TextViewport.offsetMax.x;
+                if (this.m_TextViewport != null)
+                    horizontalPadding += this.m_TextViewport.offsetMin.x - this.m_TextViewport.offsetMax.x;
 
-                return m_TextComponent.preferredWidth + horizontalPadding; // Should add some extra padding for caret
+                return this.m_TextComponent.preferredWidth + horizontalPadding; // Should add some extra padding for caret
             }
         }
 
@@ -4307,18 +4307,18 @@
         {
             get
             {
-                if (textComponent == null)
+                if (this.textComponent == null)
                     return 0;
 
                 float verticalPadding = 0;
 
-                if (m_LayoutGroup != null)
-                    verticalPadding = m_LayoutGroup.padding.vertical;
+                if (this.m_LayoutGroup != null)
+                    verticalPadding = this.m_LayoutGroup.padding.vertical;
 
-                if (m_TextViewport != null)
-                    verticalPadding += m_TextViewport.offsetMin.y - m_TextViewport.offsetMax.y;
+                if (this.m_TextViewport != null)
+                    verticalPadding += this.m_TextViewport.offsetMin.y - this.m_TextViewport.offsetMax.y;
 
-                return m_TextComponent.preferredHeight + verticalPadding;
+                return this.m_TextComponent.preferredHeight + verticalPadding;
             }
         }
 
@@ -4339,10 +4339,10 @@
         /// <param name="pointSize"></param>
         public void SetGlobalPointSize(float pointSize)
         {
-            TMP_Text placeholderTextComponent = m_Placeholder as TMP_Text;
+            TMP_Text placeholderTextComponent = this.m_Placeholder as TMP_Text;
 
             if (placeholderTextComponent != null) placeholderTextComponent.fontSize = pointSize;
-            textComponent.fontSize = pointSize;
+            this.textComponent.fontSize = pointSize;
         }
 
         /// <summary>
@@ -4351,10 +4351,10 @@
         /// <param name="fontAsset"></param>
         public void SetGlobalFontAsset(TMP_FontAsset fontAsset)
         {
-            TMP_Text placeholderTextComponent = m_Placeholder as TMP_Text;
+            TMP_Text placeholderTextComponent = this.m_Placeholder as TMP_Text;
 
             if (placeholderTextComponent != null) placeholderTextComponent.font = fontAsset;
-            textComponent.font = fontAsset;
+            this.textComponent.font = fontAsset;
 
         }
 

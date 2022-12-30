@@ -1,14 +1,14 @@
-﻿namespace Projects.Buggary.BuggaryGame
+﻿namespace Buggary.BuggaryGame
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Levels.LevelTheIntro;
     using BuggaryEditor.Management;
     using BuggaryEditor.TextEditors.Console;
     using Commons.CommonHelpers;
     using DataClasses;
+    using Levels.Level0TheIntro;
     using Levels.Level1ReachTarget;
     using Levels.Level2Reflection;
     using SchwiftyUI.V3.Containers;

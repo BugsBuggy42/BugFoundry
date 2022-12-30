@@ -1,4 +1,4 @@
-﻿namespace Commons.CommonHelpers
+﻿namespace Buggary.Commons.CommonHelpers
 {
     using UnityEngine;
 
@@ -18,7 +18,7 @@
         public Color GetBlend(float prop1, float prop2)
         {
             Color result = Color.Lerp(this.c1, this.c2, prop1);
-            result = Color.Lerp(result, c3, prop2);
+            result = Color.Lerp(result, this.c3, prop2);
             return result;
         }
 

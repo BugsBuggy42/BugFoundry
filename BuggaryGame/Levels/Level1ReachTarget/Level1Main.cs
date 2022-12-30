@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.Levels.Level1ReachTarget
+﻿namespace Buggary.BuggaryGame.Levels.Level1ReachTarget
 {
     using System;
     using System.Linq;

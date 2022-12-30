@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Management.Models
+﻿namespace Buggary.BuggaryEditor.Management.Models
 {
     public class SavedScriptData
     {

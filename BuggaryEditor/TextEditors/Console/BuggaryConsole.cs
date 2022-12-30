@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.TextEditors.Console
+﻿namespace Buggary.BuggaryEditor.TextEditors.Console
 {
     using System.Collections.Generic;
     using Management;

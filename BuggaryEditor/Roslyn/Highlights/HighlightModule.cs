@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Roslyn.Highlights
+﻿namespace Buggary.BuggaryEditor.Roslyn.Highlights
 {
     using System.Collections.Generic;
     using System.Linq;

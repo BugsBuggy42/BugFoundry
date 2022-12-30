@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Infrastructure
+﻿namespace Buggary.BuggaryEditor.Infrastructure
 {
     public static class Defaults
     {

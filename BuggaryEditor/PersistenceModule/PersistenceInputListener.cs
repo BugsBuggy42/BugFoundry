@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.PersistenceModule
+﻿namespace Buggary.BuggaryEditor.PersistenceModule
 {
     using Management;
     using UnityEngine;

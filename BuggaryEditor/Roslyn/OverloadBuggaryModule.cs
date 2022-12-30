@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryEditor.Roslyn
+﻿namespace Buggary.BuggaryEditor.Roslyn
 {
     using System.Collections.Generic;
     using System.Collections.Immutable;

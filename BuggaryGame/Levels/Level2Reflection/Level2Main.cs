@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.Levels.Level2Reflection
+﻿namespace Buggary.BuggaryGame.Levels.Level2Reflection
 {
     using System;
     using System.Linq;

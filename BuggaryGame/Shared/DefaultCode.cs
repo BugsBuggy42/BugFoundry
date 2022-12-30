@@ -1,4 +1,4 @@
-﻿namespace Projects.Buggary.BuggaryGame.Shared
+﻿namespace Buggary.BuggaryGame.Shared
 {
     public class DefaultCode
     {

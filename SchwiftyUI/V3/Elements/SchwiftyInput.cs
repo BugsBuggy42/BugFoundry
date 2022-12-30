@@ -1,8 +1,9 @@
-﻿namespace SchwiftyUI.V3.Elements
+﻿namespace Buggary.SchwiftyUI.V3.Elements
 {
     using System;
     using System.Collections;
     using Commons.Legacy;
+    using Forks;
     using Other;
     using TMPro;
     using UnityEngine;

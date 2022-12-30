@@ -1,10 +1,9 @@
-﻿namespace SchwiftyUI.V3.Containers
+﻿namespace Buggary.SchwiftyUI.V3.Containers
 {
     using System;
     using System.Linq;
     using Addons;
     using Commons.CommonHelpers;
-    using V3;
     using Elements;
     using Inputs;
     using TMPro;
