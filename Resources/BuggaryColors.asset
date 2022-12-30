@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dc02e3fe654a84bfd514e353dfdf0d, type: 3}
+  m_Name: BuggaryColors
+  m_EditorClassIdentifier: Buggary:Projects.Buggary.BuggarySource.Management:BuggaryInputScriptable
+  keyword: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
+  keywordControl: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
+  className: {r: 0.7529412, g: 0.5647059, b: 0.9098039, a: 1}
+  identifier: {r: 0.7529412, g: 0.5647059, b: 0.9098039, a: 1}
+  stringLiteral: {r: 0.7254902, g: 0.43529412, b: 0.14901961, a: 1}
+  methodName: {r: 0.22352941, g: 0.8, b: 0.56078434, a: 1}
+  interfaceName: {r: 1, g: 0.7921569, b: 0, a: 1}
+  namespaceName: {r: 1, g: 0, b: 0.8039216, a: 1}
+  parameterName: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
+  staticSymbol: {r: 0.22352941, g: 0.8, b: 0.56078434, a: 1}
+  propertyName: {r: 0.3019608, g: 0.7372549, b: 0.79607844, a: 1}
+  structName: {r: 0.88235295, g: 0.7490196, b: 1, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  enumMemberName: {r: 0.4, g: 0.7647059, b: 0.8, a: 1}
+  enumName: {r: 0.8784314, g: 0.74509805, b: 0.90588236, a: 1}
+  delegateName: {r: 0.88235295, g: 0.7490196, b: 1, a: 1}
+  fieldName: {r: 1, g: 1, b: 1, a: 1}
+  comment: {r: 0.47058824, g: 0.7647059, b: 0.41960785, a: 1}
+  number: {r: 0.9254902, g: 0.5019608, b: 0.4745098, a: 1}
+  operatorOverloaded: {r: 0.22352941, g: 0.8, b: 0.56078434, a: 1}
+  backgroundColor: {r: 0.15686275, g: 0.17254902, b: 0.20392157, a: 1}
+  scrollbarBody: {r: 0.81995374, g: 0.990566, b: 0.5924706, a: 1}
+  scrollbarHandle: {r: 1, g: 0.74222636, b: 0.21960783, a: 1}
