@@ -66,7 +66,8 @@
             {
                 int local = index;
                 GameObject objPanel = this.objectives[index];
-                objPanel.GetComponent<MouseOverMono>().Initialize(
+                MouseOverMono mono = objPanel.GetComponent<MouseOverMono>();
+                mono.Initialize(
                     () => this.OnMouseOverObjective(local, objPanel.transform.position),
                     () => this.OnMouseExitObjective(local));
             }

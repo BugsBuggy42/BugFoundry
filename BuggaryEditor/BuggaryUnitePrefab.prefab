@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 110314432}
   - component: {fileID: 110314434}
   - component: {fileID: 110314433}
-  - component: {fileID: 110314436}
+  - component: {fileID: 1807253575}
   m_Layer: 5
   m_Name: Objective3
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &110314436
+--- !u!114 &1807253575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110314431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &235807269
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 701529796}
   - component: {fileID: 701529798}
   - component: {fileID: 701529797}
-  - component: {fileID: 701529800}
+  - component: {fileID: 2020551428}
   m_Layer: 5
   m_Name: Objective2
   m_TagString: Untagged
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &701529800
+--- !u!114 &2020551428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701529795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &867859911
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 867859912}
   - component: {fileID: 867859915}
   - component: {fileID: 867859914}
-  - component: {fileID: 867859916}
+  - component: {fileID: 1535403583}
   m_Layer: 5
   m_Name: Objective9
   m_TagString: Untagged
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &867859916
+--- !u!114 &1535403583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 867859911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &914406001
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 914406002}
   - component: {fileID: 914406004}
   - component: {fileID: 914406003}
-  - component: {fileID: 914406006}
+  - component: {fileID: 1807253571}
   m_Layer: 5
   m_Name: Objective1
   m_TagString: Untagged
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &914406006
+--- !u!114 &1807253571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 914406001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1058926898
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 1058926899}
   - component: {fileID: 1058926902}
   - component: {fileID: 1058926901}
-  - component: {fileID: 1058926903}
+  - component: {fileID: 1578636183}
   m_Layer: 5
   m_Name: Objective6
   m_TagString: Untagged
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1058926903
+--- !u!114 &1578636183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058926898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1155972436
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 1155972437}
   - component: {fileID: 1155972439}
   - component: {fileID: 1155972438}
-  - component: {fileID: 1155972441}
+  - component: {fileID: 1807253570}
   m_Layer: 5
   m_Name: Objective4
   m_TagString: Untagged
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1155972441
+--- !u!114 &1807253570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1155972436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1178287750
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 1178287751}
   - component: {fileID: 1178287753}
   - component: {fileID: 1178287752}
-  - component: {fileID: 1178287755}
+  - component: {fileID: 1956574148}
   m_Layer: 5
   m_Name: Objective5
   m_TagString: Untagged
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1178287755
+--- !u!114 &1956574148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1178287750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1280111016
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 1280111017}
   - component: {fileID: 1280111020}
   - component: {fileID: 1280111019}
-  - component: {fileID: 1280111021}
+  - component: {fileID: 383931529}
   m_Layer: 5
   m_Name: Objective8
   m_TagString: Untagged
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1280111021
+--- !u!114 &383931529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1280111016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1577160724
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 1586555870}
   - component: {fileID: 1586555873}
   - component: {fileID: 1586555872}
-  - component: {fileID: 1586555874}
+  - component: {fileID: 219411359}
   m_Layer: 5
   m_Name: Objective10
   m_TagString: Untagged
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1586555874
+--- !u!114 &219411359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1586555869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1711943725
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 1711943726}
   - component: {fileID: 1711943729}
   - component: {fileID: 1711943728}
-  - component: {fileID: 1711943730}
+  - component: {fileID: 1916095811}
   m_Layer: 5
   m_Name: Objective7
   m_TagString: Untagged
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1711943730
+--- !u!114 &1916095811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711943725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359cd6d9d2d473294c56e9309bfc1a4, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5908049846911880847
@@ -2011,8 +2011,8 @@ Camera:
   m_GameObject: {fileID: 9178726621866153021}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.43559986, g: 0.6831112, b: 0.7169812, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

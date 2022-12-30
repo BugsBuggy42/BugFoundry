@@ -627,8 +627,6 @@ namespace Buggary.SchwiftyUI.V3.Forks
             get { return this.m_VerticalScrollbar; }
             set
             {
-                Debug.Log($"HERE");
-
                 if (this.m_VerticalScrollbar != null)
                     this.m_VerticalScrollbar.onValueChanged.RemoveListener(this.OnScrollbarValueChange);
 

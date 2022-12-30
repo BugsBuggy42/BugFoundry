@@ -275,46 +275,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9178726621774315997, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726621774315997, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726621866153023, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726621866153023, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.7169812
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726621866153023, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.6831112
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726621866153023, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.43559986
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726622600732747, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178726622600732747, guid: a5c9c978d6476c64b94b6b48f0473bb1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayScene
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c9c978d6476c64b94b6b48f0473bb1, type: 3}
 --- !u!1 &1807253559 stripped
