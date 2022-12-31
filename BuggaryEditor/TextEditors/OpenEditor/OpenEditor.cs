@@ -17,7 +17,6 @@
 
     public class OpenEditor : MonoBehaviour, ITextEditor
     {
-        [SerializeField] private Canvas canvas;
         [SerializeField] private Camera cam;
         [SerializeField] private TMP_FontAsset font;
         [SerializeField] private AngleBracketsEscapeValidator validator;
@@ -37,13 +36,16 @@
         private float baseY;
         private float currentY;
         private Action<float> scrollAction;
+        private SchwiftyPanel editorPanel;
+        private float xPosition = -1;
 
         public void Initialize(
             SchwiftyElement parent,
             Action leftRightArrowAction,
             Action<float> scrollActionIn,
-            Action<int> mouseOverCharacterIn)
+            SchwiftyPanel editorPanelIn)
         {
+            this.editorPanel = editorPanelIn;
             this.vOutput = new ValidatorOutput()
             {
                 Character = 'n',
@@ -100,10 +102,13 @@
                 return;
             }
 
-            // int mouseOverChar = TMP_TextUtilities.FindIntersectingCharacter(this.input.Text, UnityEngine.Input.mousePosition, null, true);
-            // // Debug.Log(mouseOverChar);
-            // if(mouseOverChar != -1)
-            //     this.mouseOverCharacter.Invoke(mouseOverChar);
+            float newPosition = this.editorPanel.RectTransform.GetTopLeft().x;
+
+            if (Math.Abs(this.xPosition - newPosition) > 0.001f)
+            {
+                this.xPosition = newPosition;
+                this.scrollAction?.Invoke(-1);
+            }
 
             if (Math.Abs(this.res2.x - Screen.height) < 0.002f && Math.Abs(this.res2.y - Screen.width) < 0.002f)
                 return;
@@ -152,7 +157,6 @@
             try
             {
                 index--;
-                Vector2 sd = this.canvas.GetComponent<RectTransform>().sizeDelta;
                 TMP_CharacterInfo info = this.input.Text.textInfo.characterInfo[index];
                 Vector2 position;
 
@@ -173,8 +177,13 @@
                         position = info.bottomRight;
                 }
 
-                position.x += sd.x / 2;
-                position.y += sd.y / 2;
+                Vector2 tl = this.editorPanel.RectTransform.GetTopLeft();
+                Vector2 sd = this.editorPanel.RectTransform.GetSizeAnchorAgnostic();
+
+                position.y += sd.y / 2; // TODO: this might break if the input is not full height
+                position.x += tl.x;
+
+                Debug.Log($"{tl.x} {tl.y}");
 
                 return position;
             }

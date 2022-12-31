@@ -17,7 +17,7 @@
         /// TODO: Pear down the variables here and place then in the elements that actually have them
         protected ElementType Type { get; set; }
 
-        public Vector3 TopLeft { get; set; } = Vector3.zero;
+        // public Vector3 TopLeft { get; set; } = Vector3.zero;
         protected Vector2 Dimensions { get; private set; } = Vector2.zero;
         public SchwiftyElement Parent { get; set; } = null;
         public List<SchwiftyElement> Children { get; set; } = new List<SchwiftyElement>();

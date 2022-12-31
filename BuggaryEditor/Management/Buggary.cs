@@ -289,8 +289,7 @@
                     {
                         this.errorBuggaryModule.RepositionDiagnosticData(this.caretIndex);
                         this.errorBuggaryModule.SetErrorRedUnderlines(this.diagnostics);
-                    },
-                    x => this.errorBuggaryModule.DisplayDiagnosticData(x)
+                    }, this.editorPanel
                 );
             }
             else

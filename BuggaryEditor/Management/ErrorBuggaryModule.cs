@@ -1,9 +1,8 @@
-﻿namespace Buggary.BuggaryEditor.UI
+﻿namespace Buggary.BuggaryEditor.Management
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Classes;
     using Contracts;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
@@ -11,6 +10,7 @@
     using SchwiftyUI.V3.Containers;
     using SchwiftyUI.V3.Elements;
     using TMPro;
+    using UI.Classes;
     using UnityEngine;
 
     public class ErrorBuggaryModule
@@ -47,19 +47,6 @@
             }
 
             this.DisplayDiagnosticData(localMatches);
-        }
-
-        private ErrorUnderline GetRedUnderline(Vector2 start, Vector2 end, Diagnostic diagnostic)
-        {
-            float length = Math.Abs(end.x - start.x);
-
-            SchwiftyPanel underline = new SchwiftyPanel(this.schRoot, $"undeline {diagnostic.Descriptor.Description.ToString().Take(10)}")
-                .SetBackgroundColor(Color.red)
-                .SetDimensionsWithCurrentAnchors(length, 5)
-                .SetTopLeft20(start)
-                .ToPanel6900();
-
-            return new ErrorUnderline(underline, new Box(start, end, this.editor.GetLineHeight()), diagnostic);
         }
 
         public void SetErrorRedUnderlines(List<Diagnostic> diagnosticsIn)
@@ -104,7 +91,7 @@
             return false;
         }
 
-        private void  DisplayDiagnosticData(List<ErrorUnderline> underlines)
+        private void DisplayDiagnosticData(List<ErrorUnderline> underlines)
         {
             if (underlines.Count > 0)
             {
@@ -114,6 +101,19 @@
             }
 
             this.infoPanel.Hide();
+        }
+
+        private ErrorUnderline GetRedUnderline(Vector2 start, Vector2 end, Diagnostic diagnostic)
+        {
+            float length = Math.Abs(end.x - start.x);
+
+            SchwiftyPanel underline = new SchwiftyPanel(this.schRoot, $"undeline {diagnostic.Descriptor.Description.ToString().Take(10)}")
+                .SetBackgroundColor(Color.red)
+                .SetDimensionsWithCurrentAnchors(length, 5)
+                .SetTopLeft20(start)
+                .ToPanel6900();
+
+            return new ErrorUnderline(underline, new Box(start, end, this.editor.GetLineHeight()), diagnostic);
         }
 
         public bool RepositionDiagnosticData(int index) => this.DisplayDiagnosticData(index); // this could be optimized
