@@ -81,6 +81,9 @@
 
             this.level = this.levels[this.levelIndex];
             this.level.level.Initialize(this, this.level.worldPrefab);
+
+            this.buggary.ApplyButton.SetAction(_ => this.PlayScene());
+            this.buggary.ResetButton.SetAction(_ => this.ResetLevel());
         }
 
         private void Update()

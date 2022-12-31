@@ -101,7 +101,7 @@
                 if (ratio < 0.1f)
                     return true;
 
-                Debug.Log($"Ratio: {ratio}");
+                // Debug.Log($"Ratio: {ratio}");
 
                 return false;
             }

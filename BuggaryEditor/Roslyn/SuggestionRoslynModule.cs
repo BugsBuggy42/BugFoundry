@@ -26,8 +26,8 @@
                 int maxSize = 10;
                 int size = sorted.Length < maxSize ? sorted.Length : maxSize;
 
-                if (size == 0)
-                    Debug.Log($"No Suggestions");
+                // if (size == 0)
+                //     Debug.Log($"No Suggestions");
 
                 List<string> result = sorted.Select(x => x.DisplayText).ToList();
                 return result;

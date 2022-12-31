@@ -31,13 +31,15 @@
         [SerializeField] public bool usePassedRTs;
         [SerializeField] public BuggaryColors colors;
         [SerializeField] public OpenEditor openEditor;
-        [SerializeField] public ITextEditor fancyEditor;
+        // [SerializeField] public ITextEditor fancyEditor;
         [SerializeField] public TMP_FontAsset fontAsset;
         [SerializeField] public bool useOpenEditor;
-        [SerializeField] public RectTransform consoleButton;
         [SerializeField] public Texture2D resizeCursor;
         [SerializeField] private Camera cam;
         [SerializeField] private bool initText;
+
+        public SchwiftyButton ApplyButton;
+        public SchwiftyButton ResetButton;
 
         private readonly BoxedBuggaryState state = new(BuggaryState.Edit);
         private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BuggaryScripts.ToString());
@@ -75,14 +77,14 @@
         private bool showingScriptSelect = false;
         private bool isShowingConsole = false;
 
-        private void Start()
+        private void Awake()
         {
             this.SetupDefaultUIPanels();
             this.SetupSelectedEditor();
-            this.SetupUI();
             this.SetupEditor();
             this.SetupBuggaryModules();
             this.SetupConsole();
+            this.SetupUI();
             if (this.initText)
                 this.StartCoroutine(this.AfterStart(1));
             else
@@ -253,7 +255,6 @@
             }
             else
             {
-                // SchwiftyRoot root = new(this.canvas.GetComponent<RectTransform>());
                 SchwiftyRoot root = new(this.defaultEditorRoot);
                 XSplit split = new();
                 split.SplitPanel(out SchwiftyPanel left, out SchwiftyPanel right, 0.5f, root, this.resizeCursor, 0.2f);
@@ -309,7 +310,8 @@
             if (this.useOpenEditor)
                 this.editor = this.openEditor;
             else
-                this.editor = this.fancyEditor;
+                this.editor = this.openEditor;
+                // this.editor = this.fancyEditor;
         }
 
         public void HandleNewFileLoaded(string content)
@@ -345,6 +347,33 @@
         private void SetupUI()
         {
             this.bottomInfoPanel = new BottomRightInfoPanel(this.defaultEditorRoot);
+
+            this.ApplyButton = new SchwiftyButton(this.consoleTransform, "Apply", out _)
+                .SetBackgroundColor(this.colors.scrollbarBody)
+                .SetAnchors10(new Vector2(0f, 0f), new Vector2(0.2f, 0.05f))
+                .ZeroOffsets()
+                .ToButton6900();
+
+            this.ApplyButton.SetAction(_ => this.AttachMonoCurrentTextContent());
+
+            this.ResetButton = new SchwiftyButton(this.consoleTransform, "Reset", out _)
+                .SetBackgroundColor(this.colors.scrollbarHandle)
+                .SetAnchors10(new Vector2(0.2f, 0f), new Vector2(0.4f, 0.05f))
+                .ZeroOffsets()
+                .ToButton6900();
+
+            this.ResetButton.SetAction(_ => this.RemoveMono());
+
+            Color color = Color.black;
+            color.a = 0.3f;
+
+            SchwiftyButton consoleButton = new SchwiftyButton(this.consoleTransform, "Cons", out _)
+                .SetBackgroundColor(color)
+                .SetAnchors10(new Vector2(0.8f, 0f), new Vector2(1f, 0.05f))
+                .ZeroOffsets()
+                .ToButton6900();
+
+            consoleButton.SetAction(_ => this.ToggleConsole());
         }
     }
 }

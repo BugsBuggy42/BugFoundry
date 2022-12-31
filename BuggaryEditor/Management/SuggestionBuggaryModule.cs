@@ -125,7 +125,7 @@
         {
             if (lastCharacter == '.' && newCharacterInserted)
             {
-                Debug.Log($"DotCompletion");
+                // Debug.Log($"DotCompletion");
 
                 if (this.useOpenEditor)
                     this.searchTermStart = indexIn;
@@ -144,7 +144,7 @@
 
             Task.Run(async () =>
             {
-                Debug.Log($"|{textIn[this.searchTermStart + offset]}| {this.searchTermStart + offset}");
+                // Debug.Log($"|{textIn[this.searchTermStart + offset]}| {this.searchTermStart + offset}");
 
                 List<string> result =
                     await this.roslynModule.GetSuggestion(this.searchTermStart + offset,
@@ -155,8 +155,8 @@
 
                 if (result.Count == 0)
                 {
-                    Debug.Log($"NoSuggestions");
-                    this.DisableDotInsert(true);
+                    // Debug.Log($"NoSuggestions");
+                    // this.DisableDotInsert(true);
                 }
 
                 Dispatcher.Instance.Invoke(() =>
@@ -238,7 +238,7 @@
             if (length < 0)
             {
                 this.DisableDotInsert(false);
-                Debug.Log($"length < 0");
+                // Debug.Log($"length < 0");
                 return;
             }
 

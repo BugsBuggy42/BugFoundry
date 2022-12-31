@@ -108,7 +108,7 @@
             return this.text.text;
         }
 
-        public SchwiftyButton SetAct(UnityAction<SchwiftyButton> act)
+        public SchwiftyButton SetAction(UnityAction<SchwiftyButton> act)
         {
             this.btn.onClick.RemoveAllListeners();
             this.btn.onClick.AddListener(() => act(this));
