@@ -3532,7 +3532,7 @@ namespace Buggary.SchwiftyUI.V3.Forks
             }
         }
 
-        
+
         /// <summary>
         /// Function to update the vertical position of the text container when OnValueChanged event is received from the Scrollbar.
         /// </summary>

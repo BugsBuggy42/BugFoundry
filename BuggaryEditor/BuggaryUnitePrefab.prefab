@@ -211,9 +211,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Projects.Buggary.BuggarySource.Management.Buggary,
-          Buggary
+      - m_Target: {fileID: 2445483885582344854}
+        m_TargetAssemblyTypeName: Buggary.BuggaryEditor.Management.Buggary, BuggaryUnite
         m_MethodName: ToggleConsole
         m_Mode: 1
         m_Arguments:
@@ -1820,7 +1819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Projects.Buggary.BuggaryGame.BuggaryGame, BuggaryGame
+        m_TargetAssemblyTypeName: Buggary.BuggaryGame.BuggaryGame, BuggaryUnite
         m_MethodName: ResetLevel
         m_Mode: 1
         m_Arguments:
@@ -2312,7 +2311,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Projects.Buggary.BuggaryGame.BuggaryGame, BuggaryGame
+        m_TargetAssemblyTypeName: Buggary.BuggaryGame.BuggaryGame, BuggaryUnite
         m_MethodName: PlayScene
         m_Mode: 1
         m_Arguments:
