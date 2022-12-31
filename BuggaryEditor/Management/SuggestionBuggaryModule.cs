@@ -39,7 +39,8 @@
             bool openEditor,
             DocumentRoslynModule documentRoslynModuleIn,
             RectTransform defaultEditorRoot,
-            SchwiftyPanel editorPanel)
+            SchwiftyPanel editorPanel,
+            BuggaryColors colors)
         {
             this.state = stateIn;
             this.editor = editorIn;
@@ -49,7 +50,7 @@
             this.triggers = new List<char>() { '.', ' ', '\t' };
 
             _ = this.menuSuggest.Create(defaultEditorRoot, editorPanel,
-                this.HandleEnter, this.HandleEnter);
+                colors, this.HandleEnter, this.HandleEnter);
             this.menuSuggest.SetEnabled(false);
         }
 

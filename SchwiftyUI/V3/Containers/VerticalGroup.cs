@@ -34,7 +34,9 @@
             List<SchwiftyElement> elementsIn,
             bool applyScrollIn = true,
             bool expandWithChildrenIn = false,
-            Color? contentPanelColor = null)
+            Color? contentPanelColor = null,
+            Color? scrollbarBody = null,
+            Color? scrollbarHandle= null)
         {
             this.parent = parentIn;
             this.ppYMargin = ppYMarginIn;
@@ -80,7 +82,12 @@
 
             if (this.applyScroll)
             {
-                this.scrolling.Create(parentIn, this.contentParent, 15, Color.cyan, Color.green);
+                this.scrolling.Create(
+                    parentIn,
+                    this.contentParent,
+                    15,
+                    scrollbarBody,
+                    scrollbarHandle);
                 this.maskScrollRect = this.scrolling.GetScrollRect();
             }
 

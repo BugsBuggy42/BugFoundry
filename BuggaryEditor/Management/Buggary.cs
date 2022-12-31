@@ -334,10 +334,10 @@
                     this.colors.backgroundColor, this.fontAsset);
             this.suggestionBuggaryModule =
                 new SuggestionBuggaryModule(this.state, this.editor, this.useOpenEditor,
-                    this.documentRoslynModule,this.defaultEditorRoot, this.editorPanel);
+                    this.documentRoslynModule,this.defaultEditorRoot, this.editorPanel, this.colors);
             this.highlightBuggaryModule = new HighlightBuggaryModule(this.editor, this.colors);
             this.contextActionBuggaryModule = new ContextActionBuggaryModule(this.defaultEditorRoot,
-                this.editorPanel, this.documentRoslynModule, this.editor);
+                this.editorPanel, this.documentRoslynModule, this.editor, this.colors);
             SchwiftyRoot saveRoot = new(this.editorPanel.RectTransform, "SaveRoot");
             this.persistenceBuggaryModule = new PersistenceBuggaryModule(saveRoot, this.cam, this);
         }

@@ -26,11 +26,12 @@
             RectTransform rootParent,
             SchwiftyPanel editorPanel,
             DocumentRoslynModule documentIn,
-            ITextEditor editorIn)
+            ITextEditor editorIn,
+            BuggaryColors colors)
         {
             this.document = documentIn;
             this.editor = editorIn;
-            this.menu.Create(rootParent, editorPanel, this.ImportUsing, this.ImportUsing);
+            this.menu.Create(rootParent, editorPanel, colors, this.ImportUsing, this.ImportUsing);
             this.menu.SetEnabled(false);
         }
 

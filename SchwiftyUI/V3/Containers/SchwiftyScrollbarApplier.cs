@@ -21,8 +21,8 @@
             SchwiftyElement parentIn,
             SchwiftyElement contentIn,
             float thicknessIn,
-            Color? stillColorIn = null,
-            Color? activeColorIn = null,
+            Color? scrollBodyColor = null,
+            Color? scrollHandleColor = null,
             ScrollRect.MovementType movementType = ScrollRect.MovementType.Clamped,
             bool showMaskGraphic = false)
         {
@@ -42,13 +42,15 @@
             this.maskScrollRect = this.mask.gameObject.AddComponent<ScrollRect>();
             this.maskScrollRect.movementType = movementType;
 
-            this.scrollBar = (Elements.SchwiftyScrollbar)new SchwiftyScrollbar(this.mask, "SB")
+            this.scrollBar = (SchwiftyScrollbar)new SchwiftyScrollbar(this.mask, "SB")
                 .SetGoNameAndEleName($"{this.parent.Name} scrollBar")
                 .SetDimensionsWithCurrentAnchors(thicknessIn, parentSD.y)
                 .SetTopLeft20(parentTL.x + parentSD.x - thicknessIn, parentTL.y);
 
-            if (stillColorIn != null && activeColorIn != null)
-                this.scrollBar.SetHandleColorsOld(stillColorIn.Value, activeColorIn.Value);
+            if (scrollBodyColor != null && scrollHandleColor != null)
+                this.scrollBar
+                    .SetBodyColor(scrollBodyColor.Value)
+                    .SetHandleColor(scrollHandleColor.Value);
 
             this.maskScrollRect.content = this.content.RectTransform;
             this.maskScrollRect.verticalScrollbar = this.scrollBar.ScrollBar;

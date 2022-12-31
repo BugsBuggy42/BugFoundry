@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Management;
     using SchwiftyUI.V3;
     using SchwiftyUI.V3.Containers;
     using SchwiftyUI.V3.Containers.Sizers;
@@ -24,6 +25,7 @@
         private ScrollRect maskScrollRect;
         private VerticalGroup vertGroup;
         private SchwiftyPanel editorPanel;
+        private BuggaryColors colors;
 
         private const float FontSize = 15;
         private readonly Color labelNotSelected = Color.Lerp(Color.white, Color.black, 0.3f);
@@ -36,9 +38,14 @@
 
         public List<string> GetCurrentItems() => this.currentItems;
 
-        public SchwiftyElement Create(RectTransform rootParent, SchwiftyPanel editorPanelIn,
-            Action<string> itemClickedActionIn, Action<string> enterActionIn = null)
+        public SchwiftyElement Create(
+            RectTransform rootParent,
+            SchwiftyPanel editorPanelIn,
+            BuggaryColors colorsIn,
+            Action<string> itemClickedActionIn,
+            Action<string> enterActionIn = null)
         {
+            this.colors = colorsIn;
             this.editorPanel = editorPanelIn;
             this.itemClickedAction = itemClickedActionIn;
             this.enterAction = enterActionIn;
@@ -73,10 +80,7 @@
             }
 
             if (this.enterAction != null && Input.GetKeyDown(KeyCode.Return))
-            {
-                // Debug.Log($"ENTER {Time.frameCount}");
                 this.enterAction.Invoke(this.selectedLabel);
-            }
         }
 
         public void SetEnabled(bool enabledIn)
@@ -106,8 +110,6 @@
         public Vector2 GetBoxPosition(Vector2 targetPosition, Vector2 editorPanelSize, Vector2 editorPanelTopLeft,
             Vector2 menuSize)
         {
-            // Debug.Log($"tp:{targetPosition} es:{editorPanelSize} etl:{editorPanelTopLeft} ms:{menuSize}");
-
             string diag = "";
             float x;
             float xRight = targetPosition.x;
@@ -128,37 +130,7 @@
             else
                 y = yDown;
 
-            // Debug.Log($"diag: {diag}");
-
             return new Vector2(x + editorPanelTopLeft.x, y);
-        }
-
-        private void UpdateTransform2(Vector2 topLeft)
-        {
-            this.menuParent.UsePositioner15(new Positioner().PercentOfParentY(0.4f, 0.7f));
-
-            Vector2 editorPanelSize = this.editorPanel.RectTransform.GetSizeAnchorAgnostic();
-            Vector2 parentSize = this.menuParent.RectTransform.GetSizeAnchorAgnostic();
-
-            float x;
-            float xRight = topLeft.x;
-            float xLeft = topLeft.x - parentSize.x;
-
-            if (xRight + parentSize.x > editorPanelSize.x)
-                x = xLeft;
-            else
-                x = xRight;
-
-            float y;
-            float yUp = topLeft.y + parentSize.y + 35;
-            float yDown = topLeft.y - 10;
-
-            if (yUp < editorPanelSize.y)
-                y = yUp;
-            else
-                y = yDown;
-
-            this.menuParent?.SetTopLeft20(new Vector2(x + editorPanelSize.x / 2, y));
         }
 
         public void SetItems(List<string> elements)
@@ -188,8 +160,15 @@
 
             this.vertGroup?.Destroy();
             this.vertGroup = new();
-            this.vertGroup.Create(this.menuParent, 5, 5, new YSizer(SizerType.ElementFixedSideProportional, 0.1f),
-                this.labelList);
+            this.vertGroup.Create(
+                this.menuParent,
+                5,
+                5,
+                new YSizer(SizerType.ElementFixedSideProportional, 0.1f),
+                this.labelList,
+                scrollbarBody: this.colors.scrollbarBody,
+                scrollbarHandle: this.colors.scrollbarHandle);
+
             this.contentParent = this.vertGroup.GetContentParent();
             this.maskScrollRect = this.vertGroup.GetScrollRect();
 
