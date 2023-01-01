@@ -180,7 +180,8 @@
                 Vector2 tl = this.editorPanel.RectTransform.GetTopLeft();
                 Vector2 sd = this.editorPanel.RectTransform.GetSizeAnchorAgnostic();
 
-                position.y += sd.y / 2; // TODO: this might break if the input is not full height
+                position.y += tl.y;
+                position.y -= sd.y / 2;
                 position.x += tl.x;
 
                 return position;

@@ -31,7 +31,6 @@
         [SerializeField] public bool usePassedRTs;
         [SerializeField] public BuggaryColors colors;
         [SerializeField] public OpenEditor openEditor;
-        // [SerializeField] public ITextEditor fancyEditor;
         [SerializeField] public TMP_FontAsset fontAsset;
         [SerializeField] public bool useOpenEditor;
         [SerializeField] public Texture2D resizeCursor;
@@ -252,6 +251,7 @@
             {
                 editorLocal = new SchwiftyRoot(this.editorRectTransformExternal);
                 consoleLocal = new SchwiftyRoot(this.consoleRectTransformExternal);
+                this.defaultEditorRoot = editorLocal.RectTransform; // TODO: defaultEditorRoot is being abused, fix this.
             }
             else
             {
