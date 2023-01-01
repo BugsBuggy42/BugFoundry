@@ -5,6 +5,8 @@ Video introduction: https://youtu.be/d1Yt6flsLpY
 
 ![BuggaryShot](https://user-images.githubusercontent.com/121664522/210135809-324e7df8-e252-441e-bb8c-a8a7f9d0c1b2.png)
 
+There is a unity package in the releases you can use to import the project if that is more convenient.
+
 ## Features
 * Code completion.
 * Compile time error overlay.
@@ -30,3 +32,4 @@ The editor and console section can be placed automatically in a single UI parent
 ## Compatibility
 * Unity version: 2021.3
 * The project is using URP – this should not affect the editor itself but the game uses a prefab with three basic objects in it and it should not be difficult to swap those out.
+* The project relies on Roslyn dlls, if you already have some of them in your project this will lead to problems that are a bit of a nightmare to resolve.
