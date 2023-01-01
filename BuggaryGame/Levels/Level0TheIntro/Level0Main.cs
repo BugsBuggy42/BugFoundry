@@ -17,9 +17,9 @@
         public void Initialize(BuggaryGame gameIn, GameObject prefabIn)
         {
             this.game = gameIn;
-            this.game.WinConditions.Add(new WinCondition(this.HelloUnity, "Console.Log(\"Hello Unity\")",
+            this.game.WinConditions.Add(new WinCondition(this.HelloUnity, "Debug.Log(\"Hello Unity\")",
                 this.game.objectives[0]));
-            this.game.WinConditions.Add(new WinCondition(this.HelloUnity50, "Console.Log(\"Hello Unity\") 50 times",
+            this.game.WinConditions.Add(new WinCondition(this.HelloUnity50, "Debug.Log(\"Hello Unity\") 50 times",
                 this.game.objectives[1]));
             Debug.Log($"Welcome to level the Intro");
             foreach (GameObject o in this.game.objectives.Skip(2))
