@@ -183,8 +183,6 @@
                 position.y += sd.y / 2; // TODO: this might break if the input is not full height
                 position.x += tl.x;
 
-                Debug.Log($"{tl.x} {tl.y}");
-
                 return position;
             }
             catch (Exception e)

@@ -16,10 +16,16 @@
 
         private bool updateColorRunning = false;
 
+        private bool? colored = null;
+        private readonly WaitUntil waitUntil;
+        private readonly WaitForSeconds waitForSeconds;
+
         public HighlightBuggaryModule(ITextEditor editorIn, BuggaryColors colors)
         {
             this.editor = editorIn;
             this.highlightModule = new HighlightModule(colors);
+            this.waitUntil = new WaitUntil(() => this.colored != null);
+            this.waitForSeconds = new WaitForSeconds(0.2f);
         }
 
         public void UpdateHighlighting(bool nextFrame) => Coroutiner.Instance.StartCoroutine(this.ColorCoroutine(nextFrame));
@@ -34,27 +40,27 @@
             if (nextFrame)
                 yield return null;
 
-            bool? colored = null;
             string text = this.editor.GetText(true);
 
             while (true)
             {
-                string text1 = text;
-                Task task = Task.Run(async () =>
+                string localText = text;
+                Task.Run(async () =>
                     {
-                        List<Range> result = await this.highlightModule.Highlight(text1);
-                        Dispatcher.Instance.Invoke(() => colored = this.editor.ColorSections(text1, result));
+                        List<Range> result = await this.highlightModule.Highlight(localText);
+                        Dispatcher.Instance.Invoke(() => this.colored = this.editor.ColorSections(localText, result));
                     }
                 );
 
-                yield return new WaitUntil(() => task.IsCompleted);
-                yield return new WaitForSeconds(0.2f);
+                yield return this.waitUntil;
+                yield return this.waitForSeconds;
 
-                if (colored == null)
-                    Debug.Log($"BS");
+                if (this.colored == null)
+                    Debug.LogError($"BS");
 
-                if (colored != true)
+                if (this.colored != true)
                 {
+                    this.colored = null;
                     text = this.editor.GetText(true);
                     continue;
                 }

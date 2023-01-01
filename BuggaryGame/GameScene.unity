@@ -145,7 +145,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1368942917}
   - component: {fileID: 1368942918}
-  - component: {fileID: 1368942919}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -196,18 +195,6 @@ MonoBehaviour:
   fontAsset: {fileID: 11400000, guid: c5b1236d368f98546a570cfbba358baf, type: 2}
   levelOneWorld: {fileID: 541293338297018573, guid: b05e10f2905e4334f85d26f90bf25afe,
     type: 3}
---- !u!114 &1368942919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368942915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcf590d590b83549ba54e4d290d478e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1807253558
 PrefabInstance:
   m_ObjectHideFlags: 0

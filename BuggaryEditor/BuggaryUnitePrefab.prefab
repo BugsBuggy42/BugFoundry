@@ -1064,7 +1064,7 @@ MonoBehaviour:
   openEditor: {fileID: 7901939853605344022}
   fontAsset: {fileID: 11400000, guid: c5b1236d368f98546a570cfbba358baf, type: 2}
   useOpenEditor: 1
-  resizeCursor: {fileID: 2800000, guid: f54814069fd98ae45be23283803a557c, type: 3}
+  resizeCursor: {fileID: 2800000, guid: 1ffc924fab283f84e8f540fbab2dcfb7, type: 3}
   cam: {fileID: 9178726621866153023}
   initText: 0
 --- !u!114 &7901939853605344022
@@ -1079,7 +1079,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1654a119550effa449c89cb45994c29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 9178726622376025571}
   cam: {fileID: 9178726621866153023}
   font: {fileID: 11400000, guid: c5b1236d368f98546a570cfbba358baf, type: 2}
   validator: {fileID: 11400000, guid: 768ac863c391d7c4fa21b51f2e814e66, type: 2}
