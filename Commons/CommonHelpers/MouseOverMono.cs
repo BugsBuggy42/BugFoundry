@@ -1,4 +1,4 @@
-﻿namespace Buggary.Commons.CommonHelpers
+﻿namespace BugFoundry.Commons.CommonHelpers
 {
     using System;
     using UnityEngine;

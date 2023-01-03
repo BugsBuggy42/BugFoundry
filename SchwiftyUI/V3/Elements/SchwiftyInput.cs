@@ -1,4 +1,4 @@
-﻿namespace Buggary.SchwiftyUI.V3.Elements
+﻿namespace BugFoundry.SchwiftyUI.V3.Elements
 {
     using System;
     using System.Collections;

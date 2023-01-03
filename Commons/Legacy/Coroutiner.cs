@@ -1,4 +1,4 @@
-﻿namespace Buggary.Commons.Legacy
+﻿namespace BugFoundry.Commons.Legacy
 {
     using UnityEngine;
 

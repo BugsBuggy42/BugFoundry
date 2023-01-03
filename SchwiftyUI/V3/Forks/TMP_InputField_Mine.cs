@@ -1,6 +1,6 @@
 ﻿//#define TMP_DEBUG_MODE
 
-namespace Buggary.SchwiftyUI.V3.Forks
+namespace BugFoundry.SchwiftyUI.V3.Forks
 {
     using System;
     using System.Collections;

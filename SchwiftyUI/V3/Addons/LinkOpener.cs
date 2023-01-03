@@ -1,4 +1,4 @@
-﻿namespace Buggary.SchwiftyUI.V3.Addons
+﻿namespace BugFoundry.SchwiftyUI.V3.Addons
 {
     using TMPro;
     using UnityEngine;

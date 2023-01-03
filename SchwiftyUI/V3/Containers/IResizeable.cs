@@ -1,4 +1,4 @@
-﻿namespace Buggary.SchwiftyUI.V3.Containers
+﻿namespace BugFoundry.SchwiftyUI.V3.Containers
 {
     public interface IResizeable
     {

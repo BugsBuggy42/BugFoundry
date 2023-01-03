@@ -1,4 +1,4 @@
-﻿namespace Buggary.SchwiftyUI.V3.Containers.Sizers
+﻿namespace BugFoundry.SchwiftyUI.V3.Containers.Sizers
 {
     public class YSizer
     {

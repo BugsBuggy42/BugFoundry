@@ -1,4 +1,4 @@
-﻿namespace Buggary.SchwiftyUI.V3.Containers.Behaviours
+﻿namespace BugFoundry.SchwiftyUI.V3.Containers.Behaviours
 {
     using System;
     using UnityEngine;
