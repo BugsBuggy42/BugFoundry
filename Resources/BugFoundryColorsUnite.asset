@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa459148742750c4aa89611500e2f577, type: 3}
-  m_Name: BuggaryColorsUnite
+  m_Name: BugFoundryColorsUnite
   m_EditorClassIdentifier: 
   keyword: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}
   keywordControl: {r: 0.41960785, g: 0.5803922, b: 0.827451, a: 1}

@@ -14,7 +14,7 @@
     using UI;
     using UnityEngine;
 
-    public class ContextActionBuggaryModule
+    public class ContextActionBugFoundryModule
     {
         private AddMissingImportRoslynModule missingImportRoslynModule = new();
         private ListSelectionFloatingMenu menu = new();
@@ -22,12 +22,12 @@
         private ITextEditor editor;
         private bool active = false;
 
-        public ContextActionBuggaryModule(
+        public ContextActionBugFoundryModule(
             RectTransform rootParent,
             SchwiftyPanel editorPanel,
             DocumentRoslynModule documentIn,
             ITextEditor editorIn,
-            BuggaryColors colors)
+            BugFoundryColors colors)
         {
             this.document = documentIn;
             this.editor = editorIn;

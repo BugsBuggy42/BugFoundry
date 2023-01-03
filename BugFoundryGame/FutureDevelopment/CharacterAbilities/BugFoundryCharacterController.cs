@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class BuggaryCharacterController : MonoBehaviour
+    public class BugFoundryCharacterController : MonoBehaviour
     {
         [SerializeField] private Camera playerCamera;
         [SerializeField] private GameObject bulletPrefab;

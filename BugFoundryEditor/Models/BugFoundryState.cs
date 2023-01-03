@@ -1,6 +1,6 @@
 ﻿namespace BugFoundry.BugFoundryEditor.Models
 {
-    public enum BuggaryState
+    public enum BugFoundryState
     {
         Edit = 1,
         Completion = 2,

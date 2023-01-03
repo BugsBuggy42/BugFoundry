@@ -2,6 +2,6 @@
 {
     public enum PersistenceKeys
     {
-        BuggaryScripts
+        BugFoundryScripts
     }
 }

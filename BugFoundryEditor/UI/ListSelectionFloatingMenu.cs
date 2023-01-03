@@ -25,7 +25,7 @@
         private ScrollRect maskScrollRect;
         private VerticalGroup vertGroup;
         private SchwiftyPanel editorPanel;
-        private BuggaryColors colors;
+        private BugFoundryColors colors;
 
         private const float FontSize = 15;
         private readonly Color labelNotSelected = Color.Lerp(Color.white, Color.black, 0.3f);
@@ -41,7 +41,7 @@
         public SchwiftyElement Create(
             RectTransform rootParent,
             SchwiftyPanel editorPanelIn,
-            BuggaryColors colorsIn,
+            BugFoundryColors colorsIn,
             Action<string> itemClickedActionIn,
             Action<string> enterActionIn = null)
         {

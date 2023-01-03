@@ -8,13 +8,13 @@
 
     public class Level0Main : ILevel
     {
-        private BuggaryGame game;
+        private BugFoundryGame game;
         private Transform playerTrans;
         private Transform targetTrans;
         private Vector3 playerInitPosition;
         private Vector3 targetInitPosition;
 
-        public void Initialize(BuggaryGame gameIn, GameObject prefabIn)
+        public void Initialize(BugFoundryGame gameIn, GameObject prefabIn)
         {
             this.game = gameIn;
             this.game.WinConditions.Add(new WinCondition(this.HelloUnity, "Debug.Log(\"Hello Unity\")",
@@ -36,7 +36,7 @@
 
         private bool HelloUnity()
         {
-            if (BuggaryConsole.Instance.GetLogs().Contains("Hello Unity"))
+            if (BugFoundryConsole.Instance.GetLogs().Contains("Hello Unity"))
                 return true;
 
             return false;
@@ -44,7 +44,7 @@
 
         private bool HelloUnity50()
         {
-            int count = BuggaryConsole.Instance.GetLogs().Count(x => x == "Hello Unity");
+            int count = BugFoundryConsole.Instance.GetLogs().Count(x => x == "Hello Unity");
             if (count >= 50)
                 return true;
 

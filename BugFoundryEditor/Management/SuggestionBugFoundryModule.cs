@@ -16,9 +16,9 @@
     using UI;
     using UnityEngine;
 
-    public class SuggestionBuggaryModule
+    public class SuggestionBugFoundryModule
     {
-        private readonly BoxedBuggaryState state;
+        private readonly BoxedBugFoundryState state;
         private readonly SuggestionRoslynModule roslynModule = new();
         private readonly DocumentRoslynModule documentRoslynModule;
         private string lastSearchTerm;
@@ -33,14 +33,14 @@
         private int lastCaretIndex;
         private string lastText;
 
-        public SuggestionBuggaryModule(
-            BoxedBuggaryState stateIn,
+        public SuggestionBugFoundryModule(
+            BoxedBugFoundryState stateIn,
             ITextEditor editorIn,
             bool openEditor,
             DocumentRoslynModule documentRoslynModuleIn,
             RectTransform defaultEditorRoot,
             SchwiftyPanel editorPanel,
-            BuggaryColors colors)
+            BugFoundryColors colors)
         {
             this.state = stateIn;
             this.editor = editorIn;
@@ -83,7 +83,7 @@
                 return;
             }
 
-            if (this.state.Value == BuggaryState.Completion) return;
+            if (this.state.Value == BugFoundryState.Completion) return;
 
             this.DotCompletion(textIn, indexIn, lastCharacter, newCharacterInserted);
 
@@ -140,7 +140,7 @@
 
         private void TriggerCompletion(string textIn, CancellationToken token, int offset = 0)
         {
-            this.state.Value = BuggaryState.Completion;
+            this.state.Value = BugFoundryState.Completion;
 
             Task.Run(async () =>
             {
@@ -214,7 +214,7 @@
 
         private IEnumerator DisableDotInsertCo(bool nextFrame)
         {
-            this.state.Value = BuggaryState.Edit;
+            this.state.Value = BugFoundryState.Edit;
 
             if (nextFrame)
                 yield return null;
@@ -228,7 +228,7 @@
 
         private void UpdateSearch(string text, int currentIndex)
         {
-            if (this.state.Value != BuggaryState.Completion) return;
+            if (this.state.Value != BugFoundryState.Completion) return;
 
             int length = currentIndex - this.searchTermStart;
 
@@ -272,7 +272,7 @@
             {
                 this.menuSuggest.SetEnabled(false);
                 this.editor.Disable(); // TODO: Probably a mistake should be enable
-                this.state.Value = BuggaryState.Edit;
+                this.state.Value = BugFoundryState.Edit;
                 this.lastSearchTerm = SearchTermDefault;
             }
         }

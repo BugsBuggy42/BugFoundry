@@ -5,12 +5,12 @@
 
     public class PersistenceInputListener : MonoBehaviour
     {
-        [SerializeField] private Buggary buggary;
+        [SerializeField] private BugFoundry bugFoundry;
 
         public void Update()
         {
             if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
-                this.buggary.persistenceBuggaryModule.SaveCurrent();
+                this.bugFoundry.PersistenceBugFoundryModule.SaveCurrent();
         }
     }
 }

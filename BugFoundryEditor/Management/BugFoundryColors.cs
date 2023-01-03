@@ -2,8 +2,8 @@
 {
     using UnityEngine;
 
-    [CreateAssetMenu(fileName = "BuggaryColors", menuName = "ScriptableObjects/BuggaryColorsUnite", order = 1)]
-    public class BuggaryColors: ScriptableObject
+    [CreateAssetMenu(fileName = "BugFoundryColors", menuName = "ScriptableObjects/BugFoundryColorsUnite", order = 1)]
+    public class BugFoundryColors: ScriptableObject
     {
         public Color keyword;
         public Color keywordControl;

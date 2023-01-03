@@ -12,16 +12,16 @@
     using SchwiftyUI.V3.Elements;
     using UnityEngine;
 
-    public class BuggaryScriptLoadUI
+    public class BugFoundryScriptLoadUI
     {
         private List<SchwiftyButton> buttons = new();
         private VerticalGroup vg;
-        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BuggaryScripts.ToString());
+        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BugFoundryScripts.ToString());
 
         private readonly SchwiftyElement parent;
         private readonly Action<SavedScriptData> action;
 
-        public BuggaryScriptLoadUI(SchwiftyElement parentIn, Action<SavedScriptData> actionIn)
+        public BugFoundryScriptLoadUI(SchwiftyElement parentIn, Action<SavedScriptData> actionIn)
         {
             this.parent = parentIn;
             this.action = actionIn;

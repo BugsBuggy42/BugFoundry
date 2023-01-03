@@ -17,11 +17,11 @@
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class BuggaryGame : MonoBehaviour
+    public class BugFoundryGame : MonoBehaviour
     {
         private Persistence<LevelPersistence> currentLevelPer = new("CurrentLevel");
 
-        [SerializeField] public Buggary buggary;
+        [SerializeField] public BugFoundry bugFoundry;
         [SerializeField] public List<GameObject> objectives;
         [SerializeField] public Canvas canvas;
         [SerializeField] public TMP_FontAsset fontAsset;
@@ -82,8 +82,8 @@
             this.level = this.levels[this.levelIndex];
             this.level.level.Initialize(this, this.level.worldPrefab);
 
-            this.buggary.ApplyButton.SetAction(_ => this.PlayScene());
-            this.buggary.ResetButton.SetAction(_ => this.ResetLevel());
+            this.bugFoundry.ApplyButton.SetAction(_ => this.PlayScene());
+            this.bugFoundry.ResetButton.SetAction(_ => this.ResetLevel());
         }
 
         private void Update()
@@ -222,22 +222,22 @@
         public void PlayScene()
         {
             this.ScenePlaying = true;
-            this.buggary.AttachMonoCurrentTextContent();
+            this.bugFoundry.AttachMonoCurrentTextContent();
             this.ScenePlay?.Invoke();
         }
 
         public void ResetLevel()
         {
             this.ScenePlaying = false;
-            this.buggary.RemoveMono();
+            this.bugFoundry.RemoveMono();
             this.SceneReset?.Invoke();
-            BuggaryConsole.Instance.Reset();
+            BugFoundryConsole.Instance.Reset();
         }
 
         public void SetupLevelSpecificCode(string code)
         {
-            this.buggary.SetupCode(code);
-            this.buggary.persistenceBuggaryModule.RemoveLastPath();
+            this.bugFoundry.SetupCode(code);
+            this.bugFoundry.PersistenceBugFoundryModule.RemoveLastPath();
         }
     }
 }

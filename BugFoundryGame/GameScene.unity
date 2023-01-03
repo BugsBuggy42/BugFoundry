@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a0a24374418a34ca4e33cd4bb1c1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buggary: {fileID: 821113317}
+  bugFoundry: {fileID: 821113317}
   objectives:
   - {fileID: 1807253568}
   - {fileID: 1807253567}

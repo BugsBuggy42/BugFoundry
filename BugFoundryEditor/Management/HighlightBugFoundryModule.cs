@@ -9,10 +9,10 @@
     using Roslyn.Highlights;
     using UnityEngine;
 
-    public class HighlightBuggaryModule
+    public class HighlightBugFoundryModule
     {
         private readonly ITextEditor editor;
-        private readonly HighlightModule highlightModule;
+        private readonly HighlightRoslynModule highlightModule;
 
         private bool updateColorRunning = false;
 
@@ -20,10 +20,10 @@
         private readonly WaitUntil waitUntil;
         private readonly WaitForSeconds waitForSeconds;
 
-        public HighlightBuggaryModule(ITextEditor editorIn, BuggaryColors colors)
+        public HighlightBugFoundryModule(ITextEditor editorIn, BugFoundryColors colors)
         {
             this.editor = editorIn;
-            this.highlightModule = new HighlightModule(colors);
+            this.highlightModule = new HighlightRoslynModule(colors);
             this.waitUntil = new WaitUntil(() => this.colored != null);
             this.waitForSeconds = new WaitForSeconds(0.2f);
         }

@@ -23,13 +23,13 @@
     using UI;
     using UnityEngine;
 
-    public class Buggary : MonoBehaviour
+    public class BugFoundry : MonoBehaviour
     {
         [SerializeField] public RectTransform editorRectTransformExternal;
         [SerializeField] public RectTransform consoleRectTransformExternal;
         [SerializeField] public RectTransform defaultEditorRoot;
         [SerializeField] public bool usePassedRTs;
-        [SerializeField] public BuggaryColors colors;
+        [SerializeField] public BugFoundryColors colors;
         [SerializeField] public OpenEditor openEditor;
         [SerializeField] public TMP_FontAsset fontAsset;
         [SerializeField] public bool useOpenEditor;
@@ -40,8 +40,8 @@
         public SchwiftyButton ApplyButton;
         public SchwiftyButton ResetButton;
 
-        private readonly BoxedBuggaryState state = new(BuggaryState.Edit);
-        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BuggaryScripts.ToString());
+        private readonly BoxedBugFoundryState state = new(BugFoundryState.Edit);
+        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BugFoundryScripts.ToString());
         private ITextEditor editor;
         private List<Diagnostic> diagnostics = new();
 
@@ -51,12 +51,12 @@
         private readonly DocumentRoslynModule documentRoslynModule = new();
 
         // Management
-        private SuggestionBuggaryModule suggestionBuggaryModule;
-        private HighlightBuggaryModule highlightBuggaryModule;
-        private OverloadBuggaryModule overloadBuggaryModule;
-        private ContextActionBuggaryModule contextActionBuggaryModule;
-        private ErrorBuggaryModule errorBuggaryModule;
-        public PersistenceBuggaryModule persistenceBuggaryModule;
+        private SuggestionBugFoundryModule suggestionBugFoundryModule;
+        private HighlightBugFoundryModule highlightBugFoundryModule;
+        private OverloadBugFoundryModule overloadBugFoundryModule;
+        private ContextActionBugFoundryModule contextActionBugFoundryModule;
+        private ErrorBugFoundryModule errorBugFoundryModule;
+        public PersistenceBugFoundryModule PersistenceBugFoundryModule;
 
         // UI/Mixed
         private SchwiftyPanel editorPanel;
@@ -64,9 +64,9 @@
 
         // private SchwiftyPanel leftPanel;
         private SchwiftyPanel saveLoadPanel;
-        private BuggaryConsole console;
+        private BugFoundryConsole console;
         private BottomRightInfoPanel bottomInfoPanel;
-        private BuggaryScriptLoadUI loadScriptUI;
+        private BugFoundryScriptLoadUI loadScriptUI;
 
         private bool initiated = false;
         private int caretIndex = 0;
@@ -81,7 +81,7 @@
             this.SetupDefaultUIPanels();
             this.SetupSelectedEditor();
             this.SetupEditor();
-            this.SetupBuggaryModules();
+            this.SetupBugFoundryModules();
             this.SetupConsole();
             this.SetupUI();
             if (this.initText)
@@ -103,7 +103,7 @@
             else
                 this.editor.SetText(text);
 
-            this.highlightBuggaryModule.UpdateHighlighting(true);
+            this.highlightBugFoundryModule.UpdateHighlighting(true);
             this.compilationErrorRoslyn.CheckCompilation(text);
             this.initiated = true;
         }
@@ -113,9 +113,9 @@
         /// </summary>
         public void SetupCode(string code)
         {
-            this.persistenceBuggaryModule.RemoveLastPath();
+            this.PersistenceBugFoundryModule.RemoveLastPath();
             this.editor.SetText(code);
-            this.highlightBuggaryModule.UpdateHighlighting(true);
+            this.highlightBugFoundryModule.UpdateHighlighting(true);
             this.compilationErrorRoslyn.CheckCompilation(code);
         }
 
@@ -142,22 +142,22 @@
             {
                 this.documentRoslynModule.UpdateText(this.editorText);
                 // Debug.Log($"DOCUMENT UPDATE {Time.frameCount}");
-                this.highlightBuggaryModule.UpdateHighlighting(true);
+                this.highlightBugFoundryModule.UpdateHighlighting(true);
                 this.diagnostics = this.compilationErrorRoslyn.CheckCompilation(this.editor.GetText(true));
-                this.errorBuggaryModule.SetErrorRedUnderlines(this.diagnostics);
+                this.errorBugFoundryModule.SetErrorRedUnderlines(this.diagnostics);
             }
 
-            this.suggestionBuggaryModule.Update(caretIndexChanged, this.newCharacterInserted, text, this.caretIndex, caretPos);
-            this.errorBuggaryModule.Update();
-            this.overloadBuggaryModule.Update(this.caretIndex, caretIndexChanged, text, caretPos);
-            this.contextActionBuggaryModule.Update(this.caretIndex, caretPos, caretIndexChanged);
+            this.suggestionBugFoundryModule.Update(caretIndexChanged, this.newCharacterInserted, text, this.caretIndex, caretPos);
+            this.errorBugFoundryModule.Update();
+            this.overloadBugFoundryModule.Update(this.caretIndex, caretIndexChanged, text, caretPos);
+            this.contextActionBugFoundryModule.Update(this.caretIndex, caretPos, caretIndexChanged);
 
             // this is here so that diagnostic lines scroll
             // it is throwing and error when using open editor, this explains the second check
             // TODO: figure out a working way for scroll updates
             // TODO: make this trigger on scroll only
             if (caretIndexChanged && this.useOpenEditor == false)
-                this.errorBuggaryModule.DisplayDiagnosticData(this.caretIndex);
+                this.errorBugFoundryModule.DisplayDiagnosticData(this.caretIndex);
 
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.L))
                 this.ToggleLoadMenu();
@@ -284,22 +284,22 @@
             if (this.useOpenEditor)
             {
                 this.openEditor.Initialize(this.editorPanel,
-                    () => this.suggestionBuggaryModule.DisableDotInsert(true),
+                    () => this.suggestionBugFoundryModule.DisableDotInsert(true),
                     _ =>
                     {
-                        this.errorBuggaryModule.RepositionDiagnosticData(this.caretIndex);
-                        this.errorBuggaryModule.SetErrorRedUnderlines(this.diagnostics);
+                        this.errorBugFoundryModule.RepositionDiagnosticData(this.caretIndex);
+                        this.errorBugFoundryModule.SetErrorRedUnderlines(this.diagnostics);
                     }, this.editorPanel
                 );
             }
             else
             {
                 // we are not working on the fancy editor in the public release since it is licenced
-                // this.fancyEditor.Initialize(this.editorPanel, () => this.suggestionBuggaryModule.DisableDotInsert(true),
+                // this.fancyEditor.Initialize(this.editorPanel, () => this.suggestionBugFoundryModule.DisableDotInsert(true),
                 //     _ =>
                 //     {
-                //         this.errorBuggaryModule.RepositionDiagnosticData(this.caretIndex);
-                //         this.errorBuggaryModule.SetErrorRedUnderlines(this.diagnostics);
+                //         this.errorBugFoundryModule.RepositionDiagnosticData(this.caretIndex);
+                //         this.errorBugFoundryModule.SetErrorRedUnderlines(this.diagnostics);
                 //     });
             }
         }
@@ -317,30 +317,30 @@
         {
             this.editor.SetCaretIndex(0);
             this.editor.SetText(content);
-            this.highlightBuggaryModule.UpdateHighlighting(true);
+            this.highlightBugFoundryModule.UpdateHighlighting(true);
         }
 
         private void SetupConsole()
         {
-            this.console = new BuggaryConsole(this.consoleTransform, this.fontAsset, this.cam, this.colors);
+            this.console = new BugFoundryConsole(this.consoleTransform, this.fontAsset, this.cam, this.colors);
             this.console.Hide();
         }
 
-        private void SetupBuggaryModules()
+        private void SetupBugFoundryModules()
         {
-            this.overloadBuggaryModule =
-                new OverloadBuggaryModule(this.defaultEditorRoot, this.editorPanel, this.fontAsset);
-            this.errorBuggaryModule =
-                new ErrorBuggaryModule(this.defaultEditorRoot, this.editorPanel, this.editor,
+            this.overloadBugFoundryModule =
+                new OverloadBugFoundryModule(this.defaultEditorRoot, this.editorPanel, this.fontAsset);
+            this.errorBugFoundryModule =
+                new ErrorBugFoundryModule(this.defaultEditorRoot, this.editorPanel, this.editor,
                     this.colors.backgroundColor, this.fontAsset);
-            this.suggestionBuggaryModule =
-                new SuggestionBuggaryModule(this.state, this.editor, this.useOpenEditor,
+            this.suggestionBugFoundryModule =
+                new SuggestionBugFoundryModule(this.state, this.editor, this.useOpenEditor,
                     this.documentRoslynModule,this.defaultEditorRoot, this.editorPanel, this.colors);
-            this.highlightBuggaryModule = new HighlightBuggaryModule(this.editor, this.colors);
-            this.contextActionBuggaryModule = new ContextActionBuggaryModule(this.defaultEditorRoot,
+            this.highlightBugFoundryModule = new HighlightBugFoundryModule(this.editor, this.colors);
+            this.contextActionBugFoundryModule = new ContextActionBugFoundryModule(this.defaultEditorRoot,
                 this.editorPanel, this.documentRoslynModule, this.editor, this.colors);
             SchwiftyRoot saveRoot = new(this.editorPanel.RectTransform, "SaveRoot");
-            this.persistenceBuggaryModule = new PersistenceBuggaryModule(saveRoot, this.cam, this);
+            this.PersistenceBugFoundryModule = new PersistenceBugFoundryModule(saveRoot, this.cam, this);
         }
 
         private void SetupUI()

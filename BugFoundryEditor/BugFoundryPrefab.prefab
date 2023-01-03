@@ -900,7 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8095432929492363686}
   m_Layer: 0
-  m_Name: BuggaryUnitePrefab
+  m_Name: BugFoundryPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,11 +9,11 @@
     using Microsoft.CodeAnalysis.Text;
     using UnityEngine;
 
-    public class HighlightModule
+    public class HighlightRoslynModule
     {
-        private readonly BuggaryColors colors;
+        private readonly BugFoundryColors colors;
 
-        public HighlightModule(BuggaryColors colorsIn)
+        public HighlightRoslynModule(BugFoundryColors colorsIn)
         {
             this.colors = colorsIn;
         }

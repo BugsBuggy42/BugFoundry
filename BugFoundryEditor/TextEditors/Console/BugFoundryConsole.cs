@@ -8,12 +8,12 @@
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class BuggaryConsole
+    public class BugFoundryConsole
     {
-        public static BuggaryConsole Instance;
+        public static BugFoundryConsole Instance;
         private readonly SchwiftyInput input;
         private List<string> logs = new();
-        private BuggaryColors colors;
+        private BugFoundryColors colors;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void Init()
@@ -21,7 +21,7 @@
             Instance = null;
         }
 
-        public BuggaryConsole(SchwiftyElement parent, TMP_FontAsset font, Camera cam, BuggaryColors colors)
+        public BugFoundryConsole(SchwiftyElement parent, TMP_FontAsset font, Camera cam, BugFoundryColors colors)
         {
             if (Instance != null)
                 Debug.LogWarning($"Instance != null");
@@ -30,14 +30,14 @@
 
             Instance = this;
 
-            this.input = new SchwiftyInput(parent, "BuggaryConsoleInput", cam)
+            this.input = new SchwiftyInput(parent, "BugFoundryConsoleInput", cam)
                 .SetFontAsset(font)
                 .SetTextSize(12)
                 .SetVerticalAlignment(VerticalAlignmentOptions.Top)
                 .SetHorizontalAlignment(HorizontalAlignmentOptions.Left)
                 .SetBackgroundColor(new Color(0, 0, 0, 0.8f))
                 .UsePositioner15(new Positioner().SameAsParent())
-                .SetGoNameAndEleName("Buggary Console")
+                .SetGoNameAndEleName("BugFoundry Console")
                 .ToInput6900();
 
             SchwiftyScrollbar sb =

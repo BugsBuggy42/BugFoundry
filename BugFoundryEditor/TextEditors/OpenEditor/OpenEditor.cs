@@ -24,7 +24,7 @@
         [SerializeField] private Color caretColor;
         [SerializeField] private int caretWith;
         [SerializeField] private float scrollSensitivity;
-        [SerializeField] private BuggaryColors colors;
+        [SerializeField] private BugFoundryColors colors;
 
         private SchwiftyInput input;
         private Transform caret;

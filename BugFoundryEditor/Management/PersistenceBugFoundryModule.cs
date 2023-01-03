@@ -1,29 +1,29 @@
-﻿namespace BugFoundry.BugFoundryEditor.PersistenceModule
+﻿namespace BugFoundry.BugFoundryEditor.Management
 {
     using System;
     using System.IO;
     using System.Linq;
     using Commons.CommonHelpers;
-    using DataClasses;
-    using Management;
+    using PersistenceModule;
+    using PersistenceModule.DataClasses;
     using SchwiftyUI.V3.Elements;
     using SchwiftyUI.V3.Inputs;
     using UnityEngine;
 
-    public class PersistenceBuggaryModule
+    public class PersistenceBugFoundryModule
     {
         private SchwiftyButton saveButton;
         private SchwiftyInput input;
         private SchwiftyPanel savePanel;
-        private Buggary buggary;
-        private BuggaryScriptLoadUI loadUI;
+        private BugFoundry bugFoundry;
+        private BugFoundryScriptLoadUI loadUI;
         private bool active = false;
 
-        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BuggaryScripts.ToString());
+        private readonly Persistence<ScriptReference> persistence = new(PersistenceKeys.BugFoundryScripts.ToString());
 
-        public PersistenceBuggaryModule(SchwiftyRoot root, Camera cam, Buggary buggary)
+        public PersistenceBugFoundryModule(SchwiftyRoot root, Camera cam, BugFoundry bugFoundry)
         {
-            this.buggary = buggary;
+            this.bugFoundry = bugFoundry;
 
             Color gray = Color.gray;
             Color black = Color.black;
@@ -43,9 +43,9 @@
                 .SetAnchors10(new Vector2(0f, 0.05f), new Vector2(1, 1f))
                 .ZeroOffsets();
 
-            this.loadUI = new BuggaryScriptLoadUI(loadUIPanel, x =>
+            this.loadUI = new BugFoundryScriptLoadUI(loadUIPanel, x =>
             {
-                this.buggary.HandleNewFileLoaded(x.Content);
+                this.bugFoundry.HandleNewFileLoaded(x.Content);
             });
 
             this.savePanel.SetActive(false);
@@ -92,13 +92,13 @@
                 if (string.IsNullOrWhiteSpace(current.LastPath) == false)
                 {
                     Debug.Log($"Overriding current save");
-                    File.WriteAllText(current.LastPath, this.buggary.GetText());
+                    File.WriteAllText(current.LastPath, this.bugFoundry.GetText());
                 }
 
                 return;
             }
 
-            string directory = Path.Combine(Application.persistentDataPath, "BuggaryScripts");
+            string directory = Path.Combine(Application.persistentDataPath, "BugFoundryScripts");
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 
@@ -106,7 +106,7 @@
 
             string path = Path.Combine(directory, $"{fileName}___{unique}.txt");
 
-            File.WriteAllText(path, this.buggary.GetText());
+            File.WriteAllText(path, this.bugFoundry.GetText());
 
             current.Paths.Add(path);
             current.LastPath = path;

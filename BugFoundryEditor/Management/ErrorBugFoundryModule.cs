@@ -13,7 +13,7 @@
     using UI.Classes;
     using UnityEngine;
 
-    public class ErrorBuggaryModule
+    public class ErrorBugFoundryModule
     {
         private readonly SchwiftyRoot schRoot;
         private readonly List<ErrorUnderline> errorUnderlines = new();
@@ -23,7 +23,7 @@
         private readonly Color panelColor;
         private readonly SchwiftyPanel editorPanel;
 
-        public ErrorBuggaryModule(RectTransform parent, SchwiftyPanel editorPanelIn, ITextEditor editor, Color panelColorIn, TMP_FontAsset asset)
+        public ErrorBugFoundryModule(RectTransform parent, SchwiftyPanel editorPanelIn, ITextEditor editor, Color panelColorIn, TMP_FontAsset asset)
         {
             this.editorPanel = editorPanelIn;
             this.panelColor = panelColorIn;

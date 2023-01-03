@@ -19,11 +19,11 @@
         private Vector3 playerInitPosition;
         private Vector3 targetInitPosition;
 
-        private BuggaryGame game;
+        private BugFoundryGame game;
 
         private DateTime startTime;
 
-        public void Initialize(BuggaryGame gameIn, GameObject prefabIn)
+        public void Initialize(BugFoundryGame gameIn, GameObject prefabIn)
         {
             if (prefabIn == null)
                 throw new Exception("Prefab should not be null!");

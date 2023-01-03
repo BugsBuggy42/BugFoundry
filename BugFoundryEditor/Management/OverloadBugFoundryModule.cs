@@ -1,4 +1,4 @@
-﻿namespace BugFoundry.BugFoundryEditor.Roslyn
+﻿namespace BugFoundry.BugFoundryEditor.Management
 {
     using System.Collections.Generic;
     using System.Collections.Immutable;
@@ -6,16 +6,17 @@
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Text;
+    using Roslyn;
     using SchwiftyUI.V3.Containers;
     using SchwiftyUI.V3.Elements;
     using TMPro;
     using UnityEngine;
 
-    public class OverloadBuggaryModule
+    public class OverloadBugFoundryModule
     {
         private readonly InfoPanelFloating floatingPanel;
 
-        public OverloadBuggaryModule(RectTransform parent, SchwiftyPanel editorPanel, TMP_FontAsset font)
+        public OverloadBugFoundryModule(RectTransform parent, SchwiftyPanel editorPanel, TMP_FontAsset font)
         {
             this.floatingPanel = new InfoPanelFloating(new SchwiftyRoot(parent), editorPanel.RectTransform, font);
         }

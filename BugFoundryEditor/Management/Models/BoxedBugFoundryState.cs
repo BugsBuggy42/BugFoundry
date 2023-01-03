@@ -2,13 +2,13 @@
 {
     using BugFoundryEditor.Models;
 
-    public class BoxedBuggaryState
+    public class BoxedBugFoundryState
     {
-        public BoxedBuggaryState(BuggaryState initState)
+        public BoxedBugFoundryState(BugFoundryState initState)
         {
             this.Value = initState;
         }
 
-        public BuggaryState Value { get; set; }
+        public BugFoundryState Value { get; set; }
     }
 }
