@@ -1,9 +1,9 @@
-# Buggary
+# BugFoundry
 The premiere bug writing tool! Unity code editor that works in **Runtime** and can be embedded in games. 
 
 Video introduction: https://youtu.be/d1Yt6flsLpY
 
-![BuggaryShot](https://user-images.githubusercontent.com/121664522/210135809-324e7df8-e252-441e-bb8c-a8a7f9d0c1b2.png)
+!['Shot](https://user-images.githubusercontent.com/121664522/210135809-324e7df8-e252-441e-bb8c-a8a7f9d0c1b2.png)
 
 There is a unity package in the releases you can use to import the project if that is more convenient.
 
@@ -11,15 +11,15 @@ There is a unity package in the releases you can use to import the project if th
 * Code completion.
 * Compile time error overlay.
 * Shows overload options [When the cursor is on a method with overloads].
-* Detailed customizable code highlighting(coloring) [There is a BuggaryColors scriptable object that can be edited].
+* Detailed customizable code highlighting(coloring) [There is a BugFoundryColors scriptable object that can be edited].
 * Can generate using statements for unrecognized types [This is triggered by ctrl+.];
 
-Buggary is also a game, where you have to write code to complete challenges. There are three example levels currently you can go trough, or see the second portion of the video where I do that.
+BugFoundry is also a game, where you have to write code to complete challenges. There are three example levels currently you can go trough, or see the second portion of the video where I do that.
 
 ## Shortcomings
 * This will not work on all platforms, although I have not done the research to figure which ones it will work on. I have only validated windows builds so far.
 * Currently there no undo/redo for text editing. This should be somewhat straight-foreword and will be working on it soon. That or figure out a different text editor.
-* Buggary is still work in progress, feel free to leave bug reports and suggestions.
+* BugFoundry is still work in progress, feel free to leave bug reports and suggestions.
 # Documentation
 The editor and console section can be placed automatically in a single UI parent or separately. In the editor folder there are two scenes that use a different method each, you can check them for reference.
 ## Editor
