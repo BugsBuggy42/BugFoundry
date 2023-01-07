@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Containers;
+    using global::SchwiftyUI.BugFoundry.SchwiftyUI.V3;
     using UnityEngine;
 
     public class SchwiftyRoot : SchwiftyElement
