@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements
+﻿namespace BugFoundry.SchwiftyUI.V3.Elements
 {
     using Other;
     using UnityEngine;

@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using Management;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers.Sizers;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Inputs;
+    using SchwiftyUI.V3;
+    using SchwiftyUI.V3.Containers;
+    using SchwiftyUI.V3.Containers.Sizers;
+    using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.V3.Inputs;
     using TMPro;
     using UnityEngine;
     using UnityEngine.UI;

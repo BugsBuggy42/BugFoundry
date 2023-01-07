@@ -6,8 +6,8 @@
     using Commons.CommonHelpers;
     using PersistenceModule;
     using PersistenceModule.DataClasses;
-    using SchwiftyUI.V3.Elements;
-    using SchwiftyUI.V3.Inputs;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Inputs;
     using UnityEngine;
 
     public class PersistenceBugFoundryModule

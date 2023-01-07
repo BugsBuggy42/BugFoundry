@@ -1,4 +1,4 @@
-﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers
+﻿namespace BugFoundry.SchwiftyUI.V3.Containers
 {
     using System;
     using System.Collections.Generic;

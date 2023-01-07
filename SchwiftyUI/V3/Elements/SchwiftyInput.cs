@@ -1,9 +1,9 @@
-﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements
+﻿namespace BugFoundry.SchwiftyUI.V3.Elements
 {
     using System;
     using System.Collections;
+    using Commons.Legacy;
     using Forks;
-    using global::BugFoundry.Commons.Legacy;
     using Other;
     using TMPro;
     using UnityEngine;

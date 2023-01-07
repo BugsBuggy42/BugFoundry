@@ -12,7 +12,7 @@
     using Infrastructure;
     using Models;
     using Roslyn;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
+    using SchwiftyUI.V3.Elements;
     using UI;
     using UnityEngine;
 

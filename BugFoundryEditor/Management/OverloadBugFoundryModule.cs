@@ -7,8 +7,8 @@
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Text;
     using Roslyn;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
+    using SchwiftyUI.V3.Containers;
+    using SchwiftyUI.V3.Elements;
     using TMPro;
     using UnityEngine;
 

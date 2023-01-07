@@ -7,9 +7,9 @@
     using Commons.CommonHelpers;
     using DataClasses;
     using Management.Models;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers.Sizers;
-    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
+    using SchwiftyUI.V3.Containers;
+    using SchwiftyUI.V3.Containers.Sizers;
+    using SchwiftyUI.V3.Elements;
     using UnityEngine;
 
     public class BugFoundryScriptLoadUI
