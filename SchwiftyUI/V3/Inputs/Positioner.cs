@@ -1,4 +1,4 @@
-﻿namespace BugFoundry.SchwiftyUI.V3.Inputs
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Inputs
 {
     using System;
     using Elements;

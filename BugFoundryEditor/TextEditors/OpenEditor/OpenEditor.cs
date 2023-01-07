@@ -6,10 +6,10 @@
     using Contracts;
     using Management;
     using Models;
-    using SchwiftyUI.V3;
-    using SchwiftyUI.V3.Elements;
-    using SchwiftyUI.V3.Forks;
-    using SchwiftyUI.V3.Inputs;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Forks;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Inputs;
     using TMPro;
     using UnityEngine;
     using UnityEngine.UI;

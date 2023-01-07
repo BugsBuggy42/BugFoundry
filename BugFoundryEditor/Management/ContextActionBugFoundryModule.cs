@@ -10,7 +10,7 @@
     using Microsoft.CodeAnalysis;
     using Roslyn;
     using Roslyn.Refactors;
-    using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
     using UI;
     using UnityEngine;
 

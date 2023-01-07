@@ -1,7 +1,7 @@
 ﻿namespace BugFoundry.BugFoundryEditor.UI
 {
     using Commons.CommonHelpers;
-    using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
     using UnityEngine;
 
     public class BottomRightInfoPanel

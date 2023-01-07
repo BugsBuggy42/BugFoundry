@@ -1,11 +1,11 @@
-﻿namespace BugFoundry.SchwiftyUI.V3.Examples
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Examples
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Commons.CommonHelpers;
     using Containers;
     using Containers.Sizers;
     using Elements;
+    using global::BugFoundry.Commons.CommonHelpers;
     using Inputs;
     using UnityEngine;
 

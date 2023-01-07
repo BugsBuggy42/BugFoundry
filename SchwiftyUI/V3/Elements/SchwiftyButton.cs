@@ -1,4 +1,4 @@
-﻿namespace BugFoundry.SchwiftyUI.V3.Elements
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements
 {
     using System;
     using Other;

@@ -6,9 +6,9 @@
     using Contracts;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
-    using SchwiftyUI.V3;
-    using SchwiftyUI.V3.Containers;
-    using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
     using TMPro;
     using UI.Classes;
     using UnityEngine;

@@ -1,4 +1,4 @@
-﻿namespace BugFoundry.SchwiftyUI.V3.Inputs.Enums
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Inputs.Enums
 {
     public enum XPosition
     {

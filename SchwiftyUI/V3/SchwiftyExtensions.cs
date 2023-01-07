@@ -1,4 +1,4 @@
-﻿namespace BugFoundry.SchwiftyUI.V3
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3
 {
     using System;
     using Containers.Sizers;

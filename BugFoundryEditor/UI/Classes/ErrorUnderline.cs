@@ -1,7 +1,7 @@
 ﻿namespace BugFoundry.BugFoundryEditor.UI.Classes
 {
     using Microsoft.CodeAnalysis;
-    using SchwiftyUI.V3.Elements;
+    using SchwiftyUI.BugFoundry.SchwiftyUI.V3.Elements;
 
     public class ErrorUnderline
     {

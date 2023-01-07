@@ -1,10 +1,10 @@
-﻿namespace BugFoundry.SchwiftyUI.V3.Containers
+﻿namespace SchwiftyUI.BugFoundry.SchwiftyUI.V3.Containers
 {
     using System;
     using System.Linq;
     using Addons;
-    using Commons.CommonHelpers;
     using Elements;
+    using global::BugFoundry.Commons.CommonHelpers;
     using Inputs;
     using TMPro;
     using UnityEngine;
