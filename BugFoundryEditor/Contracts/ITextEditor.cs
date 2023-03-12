@@ -6,6 +6,7 @@
 
     public interface ITextEditor
     {
+        public static string Test;
         public string GetText(bool clean);
         public void SetText(string text);
         public Vector2 GetCaretPosition(bool left, bool top);
