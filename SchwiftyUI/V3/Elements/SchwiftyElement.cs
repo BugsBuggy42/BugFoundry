@@ -58,7 +58,7 @@
         public void RegisterWithRoot(List<IResizeable> resizeable)
         {
             SchwiftyRoot root = this.GetRootElement();
-            root.AddToToResizeCollections(resizeable);
+            root.AddToResizeCollections(resizeable);
         }
 
         /// <summary>
